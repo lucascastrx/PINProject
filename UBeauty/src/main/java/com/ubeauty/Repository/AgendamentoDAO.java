@@ -1,26 +1,25 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.Cliente;
-import java.util.HashMap;
+import com.ubeauty.Entities.Agendamento;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class AgendamentoDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public AgendamentoDAO (){
         emf = Persistence.createEntityManagerFactory("hibernatejpa");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
+    public void gravar (Agendamento agendamento){
         try {
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(agendamento);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -30,13 +29,28 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public Agendamento remover (int id){
+        Agendamento ag = null;
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            ag = em.find(Agendamento.class, id);
+            em.remove(ag);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            closeConnection();
+        }
+        return ag;
+    }
+    
+    public Agendamento atualizar (Agendamento agendamento){
+        Agendamento ag = null;
+        
+        try {
+            em.getTransaction().begin();
+            ag = em.merge(agendamento);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -44,15 +58,15 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return cliente;
+        return ag;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
+    public Agendamento buscar (int id){
+        Agendamento ag = null;
+        
         try {
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
+            ag = em.find(Agendamento.class, id);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -60,34 +74,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-       
-        return cliente2;
+        return ag;
     }
     
-    public Cliente buscar (int id){
-        Cliente cliente = null;
-        try {
-            em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        
-        return cliente;
-    }
-    
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Map<Integer,Agendamento> buscarTodosAgendamentos(){
+        Map<Integer,Agendamento> mapAgendamentos = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
+            List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
+            for (Agendamento ag : listAgendamentos) {
+                mapAgendamentos.putIfAbsent(ag.getId(), ag);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,18 +93,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesMap;
+        return mapAgendamentos;
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+        List<Integer> agendamentosKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
+            for (Agendamento ag : listAgendamentos) {
+                agendamentosKeys.add(ag.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -116,14 +112,13 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return agendamentosKeys;
     }
-     
+    
+    
+    
     private void closeConnection(){
         em.close();
         emf.close();
     }
-    
-    
 }

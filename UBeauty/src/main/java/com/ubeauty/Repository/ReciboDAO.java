@@ -1,26 +1,25 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.Cliente;
-import java.util.HashMap;
+import com.ubeauty.Entities.Recibo;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class ReciboDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public ReciboDAO (){
         emf = Persistence.createEntityManagerFactory("hibernatejpa");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
+    public void gravar (Recibo r){
         try {
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(r);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -30,13 +29,28 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public Recibo remover (int id){
+        Recibo r = null;
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            r = em.find(Recibo.class, id);
+            em.remove(r);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            closeConnection();
+        }
+        return r;
+    }
+    
+    public Recibo atualizar (Recibo rc){
+        Recibo r = null;
+        
+        try {
+            em.getTransaction().begin();
+            r = em.merge(rc);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -44,15 +58,15 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return cliente;
+        return r;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
+    public Recibo buscar (int id){
+        Recibo r = null;
+        
         try {
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
+            r = em.find(Recibo.class, id);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -60,34 +74,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-       
-        return cliente2;
+        return r;
     }
     
-    public Cliente buscar (int id){
-        Cliente cliente = null;
-        try {
-            em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        
-        return cliente;
-    }
-    
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Map<Integer,Recibo> buscarTodosRecibos(){
+        Map<Integer,Recibo> mapRecibos = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
+            List<Recibo> listRecibos = em.createQuery("from Recibo").getResultList();
+            for (Recibo r : listRecibos) {
+                mapRecibos.putIfAbsent(r.getId(), r);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,18 +93,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesMap;
+        return mapRecibos;
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+        List<Integer> recibosKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<Recibo> listRecibos = em.createQuery("from Recibo").getResultList();
+            for (Recibo r : listRecibos) {
+                recibosKeys.add(r.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -116,14 +112,11 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return recibosKeys;
     }
-     
+    
     private void closeConnection(){
         em.close();
         emf.close();
     }
-    
-    
 }

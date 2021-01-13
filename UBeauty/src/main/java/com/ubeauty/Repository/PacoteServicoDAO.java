@@ -1,26 +1,25 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.Cliente;
-import java.util.HashMap;
+import com.ubeauty.Entities.PacoteServico;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class PacoteServicoDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public PacoteServicoDAO (){
         emf = Persistence.createEntityManagerFactory("hibernatejpa");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
+    public void gravar (PacoteServico ps){
         try {
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(ps);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -30,13 +29,28 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public PacoteServico remover (int id){
+        PacoteServico ps = null;
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            ps = em.find(PacoteServico.class, id);
+            em.remove(ps);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            closeConnection();
+        }
+        return ps;
+    }
+    
+    public PacoteServico atualizar (PacoteServico ps){
+        PacoteServico p = null;
+        
+        try {
+            em.getTransaction().begin();
+            p = em.merge(ps);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -44,15 +58,15 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return cliente;
+        return p;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
+    public PacoteServico buscar (int id){
+        PacoteServico ps = null;
+        
         try {
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
+            ps = em.find(PacoteServico.class, id);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -60,34 +74,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-       
-        return cliente2;
+        return ps;
     }
     
-    public Cliente buscar (int id){
-        Cliente cliente = null;
-        try {
-            em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        
-        return cliente;
-    }
-    
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Map<Integer,PacoteServico> buscarTodosPacoteServico(){
+        Map<Integer,PacoteServico> mapPS = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
+            List<PacoteServico> listPS = em.createQuery("from PacoteServico").getResultList();
+            for (PacoteServico ps : listPS) {
+                mapPS.putIfAbsent(ps.getId(), ps);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,18 +93,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesMap;
+        return mapPS;
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+        List<Integer> PSKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<PacoteServico> listPS = em.createQuery("from PacoteServico").getResultList();
+            for (PacoteServico ps : listPS) {
+                PSKeys.add(ps.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -116,14 +112,13 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return PSKeys;
     }
-     
+    
+    
+    
     private void closeConnection(){
         em.close();
         emf.close();
     }
-    
-    
 }

@@ -1,26 +1,25 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.Cliente;
-import java.util.HashMap;
+import com.ubeauty.Entities.Carrinho;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class CarrinhoDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public CarrinhoDAO (){
         emf = Persistence.createEntityManagerFactory("hibernatejpa");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
+    public void gravar (Carrinho carrinho){
         try {
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(carrinho);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -30,13 +29,28 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public Carrinho remover (int id){
+        Carrinho c = null;
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            c = em.find(Carrinho.class, id);
+            em.remove(c);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            closeConnection();
+        }
+        return c;
+    }
+    
+    public Carrinho atualizar (Carrinho carrinho){
+        Carrinho c = null;
+        
+        try {
+            em.getTransaction().begin();
+            c = em.merge(carrinho);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -44,15 +58,15 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return cliente;
+        return c;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
+    public Carrinho buscar (int id){
+        Carrinho c = null;
+        
         try {
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
+            c = em.find(Carrinho.class, id);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -60,34 +74,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-       
-        return cliente2;
+        return c;
     }
     
-    public Cliente buscar (int id){
-        Cliente cliente = null;
-        try {
-            em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        
-        return cliente;
-    }
-    
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Map<Integer,Carrinho> buscarTodosCarrinhos(){
+        Map<Integer,Carrinho> mapCarrinhos = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
+            List<Carrinho> listCarrinhos = em.createQuery("from Carrinho").getResultList();
+            for (Carrinho c : listCarrinhos) {
+                mapCarrinhos.putIfAbsent(c.getId(), c);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,18 +93,17 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesMap;
+        return mapCarrinhos;
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+        List<Integer> carrinhosKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<Carrinho> listCarrinhos = em.createQuery("from Carrinho").getResultList();
+            for (Carrinho c : listCarrinhos) {
+                carrinhosKeys.add(c.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -116,14 +112,13 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return carrinhosKeys;
     }
-     
+    
+    
+    
     private void closeConnection(){
         em.close();
         emf.close();
     }
-    
-    
 }

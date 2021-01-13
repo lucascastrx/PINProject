@@ -1,42 +1,26 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.Cliente;
-import java.util.HashMap;
+import com.ubeauty.Entities.Gestor;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class GestorDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public GestorDAO (){
         emf = Persistence.createEntityManagerFactory("hibernatejpa");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
-        try {
-            em.getTransaction().begin();
-            em.persist(cliente);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-    }
-    
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public void gravar(Gestor gestor){
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            em.persist(gestor);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -45,30 +29,15 @@ public class ClienteDAO {
             closeConnection();
         }
         
-        return cliente;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
+    public Gestor remover (int id){
+        Gestor g = null;
+        
         try {
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-       
-        return cliente2;
-    }
-    
-    public Cliente buscar (int id){
-        Cliente cliente = null;
-        try {
-            em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
+            g = em.find(Gestor.class, id);
+            em.remove(g);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -77,17 +46,50 @@ public class ClienteDAO {
             closeConnection();
         }
         
-        return cliente;
+        return g;
     }
     
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Gestor atualizar (Gestor gestor){
+        Gestor g = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
+            g = em.merge(gestor);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        
+        return g;
+    }
+    
+    public Gestor buscar (int id){
+        Gestor g = null;
+        
+        try {
+            em.getTransaction().begin();
+            g = em.find(Gestor.class, id);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return g;
+    }
+    
+    public Map<Integer,Gestor> buscarTodosGestores (){
+        Map<Integer,Gestor> mapGestores = null;
+        
+        try {
+            em.getTransaction().begin();
+            List<Gestor> listGestores = em.createQuery("from Gestor").getResultList();
+            for (Gestor g : listGestores) {
+                mapGestores.putIfAbsent(g.getId(), g);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -96,34 +98,32 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesMap;
+        return mapGestores;
     }
     
-    public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+    public List<Integer> buscarTodasKeys (){
+        List<Integer> gestoresKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<Gestor> listGestores = em.createQuery("from Gestor").getResultList();
+            for (Gestor g : listGestores) {
+                gestoresKeys.add(g.getId());
             }
             em.getTransaction().commit();
+            
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return gestoresKeys;
     }
-     
+    
     private void closeConnection(){
         em.close();
         emf.close();
     }
-    
     
 }
