@@ -12,7 +12,7 @@ public class CarrinhoDAO {
     private final EntityManager em;
     
     public CarrinhoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

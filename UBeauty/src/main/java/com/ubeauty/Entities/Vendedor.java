@@ -1,15 +1,17 @@
 package com.ubeauty.Entities;
 
+import javax.persistence.Entity;
 
 
+@Entity 
 public class Vendedor extends Cliente{
     private String cnpj;
 
     public Vendedor() {
     }
 
-    public Vendedor(int id, String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String cnpj, String senha) {
-        super(id, nome, sobrenome, email, endereco, ddd, telefone, senha);
+    public Vendedor(String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String cnpj, String senha) {
+        super( nome, sobrenome, email, endereco, ddd, telefone, senha);
         this.cnpj = cnpj;
     }
 

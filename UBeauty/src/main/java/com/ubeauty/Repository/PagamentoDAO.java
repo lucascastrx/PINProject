@@ -12,7 +12,7 @@ public class PagamentoDAO {
     private final EntityManager em;
     
     public PagamentoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

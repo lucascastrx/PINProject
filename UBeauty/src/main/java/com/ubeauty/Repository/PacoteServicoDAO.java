@@ -12,7 +12,7 @@ public class PacoteServicoDAO {
     private final EntityManager em;
     
     public PacoteServicoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

@@ -12,7 +12,7 @@ public class ServicoDAO {
     private final EntityManager em;
     
     public ServicoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

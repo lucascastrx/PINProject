@@ -1,6 +1,15 @@
 package com.ubeauty.Entities;
 
-public class Servico {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Servico implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private String nome;
@@ -11,7 +20,7 @@ public class Servico {
     public Servico() {
     }
 
-    public Servico(int id, String nome, String descricao, String categoria, double valor) {
+    public Servico( String nome, String descricao, String categoria, double valor) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

@@ -1,16 +1,19 @@
 package com.ubeauty.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 
-public class Mensagem extends Reclamacao{
+@Entity
+public class Mensagem extends Reclamacao implements Serializable{
     private String nomeReceber;
 
     public Mensagem() {
         
     }
 
-    public Mensagem(int id, String texto, String nomeEnviar, String nomeReceber, Date data, Date hora) {
-        super(id, texto, nomeEnviar, data, hora);
+    public Mensagem(String texto, String nomeEnviar, String nomeReceber, Date data, Date hora) {
+        super(texto, nomeEnviar, data, hora);
         this.nomeReceber = nomeReceber;
     }
 

@@ -1,20 +1,32 @@
 package com.ubeauty.Entities;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Recibo {
+@Entity
+public class Recibo implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private String descricao;
-    private Date data;
+    @Temporal(TemporalType.DATE)
+    private Date dia;
 
     public Recibo() {
     }
 
-    public Recibo(int id, String descricao, Date data) {
+    public Recibo(String descricao, Date data) {
         this.id = id;
         this.descricao = descricao;
-        this.data = data;
+        this.dia = data;
     }
 
     public int getId() {
@@ -34,11 +46,11 @@ public class Recibo {
     }
 
     public Date getData() {
-        return data;
+        return dia;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.dia = data;
     }
 
     @Override
@@ -68,7 +80,7 @@ public class Recibo {
 
     @Override
     public String toString() {
-        return "Recibo{" + "id=" + id + ", descricao=" + descricao + ", data=" + data + '}';
+        return "Recibo{" + "id=" + id + ", descricao=" + descricao + ", data=" + dia + '}';
     }
     
     

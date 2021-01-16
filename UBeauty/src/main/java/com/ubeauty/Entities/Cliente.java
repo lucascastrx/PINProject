@@ -1,6 +1,18 @@
 package com.ubeauty.Entities;
 
-public class Cliente {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Cliente implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private String nome;
@@ -14,7 +26,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int id, String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
+    public Cliente( String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;

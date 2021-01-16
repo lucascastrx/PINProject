@@ -13,7 +13,7 @@ public class ClienteDAO {
     private final EntityManager em;
 
     public ClienteDAO() {
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

@@ -1,9 +1,19 @@
 package com.ubeauty.Entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-public class Carrinho {
+@Entity
+public class Carrinho implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private List<Servico> listServicos = new ArrayList <> (); 
@@ -11,10 +21,7 @@ public class Carrinho {
     public Carrinho() {
     }
 
-    public Carrinho(int Id) {
-        this.id = Id;
-    }
-
+    
     public int getId() {
         return id;
     }

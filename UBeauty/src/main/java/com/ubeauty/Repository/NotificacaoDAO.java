@@ -12,7 +12,7 @@ public class NotificacaoDAO {
     private final EntityManager em;
     
     public NotificacaoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

@@ -12,7 +12,7 @@ public class VendedorDAO {
     private final EntityManager em;
     
     public VendedorDAO(){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

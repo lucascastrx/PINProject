@@ -12,7 +12,7 @@ public class ReclamacaoDAO {
     private final EntityManager em;
     
     public ReclamacaoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

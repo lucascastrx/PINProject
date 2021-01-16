@@ -12,7 +12,7 @@ public class GestorDAO {
     private final EntityManager em;
     
     public GestorDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

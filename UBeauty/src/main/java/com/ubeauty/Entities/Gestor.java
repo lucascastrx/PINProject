@@ -1,6 +1,18 @@
 package com.ubeauty.Entities;
 
-public class Gestor {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+@Entity
+public class Gestor implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private String nome;
@@ -10,11 +22,14 @@ public class Gestor {
     private int ddd;
     private int telefone;
     private String senha;
+    
+    
+    private List<Notificacao> listaNotificacao = new ArrayList <>();
 
     public Gestor() {
     }
 
-    public Gestor(int id, String nome, String cnpj, String email, String endereco, int ddd, int telefone, String senha) {
+    public Gestor( String nome, String cnpj, String email, String endereco, int ddd, int telefone, String senha) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;

@@ -1,9 +1,17 @@
 package com.ubeauty.Entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-public class PacoteServico {
+@Entity
+public class PacoteServico implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private List<Servico> listServicos = new ArrayList<> ();
@@ -11,9 +19,6 @@ public class PacoteServico {
     public PacoteServico() {
     }
 
-    public PacoteServico(int id) {
-        this.id = id;
-    }
 
     public int getId() {
         return id;

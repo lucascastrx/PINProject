@@ -12,7 +12,7 @@ public class ReciboDAO {
     private final EntityManager em;
     
     public ReciboDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

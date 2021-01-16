@@ -1,19 +1,31 @@
 package com.ubeauty.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Agendamento {
+@Entity
+public class Agendamento implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
-    private Date data;
+    @Temporal(TemporalType.DATE)
+    private Date dia;
+    @Temporal(TemporalType.DATE)
     private Date hora;
 
     public Agendamento() {
     }
 
-    public Agendamento(int id, Date data, Date hora) {
+    public Agendamento(Date data, Date hora) {
         this.id = id;
-        this.data = data;
+        this.dia = data;
         this.hora = hora;
     }
 
@@ -26,11 +38,11 @@ public class Agendamento {
     }
 
     public Date getData() {
-        return data;
+        return dia;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.dia = data;
     }
 
     public Date getHora() {
@@ -68,7 +80,7 @@ public class Agendamento {
 
     @Override
     public String toString() {
-        return "Agendamento{" + "id=" + id + ", data=" + data + ", hora=" + hora + '}';
+        return "Agendamento{" + "id=" + id + ", data=" + dia + ", hora=" + hora + '}';
     }
     
     

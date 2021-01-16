@@ -12,7 +12,7 @@ public class AgendamentoDAO {
     private final EntityManager em;
     
     public AgendamentoDAO (){
-        emf = Persistence.createEntityManagerFactory("hibernatejpa");
+        emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     

@@ -1,8 +1,19 @@
 package com.ubeauty.Entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
-public class Notificacao {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Notificacao implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private String texto;
@@ -12,7 +23,7 @@ public class Notificacao {
     public Notificacao() {
     }
 
-    public Notificacao(int id, String texto, Date data, Date hora) {
+    public Notificacao( String texto, Date data, Date hora) {
         this.id = id;
         this.texto = texto;
         this.data = data;

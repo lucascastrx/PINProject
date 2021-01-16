@@ -1,6 +1,15 @@
 package com.ubeauty.Entities;
 
-public class Pagamento {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Pagamento implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
     private double valor;
@@ -10,7 +19,7 @@ public class Pagamento {
     public Pagamento() {
     }
 
-    public Pagamento(int id, double valor, String devedor, String prestador) {
+    public Pagamento(double valor, String devedor, String prestador) {
         this.id = id;
         this.valor = valor;
         this.devedor = devedor;
