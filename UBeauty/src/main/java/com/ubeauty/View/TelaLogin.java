@@ -5,6 +5,8 @@
  */
 package com.ubeauty.View;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Eduardo Buzzi
@@ -17,6 +19,8 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        setIconImage(icon.getImage());
     }
 
     /**
