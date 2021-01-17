@@ -17,6 +17,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     CardLayout cl = new CardLayout();
     JPanel jp = new PanelPrincipal();
+    JPanel jp2 = new PanelNotificacoes();
+    JPanel jp3 = new PanelPaginaSalao();
 
     /**
      * Creates new form TelaPrincipal
@@ -30,7 +32,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         painelConteudo.setLayout(cl);
         painelConteudo.add(jp, "inicial");
-        cl.show(painelConteudo, "inicial");
+        painelConteudo.add(jp2, "notif");
+        painelConteudo.add(jp3, "paginasalao");
+        cl.show(painelConteudo, "paginasalao");
 
     }
 
