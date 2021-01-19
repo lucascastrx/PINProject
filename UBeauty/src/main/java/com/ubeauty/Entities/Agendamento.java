@@ -2,15 +2,20 @@ package com.ubeauty.Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Agendamento implements Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -19,12 +24,17 @@ public class Agendamento implements Serializable{
     private Date dia;
     @Temporal(TemporalType.DATE)
     private Date hora;
+    
+    @ManyToOne
+    private Servico servico;
+    
+    @OneToMany(mappedBy = "id.agendamento")
+    private Set<OrdemItem> items = new HashSet<>();
 
     public Agendamento() {
     }
 
     public Agendamento(Date data, Date hora) {
-        this.id = id;
         this.dia = data;
         this.hora = hora;
     }
@@ -53,6 +63,27 @@ public class Agendamento implements Serializable{
         this.hora = hora;
     }
 
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
+    
+    public Set<Carrinho> getCarrinhos(){
+        Set<Carrinho> set = new HashSet<>();
+        for(OrdemItem oi : items){
+            set.add(oi.getCarrinho());
+        }
+        return set;
+    }
+    
+    public void addItems(OrdemItem oi){
+        items.add(oi);
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

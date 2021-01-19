@@ -3,31 +3,56 @@ package com.ubeauty.Entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Mensagem extends Reclamacao implements Serializable{
-    private String nomeReceber;
+    private String idReceber;
+    
+    @ManyToOne
+    Cliente c;
+    
+    @ManyToOne
+    Vendedor v;
 
     public Mensagem() {
         
     }
 
-    public Mensagem(String texto, String nomeEnviar, String nomeReceber, Date data, Date hora) {
+    public Mensagem(String texto, String nomeEnviar, String idReceber, Date data, Date hora) {
         super(texto, nomeEnviar, data, hora);
-        this.nomeReceber = nomeReceber;
+        this.idReceber = idReceber;
     }
 
-    public String getNomeReceber() {
-        return nomeReceber;
+    public String getIdReceber() {
+        return idReceber;
     }
 
-    public void setNomeReceber(String nomeReceber) {
-        this.nomeReceber = nomeReceber;
+    public void setIdReceber(String nomeReceber) {
+        this.idReceber = nomeReceber;
     }
+
+    public Cliente getCliente() {
+        return this.c;
+    }
+
+    public void setCliente(Cliente c) {
+        this.c = c;
+    }
+
+    public Vendedor getVendedor() {
+        return this.v;
+    }
+
+    public void setVendedor(Vendedor v) {
+        this.v = v;
+    }
+    
+    
 
     @Override
     public String toString() {
-        return super.toString()+ "Mensagem{" + "nomeReceber=" + nomeReceber + '}';
+        return super.toString()+ "Mensagem{" + "idReceber=" + idReceber + '}';
     }
     
     

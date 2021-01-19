@@ -3,10 +3,12 @@ package com.ubeauty.Entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -23,8 +25,8 @@ public class Gestor implements Serializable{
     private int telefone;
     private String senha;
     
-    
-    private List<Notificacao> listaNotificacao = new ArrayList <>();
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notificacao> notificacoes = new ArrayList <>();
 
     public Gestor() {
     }
@@ -102,6 +104,14 @@ public class Gestor implements Serializable{
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public void addNotificacao(Notificacao n){
+        this.notificacoes.add(n);
+    }
+    
+    public void removeNotificacao(Notificacao n){
+        this.notificacoes.remove(n);
     }
 
     @Override

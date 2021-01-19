@@ -1,25 +1,27 @@
 package com.ubeauty.Repository;
 
-import com.ubeauty.Entities.PacoteServico;
+import com.ubeauty.Entities.Agendamento;
+import com.ubeauty.Entities.Carrinho;
+import com.ubeauty.Entities.OrdemItem;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class PacoteServicoDAO {
+public class OrdemItemDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
     
-    public PacoteServicoDAO (){
+    public OrdemItemDAO (){
         emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     
-    public void gravar (PacoteServico ps){
+    public void gravar (OrdemItem oi){
         try {
             em.getTransaction().begin();
-            em.persist(ps);
+            em.persist(oi);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -29,44 +31,28 @@ public class PacoteServicoDAO {
         }
     }
     
-    public PacoteServico remover (int id){
-        PacoteServico ps = null;
+    public OrdemItem remover (int id){
+        OrdemItem oi = null;
         
         try {
             em.getTransaction().begin();
-            ps = em.find(PacoteServico.class, id);
-            em.remove(ps);
+            oi = em.find(OrdemItem.class, id);
+            em.remove(oi);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
             closeConnection();
         }
-        return ps;
+        return oi;
     }
     
-    public PacoteServico atualizar (PacoteServico ps){
-        PacoteServico p = null;
+    public OrdemItem atualizar (OrdemItem orderItem){
+        OrdemItem oi = null;
         
         try {
             em.getTransaction().begin();
-            p = em.merge(ps);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        return p;
-    }
-    
-    public PacoteServico buscar (int id){
-        PacoteServico ps = null;
-        
-        try {
-            em.getTransaction().begin();
-            ps = em.find(PacoteServico.class, id);
+            oi = em.merge(orderItem);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -74,17 +60,36 @@ public class PacoteServicoDAO {
         } finally {
             closeConnection();
         }
-        return ps;
+        return oi;
     }
     
-    public Map<Integer,PacoteServico> buscarTodosPacoteServico(){
-        Map<Integer,PacoteServico> mapPS = null;
+    public OrdemItem buscar (int id){
+        OrdemItem oi = null;
         
         try {
             em.getTransaction().begin();
-            List<PacoteServico> listPS = em.createQuery("from PacoteServico").getResultList();
-            for (PacoteServico ps : listPS) {
-                mapPS.putIfAbsent(ps.getId(), ps);
+            oi = em.find(OrdemItem.class, id);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            
+        }
+        return oi;
+    }
+    
+    public Map<Integer,OrdemItem> buscarTodosOrderItems(){
+        Map<Integer,OrdemItem> mapOrdemItem = null;
+        
+        try {
+            em.getTransaction().begin();
+            List<OrdemItem> listOrdemItem = em.createQuery("from OrdemItem").getResultList();
+            for (OrdemItem oi : listOrdemItem) {
+                Carrinho c = oi.getCarrinho();
+                if(c != null){
+                mapOrdemItem.putIfAbsent(c.getId(), oi);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -93,17 +98,17 @@ public class PacoteServicoDAO {
         } finally {
             closeConnection();
         }
-        return mapPS;
+        return mapOrdemItem;
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> PSKeys = null;
+        List<Integer> agendamentosKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<PacoteServico> listPS = em.createQuery("from PacoteServico").getResultList();
-            for (PacoteServico ps : listPS) {
-                PSKeys.add(ps.getId());
+            List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
+            for (Agendamento ag : listAgendamentos) {
+                agendamentosKeys.add(ag.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -112,12 +117,12 @@ public class PacoteServicoDAO {
         } finally {
             closeConnection();
         }
-        return PSKeys;
+        return agendamentosKeys;
     }
     
     
     
-    private void closeConnection(){
+    public void closeConnection(){
         em.close();
         emf.close();
     }

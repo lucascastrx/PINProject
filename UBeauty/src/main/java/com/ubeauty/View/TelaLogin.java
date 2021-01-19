@@ -28,6 +28,8 @@ public class TelaLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         btnCadastrar = new javax.swing.JLabel();
         btnLogin = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
@@ -38,6 +40,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,14 +67,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
         tfUsuario.setBackground(new java.awt.Color(0,0,0,1));
         tfUsuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfUsuario.setForeground(new java.awt.Color(0, 0, 0));
         tfUsuario.setText("Usuário"); // NOI18N
         tfUsuario.setToolTipText("");
         tfUsuario.setBorder(null);
         tfUsuario.setOpaque(false);
         getContentPane().add(tfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 240, 30));
 
-        tfSenha.setForeground(new java.awt.Color(0, 0, 0));
         tfSenha.setText("jPasswordField1");
         tfSenha.setBorder(null);
         getContentPane().add(tfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 20));
@@ -139,12 +141,14 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCadastrar;
     private javax.swing.JLabel btnLogin;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables

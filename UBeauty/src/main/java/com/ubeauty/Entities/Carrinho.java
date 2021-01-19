@@ -1,26 +1,41 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Carrinho implements Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+   
+    private Instant moment;
     
-    private List<Servico> listServicos = new ArrayList <> (); 
-
+    @ManyToOne
+    private Cliente clientes;
+    
+    @OneToMany(mappedBy = "id.carrinho")
+    private Set<OrdemItem> items = new HashSet<>();
+    
     public Carrinho() {
     }
-
+    
+    public Carrinho(Instant moment , Cliente cliente){
+        this.moment = moment;
+        this.clientes = cliente;
+    }
+ 
+    
     
     public int getId() {
         return id;
@@ -30,13 +45,30 @@ public class Carrinho implements Serializable{
         this.id = Id;
     }
 
-    public List<Servico> getListServicos() {
-        return listServicos;
+    public Cliente getClientes() {
+        return clientes;
     }
 
-    public void setListServicos(List<Servico> listServicos) {
-        this.listServicos = listServicos;
+    public void setClientes(Cliente cliente) {
+        this.clientes = cliente;
     }
+
+    public Instant getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Instant moment) {
+        this.moment = moment;
+    }
+
+    public Set<OrdemItem> getItems(){
+        return items;
+    }
+    
+    public void addItems(OrdemItem oi){
+        items.add(oi);
+    }
+    
 
     @Override
     public int hashCode() {
@@ -65,7 +97,7 @@ public class Carrinho implements Serializable{
 
     @Override
     public String toString() {
-        return "Carrinho{" + "Id=" + id + ", listServicos=" + listServicos + '}';
+        return "Carrinho{" + "Id=" + id + '}';
     }
     
     

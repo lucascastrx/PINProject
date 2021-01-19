@@ -72,7 +72,7 @@ public class CarrinhoDAO {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            closeConnection();
+            
         }
         return c;
     }
@@ -117,7 +117,7 @@ public class CarrinhoDAO {
     
     
     
-    private void closeConnection(){
+    public void closeConnection(){
         em.close();
         emf.close();
     }

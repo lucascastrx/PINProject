@@ -72,7 +72,7 @@ public class ServicoDAO {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            closeConnection();
+            
         }
         return s;
     }
@@ -115,7 +115,7 @@ public class ServicoDAO {
         return servicosKeys;
     }
     
-    private void closeConnection(){
+    public void closeConnection(){
         em.close();
         emf.close();
     }

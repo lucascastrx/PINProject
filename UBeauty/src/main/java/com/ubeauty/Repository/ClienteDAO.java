@@ -48,22 +48,33 @@ public class ClienteDAO {
         return cliente;
     }
     
-    public Cliente atualizar (Cliente cliente){
-        Cliente cliente2 = null;
-        try {
+
+    
+    public void atualizar(Cliente c) {
+       
+        
+        try{
             em.getTransaction().begin();
-            cliente2 = em.merge(cliente);
+            em.merge(c);
             em.getTransaction().commit();
-        } catch (Exception e) {
+        }catch(Exception e){
             em.getTransaction().rollback();
             e.printStackTrace();
-        } finally {
+        } finally{
             closeConnection();
         }
-       
-        return cliente2;
     }
     
+    /**
+     *
+     * @param id
+     * 
+     * É necessário que a conexão seja fechada manualmente
+     * devido a inconsistencia de persistir objetos de coleções
+     * em relações ToMany
+     * 
+     * @return Cliente
+     */
     public Cliente buscar (int id){
         Cliente cliente = null;
         try {
@@ -74,7 +85,7 @@ public class ClienteDAO {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            closeConnection();
+            
         }
         
         return cliente;
@@ -120,7 +131,7 @@ public class ClienteDAO {
         return clientesKeys;
     }
      
-    private void closeConnection(){
+   public void closeConnection(){
         em.close();
         emf.close();
     }

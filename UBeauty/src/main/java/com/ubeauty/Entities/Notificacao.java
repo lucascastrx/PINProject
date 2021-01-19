@@ -24,7 +24,6 @@ public class Notificacao implements Serializable{
     }
 
     public Notificacao( String texto, Date data, Date hora) {
-        this.id = id;
         this.texto = texto;
         this.data = data;
         this.hora = hora;

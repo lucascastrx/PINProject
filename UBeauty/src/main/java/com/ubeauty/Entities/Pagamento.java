@@ -1,10 +1,13 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Pagamento implements Serializable{
@@ -15,12 +18,17 @@ public class Pagamento implements Serializable{
     private double valor;
     private String devedor;
     private String prestador;
+    
+    @OneToOne(mappedBy = "pagamento",
+              cascade = CascadeType.ALL,
+              orphanRemoval = true,
+              fetch = FetchType.EAGER)
+    private Recibo recibo;
 
     public Pagamento() {
     }
 
     public Pagamento(double valor, String devedor, String prestador) {
-        this.id = id;
         this.valor = valor;
         this.devedor = devedor;
         this.prestador = prestador;
@@ -56,6 +64,18 @@ public class Pagamento implements Serializable{
 
     public void setPrestador(String prestador) {
         this.prestador = prestador;
+    }
+    
+    public void addRecibo(Recibo r){
+        r.setPagamento(this);
+        this.recibo = r;
+    }
+    
+    public void removeRecibo(){
+        if(recibo != null){
+            recibo.setPagamento(null);
+            this.recibo = null;
+        }
     }
 
     @Override

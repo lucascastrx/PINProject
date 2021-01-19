@@ -72,7 +72,7 @@ public class AgendamentoDAO {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            closeConnection();
+            
         }
         return ag;
     }
@@ -117,7 +117,7 @@ public class AgendamentoDAO {
     
     
     
-    private void closeConnection(){
+    public void closeConnection(){
         em.close();
         emf.close();
     }

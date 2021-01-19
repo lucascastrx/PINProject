@@ -1,10 +1,15 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Servico implements Serializable{
@@ -16,6 +21,13 @@ public class Servico implements Serializable{
     private String descricao;
     private String categoria;
     private double valor;
+    
+    @ManyToOne
+    private Vendedor vendedorServico;
+    
+    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Agendamento> agendamentos = new ArrayList<>();
+            
 
     public Servico() {
     }
@@ -67,6 +79,30 @@ public class Servico implements Serializable{
     public void setValor(double valor) {
         this.valor = valor;
     }
+
+    public Vendedor getVendedorServico() {
+        return vendedorServico;
+    }
+
+    public void setVendedorServico(Vendedor vendedorServico) {
+        this.vendedorServico = vendedorServico;
+    }
+    
+    
+    
+    
+    public void addAgendamento(Agendamento agendamentos) {
+        this.agendamentos.add(agendamentos);
+        agendamentos.setServico(this);
+        
+    }
+
+    public void removeAgendamento(Agendamento agendamentos) {
+        this.agendamentos.remove(agendamentos);
+        agendamentos.setServico(null);
+    }
+    
+    
 
     @Override
     public int hashCode() {

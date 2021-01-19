@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -19,12 +21,15 @@ public class Recibo implements Serializable{
     private String descricao;
     @Temporal(TemporalType.DATE)
     private Date dia;
+    
+    @OneToOne
+    @JoinColumn(name = "pagamento_id")
+    private Pagamento pagamento;
 
     public Recibo() {
     }
 
     public Recibo(String descricao, Date data) {
-        this.id = id;
         this.descricao = descricao;
         this.dia = data;
     }
@@ -52,6 +57,16 @@ public class Recibo implements Serializable{
     public void setData(Date data) {
         this.dia = data;
     }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+    
+    
 
     @Override
     public int hashCode() {

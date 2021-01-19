@@ -81,7 +81,7 @@ public class VendedorDAO {
             em.getTransaction().rollback();
             e.printStackTrace();
         } finally {
-            closeConnection();
+            
         }
         return v;
     }
@@ -125,7 +125,7 @@ public class VendedorDAO {
         return vendedoresKeys;
     }
     
-    private void closeConnection(){
+    public void closeConnection(){
         em.close();
         emf.close();
     }

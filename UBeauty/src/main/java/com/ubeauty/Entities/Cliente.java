@@ -1,12 +1,17 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -22,12 +27,24 @@ public class Cliente implements Serializable {
     private int ddd;
     private int telefone;
     private String senha;
+    
+    
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Carrinho> carrinhos = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "cliente")
+    private List<Reclamacao> reclamacoes = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "c")
+    private List<Mensagem> mensagens = new ArrayList<>();
+    
+    
 
     public Cliente() {
     }
 
     public Cliente( String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
-        this.id = id;
+        
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
@@ -100,6 +117,39 @@ public class Cliente implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public void addCarrinho(Carrinho carrinho){
+        carrinhos.add(carrinho);
+        carrinho.setClientes(this);
+        
+    }
+    
+    public void removeCarrinho(Carrinho carrinho){
+        carrinhos.remove(carrinho);
+        carrinho.setClientes(null);
+    }
+    
+    public void addReclamacoes(Reclamacao r){
+        reclamacoes.add(r);
+        r.setCliente(this);
+        
+    }
+    
+    public void removeReclamacoes(Reclamacao r){
+        reclamacoes.remove(r);
+        r.setCliente(null);
+    }
+    
+    public void addMensagem(Mensagem m){
+        mensagens.add(m);
+        m.setCliente(this);
+    }
+    
+    public void removeMensagem(Mensagem m){
+        mensagens.remove(m);
+        m.setCliente(null);
+    }
+    
 
     @Override
     public int hashCode() {
