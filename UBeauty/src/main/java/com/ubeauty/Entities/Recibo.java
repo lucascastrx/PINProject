@@ -1,6 +1,5 @@
 package com.ubeauty.Entities;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
