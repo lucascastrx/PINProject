@@ -119,6 +119,11 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-email.png"))); // NOI18N
         add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 20, 30));
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
         txtDescricao.setEditable(false);
         txtDescricao.setBackground(new java.awt.Color(255, 255, 255));
         txtDescricao.setColumns(20);
