@@ -51,6 +51,8 @@ public class PanelConta extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -76,10 +78,10 @@ public class PanelConta extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(58, 22, 46));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Sobre o aplicativo");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 200, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 200, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, -1, 10));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, -1, 10));
 
         txtTelefone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtTelefone.setForeground(new java.awt.Color(58, 22, 46));
@@ -98,7 +100,7 @@ public class PanelConta extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(58, 22, 46));
         jLabel11.setText("Política de Privacidade");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 150, 30));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 150, 30));
 
         txtEndereco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtEndereco.setForeground(new java.awt.Color(58, 22, 46));
@@ -135,10 +137,10 @@ public class PanelConta extends javax.swing.JPanel {
                 btnExcluirContaMousePressed(evt);
             }
         });
-        add(btnExcluirConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 120, 30));
+        add(btnExcluirConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 100, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 130, 50));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 130, 50));
 
         txtNome.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNome.setForeground(new java.awt.Color(58, 22, 46));
@@ -146,18 +148,18 @@ public class PanelConta extends javax.swing.JPanel {
         add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 230, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo-horizontal.png"))); // NOI18N
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 510, 120, 60));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 520, 120, 60));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 10)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(58, 22, 46));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Todos os direitos reservados.");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 570, 140, 20));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 580, 140, 20));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(58, 22, 46));
         jLabel17.setText("Termos de uso");
-        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 100, 30));
+        add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 100, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(58, 22, 46));
@@ -178,6 +180,16 @@ public class PanelConta extends javax.swing.JPanel {
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
         jLabel13.setText("Endereço:");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 70, 30));
+
+        btnLogout.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLogout.setText("LOGOUT");
+        btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 90, 30));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarDadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMousePressed
@@ -194,6 +206,7 @@ public class PanelConta extends javax.swing.JPanel {
     private javax.swing.JLabel btnEstabelecimentos;
     private javax.swing.JLabel btnExcluirConta;
     private javax.swing.JLabel btnLogo;
+    private javax.swing.JLabel btnLogout;
     private javax.swing.JLabel btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -209,6 +222,7 @@ public class PanelConta extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtEndereco;

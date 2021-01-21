@@ -79,7 +79,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         tfSenha.setText("jPasswordField1");
         tfSenha.setBorder(null);
-        getContentPane().add(tfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 20));
+        getContentPane().add(tfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 240, 20));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza.png"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
