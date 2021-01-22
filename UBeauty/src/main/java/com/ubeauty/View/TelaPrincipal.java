@@ -5,6 +5,7 @@
  */
 package com.ubeauty.View;
 
+import com.ubeauty.Controller.PrincipalController;
 import java.awt.CardLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -14,27 +15,14 @@ import javax.swing.JPanel;
  * @author Eduardo Buzzi
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    private final PrincipalController controller;
 
-    CardLayout cl = new CardLayout();
-    JPanel jp = new PanelPrincipal();
-    JPanel jp2 = new PanelNotificacoes();
-    JPanel jp3 = new PanelPaginaSalao();
-
-    /**
-     * Creates new form TelaPrincipal
-     */
     public TelaPrincipal() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        controller = new PrincipalController(this);
+        
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
-
-        painelConteudo.setLayout(cl);
-        painelConteudo.add(jp, "inicial");
-        painelConteudo.add(jp2, "notif");
-        painelConteudo.add(jp3, "paginasalao");
-        cl.show(painelConteudo, "paginasalao");
 
     }
 
@@ -60,29 +48,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         btnNotificacoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnNotificacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-notif.png"))); // NOI18N
+        btnNotificacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNotificacoesMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnNotificacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 630, 30, 30));
 
         btnHome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-home.png"))); // NOI18N
+        btnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnHomeMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 630, 30, 30));
 
         btnUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-usuario.png"))); // NOI18N
+        btnUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUsuarioMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 630, 30, 30));
 
         btnMensagens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnMensagens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-msg.png"))); // NOI18N
+        btnMensagens.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMensagensMouseClicked(evt);
+            }
+        });
         getContentPane().add(btnMensagens, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 30, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra-branca.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 580, 320, 100));
 
+        painelConteudo.setBackground(new java.awt.Color(255, 255, 255));
         painelConteudo.setLayout(new java.awt.CardLayout());
         getContentPane().add(painelConteudo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 620));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHomeMouseClicked
+        controller.mostrarTela("principal");
+    }//GEN-LAST:event_btnHomeMouseClicked
+
+    private void btnNotificacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNotificacoesMouseClicked
+        controller.mostrarTela("notificacoes");
+    }//GEN-LAST:event_btnNotificacoesMouseClicked
+
+    private void btnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuarioMouseClicked
+        controller.mostrarTela("conta");
+    }//GEN-LAST:event_btnUsuarioMouseClicked
+
+    private void btnMensagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMensagensMouseClicked
+        controller.mostrarTela("mensagens");
+    }//GEN-LAST:event_btnMensagensMouseClicked
 
     /**
      * @param args the command line arguments
@@ -128,4 +153,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel painelConteudo;
     // End of variables declaration//GEN-END:variables
+
+    public void setPainelConteudoLayout(CardLayout cl) {
+        painelConteudo.setLayout(cl);
+    }
+    
+    public void addPainel(JPanel jp, String identificador){
+        painelConteudo.add(jp, identificador);
+    }
+
+    public JPanel getPainelConteudo() {
+        return painelConteudo;
+    }
+    
+    
+
+    
 }

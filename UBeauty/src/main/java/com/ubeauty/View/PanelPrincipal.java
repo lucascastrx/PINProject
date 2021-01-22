@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.ubeauty.View;
 
-/**
- *
- * @author Eduardo Buzzi
- */
+import com.ubeauty.Controller.PrincipalController;
+
 public class PanelPrincipal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form teste2
-     */
-    public PanelPrincipal() {
+    private final PrincipalController controller;
+    private TelaPrincipal view;
+
+    public PanelPrincipal(TelaPrincipal view, PrincipalController pc) {
         initComponents();
+        this.view = view;
+        this.controller = pc;
     }
 
     /**
@@ -48,13 +43,28 @@ public class PanelPrincipal extends javax.swing.JPanel {
         add(btnPesquisarSaloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 50));
 
         btnEstabelecimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estabelecimentos.png"))); // NOI18N
+        btnEstabelecimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEstabelecimentosMouseClicked(evt);
+            }
+        });
         add(btnEstabelecimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 310, -1));
 
         btnAutonomos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnAutonomos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/encontrar-autonomos.png"))); // NOI18N
+        btnAutonomos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAutonomosMouseClicked(evt);
+            }
+        });
         add(btnAutonomos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 283, 190, 70));
 
         btnSaloes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/encontrar-saloes.png"))); // NOI18N
+        btnSaloes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSaloesMouseClicked(evt);
+            }
+        });
         add(btnSaloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 283, -1, 70));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
@@ -83,6 +93,18 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 280, 180));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaloesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaloesMouseClicked
+        controller.mostrarTela("saloes");
+    }//GEN-LAST:event_btnSaloesMouseClicked
+
+    private void btnAutonomosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAutonomosMouseClicked
+        controller.mostrarTela("autonomos");
+    }//GEN-LAST:event_btnAutonomosMouseClicked
+
+    private void btnEstabelecimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstabelecimentosMouseClicked
+        controller.mostrarTela("saloes");
+    }//GEN-LAST:event_btnEstabelecimentosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
