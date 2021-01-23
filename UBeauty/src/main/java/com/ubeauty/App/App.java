@@ -3,6 +3,7 @@ package com.ubeauty.App;
 import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.OrdemItem;
 import com.ubeauty.Entities.Pagamento;
 import com.ubeauty.Entities.Reclamacao;
@@ -103,9 +104,14 @@ public class App {
     c.atualizar(cc);
        */
       
+      ClienteDAO clienteRepository = new ClienteDAO();
+            Cliente c = clienteRepository.buscar(1);
+            clienteRepository.closeConnection();
+        Cliente cliente = LoginAuthentication.cliente;
+            
+            
+            System.out.println(cliente);
       
-      
-       
        
        
        
