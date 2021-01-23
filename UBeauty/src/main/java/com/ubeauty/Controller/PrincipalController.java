@@ -1,8 +1,8 @@
 package com.ubeauty.Controller;
 
+import com.ubeauty.Entities.Cliente;
 import com.ubeauty.View.*;
 import java.awt.CardLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,9 +21,13 @@ public class PrincipalController {
     private JPanel jpMensagens;
     private JFrame PopUpAgendar;
     private JFrame PopUpReclamacoes;
+    private Cliente usuarioLogado;
 
-    public PrincipalController(TelaPrincipal view) {
+    public PrincipalController(TelaPrincipal view, Cliente usuarioLogado) {
         this.view = view;
+
+        this.usuarioLogado = usuarioLogado;
+
         UtilController.configurarTela(view);
 
         cl = new CardLayout();
@@ -32,8 +36,8 @@ public class PrincipalController {
         this.addPaineis();
 
     }
-    
-    public PrincipalController(JPanel viewPanel){
+
+    public PrincipalController(JPanel viewPanel) {
         this.viewPanel = viewPanel;
     }
 
@@ -61,7 +65,9 @@ public class PrincipalController {
         view.addPainel(jpAutonomos, "autonomos");
         view.addPainel(jpMensagens, "mensagens");
     }
-    
-    
+
+    public Cliente getUsuarioLogado() {
+        return usuarioLogado;
+    }
 
 }
