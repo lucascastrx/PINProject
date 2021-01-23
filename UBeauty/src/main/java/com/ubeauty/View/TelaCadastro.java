@@ -5,8 +5,6 @@
  */
 package com.ubeauty.View;
 
-import com.ubeauty.Controller.CadastroController;
-import com.ubeauty.Controller.UtilController;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,13 +13,14 @@ import javax.swing.ImageIcon;
  */
 public class TelaCadastro extends javax.swing.JFrame {
 
-    private final CadastroController controller;
-    
+    /**
+     * Creates new form TelaPrincipal
+     */
     public TelaCadastro() {
         initComponents();
-        UtilController.configurarTela(this);
-        
-        controller = new CadastroController(this);
+        this.setLocationRelativeTo(null);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        setIconImage(icon.getImage());
     }
 
     /**
@@ -69,11 +68,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         btnCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnCancelar.setText("Cancelar");
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseClicked(evt);
-            }
-        });
         getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 90, 30));
 
         btnCadastrar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -157,10 +151,6 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void btnCadastrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMousePressed
         System.out.println("ok");
     }//GEN-LAST:event_btnCadastrarMousePressed
-
-    private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
-        controller.cancelar();
-    }//GEN-LAST:event_btnCancelarMouseClicked
 
     /**
      * @param args the command line arguments
