@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,6 +20,10 @@ public class Pagamento implements Serializable{
     private String devedor;
     private String prestador;
     
+    @OneToOne
+    @MapsId
+    private Carrinho carrinho;
+    
     @OneToOne(mappedBy = "pagamento",
               cascade = CascadeType.ALL,
               orphanRemoval = true,
@@ -28,10 +33,11 @@ public class Pagamento implements Serializable{
     public Pagamento() {
     }
 
-    public Pagamento(double valor, String devedor, String prestador) {
+    public Pagamento(double valor, String devedor, String prestador, Carrinho carrinho) {
         this.valor = valor;
         this.devedor = devedor;
         this.prestador = prestador;
+        this.carrinho = carrinho;
     }
 
     public int getId() {
@@ -66,17 +72,28 @@ public class Pagamento implements Serializable{
         this.prestador = prestador;
     }
     
-    public void addRecibo(Recibo r){
+    public void setRecibo(Recibo r){
         r.setPagamento(this);
         this.recibo = r;
     }
     
-    public void removeRecibo(){
+    public Recibo getRecibo(){
         if(recibo != null){
-            recibo.setPagamento(null);
-            this.recibo = null;
+            return recibo;
         }
+        return null;
     }
+
+    public Carrinho getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(Carrinho carrinho) {
+        this.carrinho = carrinho;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {

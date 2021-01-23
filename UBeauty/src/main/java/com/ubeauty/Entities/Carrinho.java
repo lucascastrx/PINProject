@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity
@@ -26,6 +28,9 @@ public class Carrinho implements Serializable{
     
     @OneToMany(mappedBy = "id.carrinho")
     private Set<OrdemItem> items = new HashSet<>();
+    
+    @OneToOne(mappedBy = "carrinho" , cascade = CascadeType.ALL, orphanRemoval = true)
+    private Pagamento pagamento;
     
     public Carrinho() {
     }
@@ -68,6 +73,15 @@ public class Carrinho implements Serializable{
     public void addItems(OrdemItem oi){
         items.add(oi);
     }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+    
     
 
     @Override

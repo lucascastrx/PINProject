@@ -26,10 +26,13 @@ public class Vendedor extends Cliente{
     public Vendedor() {
     }
 
-    public Vendedor(String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String cnpj, String senha) {
-        super( nome, sobrenome, email, endereco, ddd, telefone, senha);
+    public Vendedor(String cnpj, boolean autonomo, String nome, String sobrenome, String email,
+                    String endereco, int ddd, int telefone, String senha) {
+        super(autonomo, nome, sobrenome, email, endereco, ddd, telefone, senha);
         this.cnpj = cnpj;
     }
+
+   
 
     public String getCnpj() {
         return cnpj;

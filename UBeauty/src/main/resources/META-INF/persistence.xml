@@ -13,7 +13,6 @@
     <class> com.ubeauty.Entities.Servico </class>
     <class> com.ubeauty.Entities.Carrinho </class>
     <class> com.ubeauty.Entities.Notificacao </class>
-    <class> com.ubeauty.Entities.PacoteServico </class>
     <class> com.ubeauty.Entities.Pagamento </class>
     <class> com.ubeauty.Entities.Recibo </class>
     <class> com.ubeauty.Entities.Reclamacao </class>

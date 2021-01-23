@@ -1,9 +1,10 @@
 package com.ubeauty.App;
-
+        
 import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.OrdemItem;
+import com.ubeauty.Entities.Pagamento;
 import com.ubeauty.Entities.Reclamacao;
 import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
@@ -20,15 +21,16 @@ import java.util.Date;
 public class App {
     public static void main(String[] args) {
        
-       /* Cliente test = new Cliente("Lucas","Castro","luukascastro@gmail.com","Rua Palmas", 22, 981657344, "umasenhaai");
+        /*
+        Cliente test = new Cliente(false,"Lucas","Castro","luukascastro@gmail.com","Rua Palmas", 22, 981657344, "umasenhaai");
         ClienteDAO clienteRepository = new ClienteDAO();
         clienteRepository.gravar(test);
         
-       
-        Vendedor vTest = new Vendedor( "Anom", "Anonym", "anonym@gmail.com", "Sao Paulo", 11, 9999999, "2221212", "qqrsenha");
+        
+        Vendedor vTest = new Vendedor( "2221212",false, "Anom", "Anonym", "anonym@gmail.com", "Sao Paulo", 11, 9999999,  "qqrsenha");
         VendedorDAO vendedorRepository = new VendedorDAO();
         vendedorRepository.gravar(vTest);
-        */
+       */
        
         
        
@@ -67,7 +69,7 @@ public class App {
             cr.atualizar(c);
        
         ********************************************************************************/
-       CarrinhoDAO cd = new CarrinhoDAO();
+      /* CarrinhoDAO cd = new CarrinhoDAO();
        Carrinho cc = cd.buscar(35);
        
        
@@ -85,10 +87,25 @@ public class App {
        
        OrdemItemDAO od = new OrdemItemDAO();
        od.gravar(oi);
-      
+      */
         
         
+      /*CarrinhoDAO cd = new CarrinhoDAO();
+      Carrinho cc = cd.buscar(35);
       
+      Pagamento p = new Pagamento();
+      p.setCarrinho(cc);
+      
+      cc.setPagamento(p);
+      cd.closeConnection();
+      
+    CarrinhoDAO c = new CarrinhoDAO();
+    c.atualizar(cc);
+       */
+      
+      
+      
+       
        
        
        

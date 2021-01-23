@@ -27,6 +27,7 @@ public class Cliente implements Serializable {
     private int ddd;
     private int telefone;
     private String senha;
+    private boolean autonomo;
     
     
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,7 +44,7 @@ public class Cliente implements Serializable {
     public Cliente() {
     }
 
-    public Cliente( String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
+    public Cliente( boolean autonomo, String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
         
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -52,6 +53,7 @@ public class Cliente implements Serializable {
         this.ddd = ddd;
         this.telefone = telefone;
         this.senha = senha;
+        this.autonomo = autonomo;
     }
 
     public int getId() {
@@ -117,6 +119,16 @@ public class Cliente implements Serializable {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public boolean isAutonomo() {
+        return autonomo;
+    }
+
+    public void setAutonomo(boolean autonomo) {
+        this.autonomo = autonomo;
+    }
+    
+    
 
     public void addCarrinho(Carrinho carrinho){
         carrinhos.add(carrinho);

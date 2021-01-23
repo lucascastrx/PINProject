@@ -112,7 +112,6 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
         jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         txtComentarios.setEditable(false);
-        txtComentarios.setBackground(new java.awt.Color(255, 255, 255));
         txtComentarios.setColumns(20);
         txtComentarios.setForeground(new java.awt.Color(58, 22, 46));
         txtComentarios.setLineWrap(true);
