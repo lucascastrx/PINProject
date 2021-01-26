@@ -1,6 +1,7 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Recibo implements Serializable{
@@ -24,6 +26,10 @@ public class Recibo implements Serializable{
     @OneToOne
     @JoinColumn(name = "pagamento_id")
     private Pagamento pagamento;
+    
+    @Transient
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy-hh:mm:ss");
+    
 
     public Recibo() {
     }
@@ -49,8 +55,8 @@ public class Recibo implements Serializable{
         this.descricao = descricao;
     }
 
-    public Date getData() {
-        return dia;
+    public String getData() {
+        return DATE_FORMAT.format(dia);
     }
 
     public void setData(Date data) {

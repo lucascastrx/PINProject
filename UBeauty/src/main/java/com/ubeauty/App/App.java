@@ -70,7 +70,7 @@ public class App {
             cr.atualizar(c);
        
         ********************************************************************************/
-      /* CarrinhoDAO cd = new CarrinhoDAO();
+       /* CarrinhoDAO cd = new CarrinhoDAO();
        Carrinho cc = cd.buscar(35);
        
        
@@ -88,31 +88,29 @@ public class App {
        
        OrdemItemDAO od = new OrdemItemDAO();
        od.gravar(oi);
-      */
-        
-        
-      /*CarrinhoDAO cd = new CarrinhoDAO();
-      Carrinho cc = cd.buscar(35);
-      
-      Pagamento p = new Pagamento();
-      p.setCarrinho(cc);
-      
-      cc.setPagamento(p);
-      cd.closeConnection();
-      
-    CarrinhoDAO c = new CarrinhoDAO();
-    c.atualizar(cc);
        */
-      
-      ClienteDAO clienteRepository = new ClienteDAO();
-            Cliente c = clienteRepository.buscar(1);
-            clienteRepository.closeConnection();
-        Cliente cliente = LoginAuthentication.cliente;
-            
-            
-            System.out.println(cliente);
-      
        
+       
+       /*CarrinhoDAO cd = new CarrinhoDAO();
+       Carrinho cc = cd.buscar(35);
+       
+       Pagamento p = new Pagamento();
+       p.setCarrinho(cc);
+       
+       cc.setPagamento(p);
+       cd.closeConnection();
+       
+       CarrinhoDAO c = new CarrinhoDAO();
+       c.atualizar(cc);
+       */
+       
+       
+       CarrinhoDAO cd = new CarrinhoDAO();
+       Carrinho cc = new Carrinho();
+       cc.setMoment(new Date());
+       cd.gravar(cc);
+       
+        System.out.println(cc.getMoment());
        
        
        

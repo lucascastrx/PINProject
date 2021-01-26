@@ -1,7 +1,9 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -21,7 +23,7 @@ public class Carrinho implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
    
-    private Instant moment;
+    private Date momento;
     
     @ManyToOne
     private Cliente clientes;
@@ -32,11 +34,15 @@ public class Carrinho implements Serializable{
     @OneToOne(mappedBy = "carrinho" , cascade = CascadeType.ALL, orphanRemoval = true)
     private Pagamento pagamento;
     
+    @Transient
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy-hh:mm:ss");
+    
+    
     public Carrinho() {
     }
     
-    public Carrinho(Instant moment , Cliente cliente){
-        this.moment = moment;
+    public Carrinho(Date momento , Cliente cliente){
+        this.momento = momento;
         this.clientes = cliente;
     }
  
@@ -58,12 +64,12 @@ public class Carrinho implements Serializable{
         this.clientes = cliente;
     }
 
-    public Instant getMoment() {
-        return moment;
+    public String getMoment() {
+        return DATE_FORMAT.format(momento);
     }
 
-    public void setMoment(Instant moment) {
-        this.moment = moment;
+    public void setMoment(Date moment) {
+        this.momento = moment;
     }
 
     public Set<OrdemItem> getItems(){

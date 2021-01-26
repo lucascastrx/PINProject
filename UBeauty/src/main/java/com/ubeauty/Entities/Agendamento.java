@@ -1,9 +1,14 @@
 package com.ubeauty.Entities;
 
+import com.ubeauty.Exceptions.ParseDateException;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Agendamento implements Serializable{
@@ -30,13 +36,23 @@ public class Agendamento implements Serializable{
     
     @OneToMany(mappedBy = "id.agendamento")
     private Set<OrdemItem> items = new HashSet<>();
+    
+    @Transient
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
+    @Transient
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     public Agendamento() {
     }
 
-    public Agendamento(Date data, Date hora) {
-        this.dia = data;
-        this.hora = hora;
+    public Agendamento(String data, String hora) throws ParseDateException {
+        try {
+            this.hora = TIME_FORMAT.parse(hora);
+            this.dia = DATE_FORMAT.parse(data);
+        } catch (ParseException ex) {
+            throw new ParseDateException();
+        }
+        
     }
 
     public int getId() {
@@ -47,20 +63,28 @@ public class Agendamento implements Serializable{
         this.id = id;
     }
 
-    public Date getData() {
-        return dia;
+    public String getData() {
+        return DATE_FORMAT.format(dia);
     }
 
-    public void setData(Date data) {
-        this.dia = data;
+    public void setData(String data) throws ParseDateException {
+        try {
+            this.dia = DATE_FORMAT.parse(data);
+        } catch (ParseException ex) {
+            throw new ParseDateException();
+        }
     }
 
-    public Date getHora() {
-        return hora;
+    public String getHora() {
+        return TIME_FORMAT.format(hora);
     }
 
-    public void setHora(Date hora) {
-        this.hora = hora;
+    public void setHora(String hora) throws ParseDateException {
+        try {
+            this.hora = TIME_FORMAT.parse(hora);
+        } catch (ParseException ex) {
+            throw new ParseDateException();
+        }
     }
 
     public Servico getServico() {

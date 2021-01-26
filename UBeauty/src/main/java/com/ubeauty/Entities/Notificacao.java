@@ -1,6 +1,7 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Transient;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -19,6 +21,11 @@ public class Notificacao implements Serializable{
     private String texto;
     private Date data;
     private Date hora;
+    
+    @Transient
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
+    @Transient
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     public Notificacao() {
     }
@@ -45,16 +52,16 @@ public class Notificacao implements Serializable{
         this.texto = texto;
     }
 
-    public Date getData() {
-        return data;
+    public String getData() {
+        return DATE_FORMAT.format(data);
     }
 
     public void setData(Date data) {
         this.data = data;
     }
 
-    public Date getHora() {
-        return hora;
+    public String getHora() {
+        return TIME_FORMAT.format(hora);
     }
 
     public void setHora(Date hora) {
