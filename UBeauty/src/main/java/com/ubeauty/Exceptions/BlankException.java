@@ -3,7 +3,7 @@ package com.ubeauty.Exceptions;
 public class BlankException extends Exception{
 
     public BlankException() {
-        super("Atenção! O campo está vazio");
+        super("Atenção! Todos os campos devem ser preenchidos");
     }
     
     

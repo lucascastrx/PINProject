@@ -1,9 +1,12 @@
 package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Exceptions.BlankException;
+import com.ubeauty.Exceptions.InvalidNumberException;
 import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaConfirmacaoCadastro;
 import com.ubeauty.View.TelaLogin;
+import javax.swing.JOptionPane;
 
 public class CadastroController {
 
@@ -34,14 +37,20 @@ public class CadastroController {
         telefoneInt = converterString(ddd);
         senha = view.getTfSenha().getText();
 
-        if (nome != null || sobrenome != null || email != null || telefone != null || senha != null || ddd != null) {
-            if (dddInt != -1 || telefoneInt != -1) {
-                this.abrirTelaFinalizarCadastro();
-            } else {
-                view.exibirMensagem("Campo DDD ou Telefone inválido.");
+        try{
+            if ((nome.isBlank() || nome.equalsIgnoreCase("nome")) || (sobrenome.isBlank()|| sobrenome.equalsIgnoreCase("sobrenome")) ||
+                (email.isBlank() || email.equalsIgnoreCase("e-mail")) || (telefone.isBlank() || telefone.equalsIgnoreCase("telefone")) ||
+                (senha.isBlank() || senha.equalsIgnoreCase("jPasswordfield1")) || (ddd.isBlank() || ddd.equalsIgnoreCase("ddd")) ) {
+                
+                throw new BlankException();    
             }
-        } else {
-            view.exibirMensagem("Todos os campos são obrigatórios.");
+            if (dddInt == -1 || telefoneInt == -1) {
+                throw new InvalidNumberException(" ");
+            } else {
+                this.abrirTelaFinalizarCadastro();
+            }
+        }catch(InvalidNumberException | BlankException e){
+            view.exibirMensagem(e.getMessage());
         }
     }
 

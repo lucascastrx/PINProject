@@ -120,7 +120,7 @@
     </Component>
     <Component class="javax.swing.JPasswordField" name="tfSenha">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+        <Property name="text" type="java.lang.String" value="jPasswordfield1"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
