@@ -8,6 +8,9 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.CadastroController;
 import com.ubeauty.Controller.UtilController;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -16,12 +19,16 @@ import javax.swing.ImageIcon;
 public class TelaCadastro extends javax.swing.JFrame {
 
     private final CadastroController controller;
-    
+
     public TelaCadastro() {
         initComponents();
         UtilController.configurarTela(this);
-        
+
         controller = new CadastroController(this);
+    }
+
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
     }
 
     /**
@@ -48,7 +55,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfSobrenome = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        tfDDD = new javax.swing.JTextField();
         tfTelefone = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -134,8 +143,20 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfEmail.setOpaque(false);
         getContentPane().add(tfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 240, 40));
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("|");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, 20));
+
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, 40));
+
+        tfDDD.setBackground(new java.awt.Color(0,0,0,1));
+        tfDDD.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDDD.setText("DDD"); // NOI18N
+        tfDDD.setToolTipText("");
+        tfDDD.setBorder(null);
+        tfDDD.setOpaque(false);
+        getContentPane().add(tfDDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 40, 40));
 
         tfTelefone.setBackground(new java.awt.Color(0,0,0,1));
         tfTelefone.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -143,7 +164,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfTelefone.setToolTipText("");
         tfTelefone.setBorder(null);
         tfTelefone.setOpaque(false);
-        getContentPane().add(tfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 240, 40));
+        getContentPane().add(tfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, 40));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, 40));
@@ -155,7 +176,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMousePressed
-        System.out.println("ok");
+        controller.cadastrar();
     }//GEN-LAST:event_btnCadastrarMousePressed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -213,12 +234,39 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField tfDDD;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNome;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfSobrenome;
     private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getTfEmail() {
+        return tfEmail;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public JPasswordField getTfSenha() {
+        return tfSenha;
+    }
+
+    public JTextField getTfSobrenome() {
+        return tfSobrenome;
+    }
+
+    public JTextField getTfTelefone() {
+        return tfTelefone;
+    }
+
+    public JTextField getTfDDD() {
+        return tfDDD;
+    }
+
 }

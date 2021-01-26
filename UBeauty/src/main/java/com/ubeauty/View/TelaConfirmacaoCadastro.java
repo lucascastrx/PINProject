@@ -5,6 +5,8 @@
  */
 package com.ubeauty.View;
 
+import com.ubeauty.Controller.CadastroController;
+import com.ubeauty.Controller.UtilController;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,16 +14,16 @@ import javax.swing.ImageIcon;
  * @author Eduardo Buzzi
  */
 public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
+    
+    CadastroController controller;
 
     /**
      * Creates new form TelaPrincipal
      */
-    public TelaConfirmacaoCadastro() {
+    public TelaConfirmacaoCadastro(CadastroController controller) {
         initComponents();
-        this.setLocationRelativeTo(null);
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
-        System.out.println(tfRua.getText());
+        UtilController.configurarTela(this);
+        this.controller = controller;
     }
 
     /**
@@ -35,26 +37,27 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
+        bgSegmento = new javax.swing.ButtonGroup();
         jLabel13 = new javax.swing.JLabel();
-        tfCnpj = new javax.swing.JTextField();
-        imgCnpj = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JLabel();
         btnFinalizar = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        tfCnpj = new javax.swing.JTextField();
+        imgCnpj = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cbTipo = new javax.swing.JComboBox<>();
         tfRua = new javax.swing.JTextField();
         imgRua = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
         imgCnpj2 = new javax.swing.JLabel();
-        tfCnpj3 = new javax.swing.JTextField();
+        tfCidade = new javax.swing.JTextField();
         imgCnpj3 = new javax.swing.JLabel();
-        tfCnpj4 = new javax.swing.JTextField();
+        tfEstado = new javax.swing.JTextField();
         imgCnpj4 = new javax.swing.JLabel();
-        tfCnpj5 = new javax.swing.JTextField();
-        imgCnpj5 = new javax.swing.JLabel();
+        rbSalao = new javax.swing.JRadioButton();
+        rbAutonomo = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -70,22 +73,11 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         jLabel13.setText("Endereço");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 30));
 
-        tfCnpj.setBackground(new java.awt.Color(0,0,0,1));
-        tfCnpj.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfCnpj.setText("CNPJ"); // NOI18N
-        tfCnpj.setToolTipText("");
-        tfCnpj.setBorder(null);
-        tfCnpj.setOpaque(false);
-        getContentPane().add(tfCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 240, 40));
-
-        imgCnpj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
-        getContentPane().add(imgCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 40));
-
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(58, 22, 46));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("O que você é?");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, 160, 30));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 160, 30));
 
         btnCancelar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,6 +104,17 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 110, 50));
 
+        tfCnpj.setBackground(new java.awt.Color(0,0,0,1));
+        tfCnpj.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfCnpj.setText("CNPJ"); // NOI18N
+        tfCnpj.setToolTipText("");
+        tfCnpj.setBorder(null);
+        tfCnpj.setOpaque(false);
+        getContentPane().add(tfCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 240, 40));
+
+        imgCnpj.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
+        getContentPane().add(imgCnpj, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 40));
+
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -122,7 +125,7 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         cbTipo.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         cbTipo.setForeground(new java.awt.Color(58, 22, 46));
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Vendedor" }));
-        getContentPane().add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 180, -1));
+        getContentPane().add(cbTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 180, -1));
 
         tfRua.setBackground(new java.awt.Color(0,0,0,1));
         tfRua.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -146,38 +149,42 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         imgCnpj2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(imgCnpj2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 40));
 
-        tfCnpj3.setBackground(new java.awt.Color(0,0,0,1));
-        tfCnpj3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfCnpj3.setText("Cidade"); // NOI18N
-        tfCnpj3.setToolTipText("");
-        tfCnpj3.setBorder(null);
-        tfCnpj3.setOpaque(false);
-        getContentPane().add(tfCnpj3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 240, 40));
+        tfCidade.setBackground(new java.awt.Color(0,0,0,1));
+        tfCidade.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfCidade.setText("Cidade"); // NOI18N
+        tfCidade.setToolTipText("");
+        tfCidade.setBorder(null);
+        tfCidade.setOpaque(false);
+        getContentPane().add(tfCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 240, 40));
 
         imgCnpj3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(imgCnpj3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, 40));
 
-        tfCnpj4.setBackground(new java.awt.Color(0,0,0,1));
-        tfCnpj4.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfCnpj4.setText("Estado"); // NOI18N
-        tfCnpj4.setToolTipText("");
-        tfCnpj4.setBorder(null);
-        tfCnpj4.setOpaque(false);
-        getContentPane().add(tfCnpj4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 240, 40));
+        tfEstado.setBackground(new java.awt.Color(0,0,0,1));
+        tfEstado.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfEstado.setText("Estado"); // NOI18N
+        tfEstado.setToolTipText("");
+        tfEstado.setBorder(null);
+        tfEstado.setOpaque(false);
+        getContentPane().add(tfEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 240, 40));
 
         imgCnpj4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(imgCnpj4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 40));
 
-        tfCnpj5.setBackground(new java.awt.Color(0,0,0,1));
-        tfCnpj5.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfCnpj5.setText("Estado"); // NOI18N
-        tfCnpj5.setToolTipText("");
-        tfCnpj5.setBorder(null);
-        tfCnpj5.setOpaque(false);
-        getContentPane().add(tfCnpj5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 240, 40));
+        bgSegmento.add(rbSalao);
+        rbSalao.setForeground(new java.awt.Color(58, 22, 46));
+        rbSalao.setText("Tenho um salão");
+        rbSalao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbSalaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(rbSalao, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        imgCnpj5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
-        getContentPane().add(imgCnpj5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 40));
+        bgSegmento.add(rbAutonomo);
+        rbAutonomo.setForeground(new java.awt.Color(58, 22, 46));
+        rbAutonomo.setText("Sou Autônomo");
+        getContentPane().add(rbAutonomo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 510));
@@ -189,49 +196,13 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         System.out.println("ok");
     }//GEN-LAST:event_btnFinalizarMousePressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaConfirmacaoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaConfirmacaoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaConfirmacaoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaConfirmacaoCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    private void rbSalaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSalaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbSalaoActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaConfirmacaoCadastro().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgSegmento;
     private javax.swing.JLabel btnCancelar;
     private javax.swing.JLabel btnFinalizar;
     private javax.swing.JComboBox<String> cbTipo;
@@ -239,7 +210,6 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel imgCnpj2;
     private javax.swing.JLabel imgCnpj3;
     private javax.swing.JLabel imgCnpj4;
-    private javax.swing.JLabel imgCnpj5;
     private javax.swing.JLabel imgRua;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel11;
@@ -249,10 +219,11 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton rbAutonomo;
+    private javax.swing.JRadioButton rbSalao;
+    private javax.swing.JTextField tfCidade;
     private javax.swing.JTextField tfCnpj;
-    private javax.swing.JTextField tfCnpj3;
-    private javax.swing.JTextField tfCnpj4;
-    private javax.swing.JTextField tfCnpj5;
+    private javax.swing.JTextField tfEstado;
     private javax.swing.JTextField tfNumero;
     private javax.swing.JTextField tfRua;
     // End of variables declaration//GEN-END:variables

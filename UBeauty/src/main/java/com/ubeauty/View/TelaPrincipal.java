@@ -2,16 +2,20 @@ package com.ubeauty.View;
 
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.LoginAuthentication;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     private final PrincipalController controller;
 
-    public TelaPrincipal(Cliente usuario) {
+    public TelaPrincipal() {
         initComponents();
-        controller = new PrincipalController(this, usuario);
+        controller = new PrincipalController(this);
+
+        this.exibirMensagem("Usuario: " + LoginAuthentication.cliente);
     }
 
     @SuppressWarnings("unchecked")
@@ -122,7 +126,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal(new Cliente()).setVisible(true);
+                new TelaPrincipal().setVisible(true);
             }
         });
 
@@ -140,12 +144,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void setPainelConteudoLayout(CardLayout cl) {
         painelConteudo.setLayout(cl);
     }
-    
-    public void addPainel(JPanel jp, String identificador){
+
+    public void addPainel(JPanel jp, String identificador) {
         painelConteudo.add(jp, identificador);
     }
 
     public JPanel getPainelConteudo() {
         return painelConteudo;
-    }    
+    }
+
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
 }

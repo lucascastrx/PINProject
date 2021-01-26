@@ -2,8 +2,6 @@ package com.ubeauty.View;
 
 import com.ubeauty.Controller.LoginController;
 import com.ubeauty.Controller.UtilController;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,7 +25,7 @@ public class TelaLogin extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JLabel();
         btnLogin = new javax.swing.JLabel();
         tfUsuario = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        btnPular = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         tfSenha = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
@@ -35,6 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -73,10 +72,16 @@ public class TelaLogin extends javax.swing.JFrame {
         tfUsuario.setOpaque(false);
         getContentPane().add(tfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 240, 30));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel7.setText("Senha");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 40));
+        btnPular.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnPular.setForeground(new java.awt.Color(153, 153, 153));
+        btnPular.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnPular.setText("Pular ->");
+        btnPular.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPularMouseClicked(evt);
+            }
+        });
+        getContentPane().add(btnPular, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, 80, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(58, 22, 46));
@@ -102,6 +107,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 203, -1, 40));
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(58, 22, 46));
+        jLabel9.setText("Senha");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, 40));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/background-login.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -113,8 +123,12 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMousePressed
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-        controller.novoCadastro();
+       controller.novoCadastro();
     }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    private void btnPularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPularMouseClicked
+         controller.pularLogin();
+    }//GEN-LAST:event_btnPularMouseClicked
 
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
@@ -159,6 +173,7 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCadastrar;
     private javax.swing.JLabel btnLogin;
+    private javax.swing.JLabel btnPular;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -166,8 +181,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField tfSenha;
     private javax.swing.JTextField tfUsuario;
@@ -175,7 +190,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     public JPasswordField getTfSenha() {
         return tfSenha;
-    }  
+    }
 
     public JTextField getTfUsuario() {
         return tfUsuario;

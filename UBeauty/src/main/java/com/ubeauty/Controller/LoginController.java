@@ -1,6 +1,7 @@
 package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Exceptions.LoginControllerException;
 import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.View.TelaCadastro;
@@ -20,7 +21,7 @@ public class LoginController {
         this.telaLogin = telaLogin;
         adicionarAcoes();
     }
-    
+
     public void adicionarAcoes() {
 
         telaLogin.getTfSenha().addKeyListener(new KeyAdapter() {
@@ -38,7 +39,8 @@ public class LoginController {
         String usuario = telaLogin.getTfUsuario().getText();
         String senha = telaLogin.getTfSenha().getText();
         if (this.autenticaLogin(usuario, senha)) {
-            TelaPrincipal telaPrincipal = new TelaPrincipal(clienteTemp);
+            LoginAuthentication.cliente = clienteTemp;
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
             telaPrincipal.setVisible(true);
             telaLogin.dispose();
         } else {
@@ -52,6 +54,12 @@ public class LoginController {
         } catch (LoginControllerException ex) {
             telaLogin.exibirMensagem("Usuário ou Senha Incorretos");
         }
+    }
+
+    public void pularLogin() {
+        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setVisible(true);
+        telaLogin.dispose();
     }
 
     public Cliente selectPorNomeESenha(Cliente usuario) {
@@ -73,13 +81,13 @@ public class LoginController {
     }
 
     public boolean autenticaLogin(String usuario, String senha) {
-        Cliente usuarioCapturado = new Cliente(false,"x", "x", usuario, "x", 0, 0, senha);
+        Cliente usuarioCapturado = new Cliente(false, "x", "x", usuario, "x", 0, 0, senha);
         Cliente usuarioAutenticado = this.selectPorNomeESenha(usuarioCapturado);
         clienteTemp = usuarioAutenticado;
         return usuarioAutenticado != null;
     }
-    
-    public void novoCadastro(){
+
+    public void novoCadastro() {
         TelaCadastro tc = new TelaCadastro();
         tc.setVisible(true);
         telaLogin.dispose();

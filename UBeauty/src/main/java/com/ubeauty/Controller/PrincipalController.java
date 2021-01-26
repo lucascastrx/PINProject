@@ -21,12 +21,9 @@ public class PrincipalController {
     private JPanel jpMensagens;
     private JFrame PopUpAgendar;
     private JFrame PopUpReclamacoes;
-    private Cliente usuarioLogado;
 
-    public PrincipalController(TelaPrincipal view, Cliente usuarioLogado) {
+    public PrincipalController(TelaPrincipal view) {
         this.view = view;
-
-        this.usuarioLogado = usuarioLogado;
 
         UtilController.configurarTela(view);
 
@@ -64,10 +61,6 @@ public class PrincipalController {
         view.addPainel(jpSaloes, "saloes");
         view.addPainel(jpAutonomos, "autonomos");
         view.addPainel(jpMensagens, "mensagens");
-    }
-
-    public Cliente getUsuarioLogado() {
-        return usuarioLogado;
     }
 
 }
