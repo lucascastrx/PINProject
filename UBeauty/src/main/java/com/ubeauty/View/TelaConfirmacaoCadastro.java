@@ -121,7 +121,6 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         jLabel12.setText("Só mais um passo!");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 160, 30));
 
-        cbTipo.setBackground(new java.awt.Color(255, 255, 255));
         cbTipo.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         cbTipo.setForeground(new java.awt.Color(58, 22, 46));
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Vendedor" }));

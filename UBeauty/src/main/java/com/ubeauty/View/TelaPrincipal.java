@@ -1,7 +1,6 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.PrincipalController;
-import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.LoginAuthentication;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -146,13 +145,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void addPainel(JPanel jp, String identificador) {
-        painelConteudo.add(jp, identificador);
+        painelConteudo.add(jp, identificador);               
     }
 
     public JPanel getPainelConteudo() {
         return painelConteudo;
     }
-
+    
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }

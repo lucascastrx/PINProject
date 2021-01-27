@@ -1,12 +1,16 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Vendedor;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
+/**
+ * 
+ * @author Lucas Teixeira
+ */
 public class VendedorDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
@@ -87,7 +91,7 @@ public class VendedorDAO {
     }
     
     public Map<Integer,Vendedor> buscarTodosVendedores(){
-        Map<Integer,Vendedor> mapVendedores = null;
+        Map<Integer,Vendedor> mapVendedores = new HashMap<>();
         
         try {
             em.getTransaction().begin();

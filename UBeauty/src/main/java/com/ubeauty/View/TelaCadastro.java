@@ -104,6 +104,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfNome.setBorder(null);
         tfNome.setOpaque(false);
         getContentPane().add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 240, 40));
+        tfNome.getAccessibleContext().setAccessibleName("");
 
         tfSenha.setText("jPasswordfield1");
         tfSenha.setBorder(null);

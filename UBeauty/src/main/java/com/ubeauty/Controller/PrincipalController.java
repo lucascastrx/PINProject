@@ -1,6 +1,5 @@
 package com.ubeauty.Controller;
 
-import com.ubeauty.Entities.Cliente;
 import com.ubeauty.View.*;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -31,7 +30,7 @@ public class PrincipalController {
         view.setPainelConteudoLayout(cl);
 
         this.addPaineis();
-
+        
     }
 
     public PrincipalController(JPanel viewPanel) {
@@ -49,18 +48,23 @@ public class PrincipalController {
         jpPagSalao = new PanelPaginaSalao();
         jpAgendamento = new PanelAgendamento();
         jpConta = new PanelConta();
-        jpSaloes = new PanelSaloes();
+        jpSaloes = new PanelSaloes(this);
         jpAutonomos = new PanelAutonomos();
         jpMensagens = new PanelMensagens();
 
-        view.addPainel(jpPrincipal, "principal");
-        view.addPainel(jpNotif, "notificacoes");
+        view.addPainel(jpPrincipal, "principal"); 
+        view.addPainel(jpNotif, "notificacoes"); 
         view.addPainel(jpPagSalao, "paginaSalao");
         view.addPainel(jpAgendamento, "agendamento");
         view.addPainel(jpConta, "conta");
         view.addPainel(jpSaloes, "saloes");
         view.addPainel(jpAutonomos, "autonomos");
         view.addPainel(jpMensagens, "mensagens");
+        
     }
 
+    public TelaPrincipal getView() {
+        return view;
+    }
+   
 }
