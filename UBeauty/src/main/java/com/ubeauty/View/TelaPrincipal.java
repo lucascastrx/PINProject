@@ -13,8 +13,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
         controller = new PrincipalController(this);
-
-        this.exibirMensagem("Usuario: " + LoginAuthentication.cliente);
     }
 
     @SuppressWarnings("unchecked")
