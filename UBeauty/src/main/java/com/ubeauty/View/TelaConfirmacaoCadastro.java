@@ -28,19 +28,29 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         initComponents();
         UtilController.configurarTela(this);
         this.controller = controller;
-        this.configurar();
+        
     }
     
-    private void configurar() {
+    private void configurar(boolean a, boolean b) {
         /*eu tive que colocar aqui, não dei jeito de fazer funcionar dentro do controle
         serve pra limpar os campos que nao servem pra cliente
         */
-        rbAutonomo.setVisible(false);
-        rbSalao.setVisible(false);
-        tfNomeProfissao.setVisible(false);
-        tfCnpj.setVisible(false);
-        imgCnpj.setVisible(false);
-        imgNomeProf.setVisible(false);
+        
+        /** 
+         * @Param a,b
+         * 
+         * Os campos são setados no controller, a view só fornece os componentes.
+         * Pode deletar esse metodo dps.
+         * 
+         * @Lucas
+         */
+        
+        rbAutonomo.setVisible(b);
+        rbSalao.setVisible(b);
+        tfNomeProfissao.setVisible(b);
+        tfCnpj.setVisible(b);
+        imgCnpj.setVisible(b);
+        imgNomeProf.setVisible(b);
     }
     
     @SuppressWarnings("unchecked")

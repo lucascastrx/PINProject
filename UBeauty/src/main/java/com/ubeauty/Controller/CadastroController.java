@@ -9,7 +9,6 @@ import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaConfirmacaoCadastro;
 import com.ubeauty.View.TelaLogin;
-import javax.swing.JOptionPane;
 
 public class CadastroController {
 
@@ -32,6 +31,8 @@ public class CadastroController {
     String endereco;
     String nomeProfissao;
     boolean sucesso;
+    
+    private final boolean CONFIG_PARAM  = false;
 
     public CadastroController(TelaCadastro view) {
         this.view = view;
@@ -67,6 +68,7 @@ public class CadastroController {
 
     public void abrirTelaFinalizarCadastro() {
         viewFinal = new TelaConfirmacaoCadastro(this);
+        this.configurar();
         viewFinal.setVisible(true);
     }
 
@@ -158,15 +160,15 @@ public class CadastroController {
                     || (numero.isBlank() || numero.equalsIgnoreCase("numero"))
                     || (cidade.isBlank() || cidade.equalsIgnoreCase("cidade"))
                     || (estado.isBlank() || estado.equalsIgnoreCase("estado"))) {
-
+                
                 throw new BlankException();
-            } else {
-                Cliente cliente = new Cliente(false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
-                ClienteDAO persistencia = new ClienteDAO();
-                persistencia.gravar(cliente);
-
-                sucesso = true;
             }
+            Cliente cliente = new Cliente(false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            ClienteDAO persistencia = new ClienteDAO();
+            persistencia.gravar(cliente);
+            
+            sucesso = true;
+            
         } catch (BlankException e) {
             view.exibirMensagem(e.getMessage());
         }
@@ -179,19 +181,19 @@ public class CadastroController {
                     || (cidade.isBlank() || cidade.equalsIgnoreCase("cidade"))
                     || (estado.isBlank() || estado.equalsIgnoreCase("estado"))
                     || (nomeProfissao.isBlank() || nomeProfissao.equalsIgnoreCase("Nome Profissional"))) {
-
+                
                 throw new BlankException();
-            } else {
-                Vendedor vendedor = new Vendedor(cnpj, true, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
-                VendedorDAO persistencia = new VendedorDAO();
-                persistencia.gravar(vendedor);
-
-                sucesso = true;
             }
+            Vendedor vendedor = new Vendedor(cnpj, true, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            VendedorDAO persistencia = new VendedorDAO();
+            persistencia.gravar(vendedor);
+            
+            sucesso = true;
+            
         } catch (BlankException e) {
             view.exibirMensagem(e.getMessage());
         }
-
+        
     }
 
     private void criarSalao() {
@@ -202,18 +204,32 @@ public class CadastroController {
                     || (estado.isBlank() || estado.equalsIgnoreCase("estado"))
                     || (nomeProfissao.isBlank() || nomeProfissao.equalsIgnoreCase("Nome do Salão"))
                     || (cnpj.isBlank() || cnpj.equalsIgnoreCase("cnpj"))) {
-
+                
                 throw new BlankException();
-            } else {
-                Vendedor vendedor = new Vendedor(cnpj, false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
-                VendedorDAO persistencia = new VendedorDAO();
-                persistencia.gravar(vendedor);
-
-                sucesso = true;
             }
+            Vendedor vendedor = new Vendedor(cnpj, false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            VendedorDAO persistencia = new VendedorDAO();
+            persistencia.gravar(vendedor);
+            
+            sucesso = true;
+            
         } catch (BlankException e) {
             view.exibirMensagem(e.getMessage());
         }
+    }
+    
+    private void configurar() {
+        /**
+         * Da pra passar os valores diretos tbm, mas acho q desse jeito fica melhor de entender 
+         * (e mais seguro tbm)
+         */
+  
+        viewFinal.getRbAutonomo().setVisible(CONFIG_PARAM);
+        viewFinal.getRbSalao().setVisible(CONFIG_PARAM);
+        viewFinal.getTfNomeProfissao().setVisible(CONFIG_PARAM);
+        viewFinal.getTfCnpj().setVisible(CONFIG_PARAM);
+        viewFinal.getImgCnpj().setVisible(CONFIG_PARAM);
+        viewFinal.getImgNomeProf().setVisible(CONFIG_PARAM);
     }
 
 }
