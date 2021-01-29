@@ -69,10 +69,10 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
                 btnComentarMousePressed(evt);
             }
         });
-        getContentPane().add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 110, 30));
+        getContentPane().add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 50));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 110, 50));
 
         btnVoltar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(153, 153, 153));
@@ -84,10 +84,10 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
                 btnVoltarMousePressed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 450, 120, 30));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 100, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 130, 50));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 130, 50));
 
         jScrollPane2.setBackground(new java.awt.Color(204, 204, 204));
         jScrollPane2.setBorder(null);
@@ -104,7 +104,7 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
         txtMeuComentario.setFocusable(false);
         jScrollPane2.setViewportView(txtMeuComentario);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 260, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 260, 90));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(null);

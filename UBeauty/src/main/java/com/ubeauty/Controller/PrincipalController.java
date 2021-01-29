@@ -1,5 +1,6 @@
 package com.ubeauty.Controller;
 
+import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.View.*;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ public class PrincipalController {
     private JPanel jpPagSalao;
     private JPanel jpAgendamento;
     private JPanel jpConta;
+    private JPanel jpContaConvidado;
     private JPanel jpSaloes;
     private JPanel jpAutonomos;
     private JPanel jpMensagens;
@@ -36,6 +38,12 @@ public class PrincipalController {
     public PrincipalController(JPanel viewPanel) {
         this.viewPanel = viewPanel;
     }
+    
+    public void mostrarTelaUsuario(){
+        if (LoginAuthentication.cliente != null) {
+            cl.show(view.getPainelConteudo(), "conta");
+        } else cl.show(view.getPainelConteudo(), "contaConvidado");
+    }
 
     public void mostrarTela(String x) {
         cl.show(view.getPainelConteudo(), x);
@@ -51,12 +59,14 @@ public class PrincipalController {
         jpSaloes = new PanelSaloes(this);
         jpAutonomos = new PanelAutonomos();
         jpMensagens = new PanelMensagens();
+        jpContaConvidado = new PanelContaConvidado(view);
 
         view.addPainel(jpPrincipal, "principal"); 
         view.addPainel(jpNotif, "notificacoes"); 
         view.addPainel(jpPagSalao, "paginaSalao");
         view.addPainel(jpAgendamento, "agendamento");
         view.addPainel(jpConta, "conta");
+        view.addPainel(jpContaConvidado, "contaConvidado");
         view.addPainel(jpSaloes, "saloes");
         view.addPainel(jpAutonomos, "autonomos");
         view.addPainel(jpMensagens, "mensagens");

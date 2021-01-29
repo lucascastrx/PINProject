@@ -86,7 +86,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNotificacoesMouseClicked
 
     private void btnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuarioMouseClicked
-        controller.mostrarTela("conta");
+        controller.mostrarTelaUsuario();
     }//GEN-LAST:event_btnUsuarioMouseClicked
 
     private void btnMensagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMensagensMouseClicked
