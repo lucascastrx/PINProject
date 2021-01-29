@@ -1,15 +1,15 @@
 package com.ubeauty.View;
 
-import com.ubeauty.Controller.PanelContaConvidadoController;
+import com.ubeauty.Controller.ConvidadoController;
 
 public class PanelContaConvidado extends javax.swing.JPanel {
     
-    PanelContaConvidadoController controller;
+    ConvidadoController controller;
     TelaPrincipal tp;
 
     public PanelContaConvidado(TelaPrincipal tp) {
         initComponents();      
-        controller = new PanelContaConvidadoController(this, tp);
+        controller = new ConvidadoController(this, tp);
     }
 
     @SuppressWarnings("unchecked")

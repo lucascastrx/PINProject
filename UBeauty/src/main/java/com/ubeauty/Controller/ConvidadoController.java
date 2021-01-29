@@ -5,11 +5,11 @@ import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaLogin;
 import com.ubeauty.View.TelaPrincipal;
 
-public class PanelContaConvidadoController {
+public class ConvidadoController {
     PanelContaConvidado view;
     TelaPrincipal tp;
 
-    public PanelContaConvidadoController(PanelContaConvidado view, TelaPrincipal tp) {
+    public ConvidadoController(PanelContaConvidado view, TelaPrincipal tp) {
         this.view = view;
         this.tp = tp;
     }
