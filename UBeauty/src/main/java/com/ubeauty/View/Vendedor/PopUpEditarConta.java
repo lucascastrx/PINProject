@@ -1,16 +1,20 @@
 package com.ubeauty.View.Vendedor;
 
+import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Controller.Vendedor.ContaVendedorController;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 public class PopUpEditarConta extends javax.swing.JFrame {
 
-    public PopUpEditarConta() {
+    ContaVendedorController controller;
+    
+    public PopUpEditarConta(ContaVendedorController controller) {
         initComponents();
-
-        this.setLocationRelativeTo(null);
-
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
+        UtilController.configurarTela(this);
+        
+        this.controller = controller;
     }
 
     @SuppressWarnings("unchecked")
@@ -39,12 +43,12 @@ public class PopUpEditarConta extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         tfHorarioEspecial = new javax.swing.JTextField();
+        tfNomeProfissao1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         imgNomeProf = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         cbDia2 = new javax.swing.JComboBox<>();
         cbDia1 = new javax.swing.JComboBox<>();
-        tfNomeProfissao1 = new javax.swing.JTextField();
         tfHorario = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -184,6 +188,14 @@ public class PopUpEditarConta extends javax.swing.JFrame {
         tfHorarioEspecial.setOpaque(false);
         getContentPane().add(tfHorarioEspecial, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 240, 40));
 
+        tfNomeProfissao1.setBackground(new java.awt.Color(0,0,0,1));
+        tfNomeProfissao1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfNomeProfissao1.setText("Nome do Salão"); // NOI18N
+        tfNomeProfissao1.setToolTipText("");
+        tfNomeProfissao1.setBorder(null);
+        tfNomeProfissao1.setOpaque(false);
+        getContentPane().add(tfNomeProfissao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 240, 40));
+
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
         jLabel13.setText("Telefone");
@@ -202,14 +214,6 @@ public class PopUpEditarConta extends javax.swing.JFrame {
 
         cbDia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo" }));
         getContentPane().add(cbDia1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 100, 30));
-
-        tfNomeProfissao1.setBackground(new java.awt.Color(0,0,0,1));
-        tfNomeProfissao1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfNomeProfissao1.setText("Nome do Salão"); // NOI18N
-        tfNomeProfissao1.setToolTipText("");
-        tfNomeProfissao1.setBorder(null);
-        tfNomeProfissao1.setOpaque(false);
-        getContentPane().add(tfNomeProfissao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 240, 40));
 
         tfHorario.setBackground(new java.awt.Color(0,0,0,1));
         tfHorario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -231,7 +235,7 @@ public class PopUpEditarConta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
-        System.out.println("ok");
+        controller.salvarDados();
     }//GEN-LAST:event_btnSalvarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
@@ -241,38 +245,38 @@ public class PopUpEditarConta extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PopUpEditarConta().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PopUpEditarConta().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCancelar;
@@ -307,4 +311,47 @@ public class PopUpEditarConta extends javax.swing.JFrame {
     private javax.swing.JTextField tfRua;
     private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
+
+    public JComboBox<String> getCbDia1() {
+        return cbDia1;
+    }
+
+    public JComboBox<String> getCbDia2() {
+        return cbDia2;
+    }
+
+    public JTextField getTfCidade() {
+        return tfCidade;
+    }
+
+    public JTextField getTfEstado() {
+        return tfEstado;
+    }
+
+    public JTextField getTfHorario() {
+        return tfHorario;
+    }
+
+    public JTextField getTfHorarioEspecial() {
+        return tfHorarioEspecial;
+    }
+
+    public JTextField getTfNomeProfissao1() {
+        return tfNomeProfissao1;
+    }
+
+    public JTextField getTfNumero() {
+        return tfNumero;
+    }
+
+    public JTextField getTfRua() {
+        return tfRua;
+    }
+
+    public JTextField getTfTelefone() {
+        return tfTelefone;
+    }
+
+    
+
 }

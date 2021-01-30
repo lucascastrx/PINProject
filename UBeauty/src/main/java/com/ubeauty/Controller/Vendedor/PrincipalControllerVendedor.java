@@ -13,6 +13,9 @@ public class PrincipalControllerVendedor {
     private JPanel viewPanel;
     private CardLayout cl;
     private JPanel jpPrincipal;
+    private JPanel jpNotificacoes;
+    private JPanel jpServicos;
+    private JPanel jpConta;
 
     public PrincipalControllerVendedor(TelaPrincipalVendedor view) {
         this.view = view;
@@ -34,8 +37,14 @@ public class PrincipalControllerVendedor {
     private void addPaineis() {
 
         jpPrincipal = new PanelPrincipalVendedor(view, this);
+        jpNotificacoes = new PanelNotificacoesVendedor();
+        jpServicos = new PanelServicosVendedor(view, this);
+        jpConta = new PanelContaVendedor(view);
 
         view.addPainel(jpPrincipal, "principal");         
+        view.addPainel(jpNotificacoes, "notificacoes");         
+        view.addPainel(jpServicos, "servicos");         
+        view.addPainel(jpConta, "conta");         
     }
    
 }

@@ -3,9 +3,9 @@ package com.ubeauty.View.Vendedor;
 import com.ubeauty.Controller.UtilController;
 import javax.swing.ImageIcon;
 
-public class PopUpCriarCupom extends javax.swing.JFrame {
+public class PopUpCriarNotificacao extends javax.swing.JFrame {
 
-    public PopUpCriarCupom() {
+    public PopUpCriarNotificacao() {
         initComponents();
         UtilController.configurarTela(this);
     }
@@ -18,13 +18,10 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        tfNome = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        tfPreco = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDescricao = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -38,7 +35,7 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         btnCriar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCriar.setForeground(new java.awt.Color(255, 255, 255));
         btnCriar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCriar.setText("Criar");
+        btnCriar.setText("Criar e enviar");
         btnCriar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCriar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -65,48 +62,31 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 130, 50));
 
-        tfNome.setBackground(new java.awt.Color(0,0,0,1));
-        tfNome.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfNome.setToolTipText("");
-        tfNome.setBorder(null);
-        tfNome.setOpaque(false);
-        getContentPane().add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 240, 20));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 40));
-
-        tfPreco.setBackground(new java.awt.Color(0,0,0,1));
-        tfPreco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfPreco.setText("00.00"); // NOI18N
-        tfPreco.setToolTipText("");
-        tfPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        tfPreco.setOpaque(false);
-        tfPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPrecoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tfPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 210, 40));
-
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel12.setText("Criar cupom");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, 30));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel13.setText("R$");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
+        jLabel12.setText("Criar notificação");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 130, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel15.setText("Cupom");
+        jLabel15.setText("Texto da notificação");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 20));
 
-        jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel17.setText("Valor do desconto");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        taDescricao.setBackground(new java.awt.Color(255, 255, 255));
+        taDescricao.setColumns(20);
+        taDescricao.setForeground(new java.awt.Color(58, 22, 46));
+        taDescricao.setLineWrap(true);
+        taDescricao.setRows(5);
+        taDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
+        taDescricao.setFocusable(false);
+        jScrollPane1.setViewportView(taDescricao);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 260, 100));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 250));
@@ -121,10 +101,6 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelarMousePressed
-
-    private void tfPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPrecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,14 +119,22 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarCupom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpCriarNotificacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarCupom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpCriarNotificacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarCupom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpCriarNotificacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarCupom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpCriarNotificacao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -163,7 +147,7 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PopUpCriarCupom().setVisible(true);
+                new PopUpCriarNotificacao().setVisible(true);
             }
         });
     }
@@ -172,14 +156,11 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
     private javax.swing.JLabel btnCancelar;
     private javax.swing.JLabel btnCriar;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfPreco;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea taDescricao;
     // End of variables declaration//GEN-END:variables
 }

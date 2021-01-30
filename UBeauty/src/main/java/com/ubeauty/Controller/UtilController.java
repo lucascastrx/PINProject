@@ -2,6 +2,7 @@ package com.ubeauty.Controller;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class UtilController {
 
@@ -14,5 +15,9 @@ public class UtilController {
         //definir icone pra janela
         icon = new ImageIcon(view.getClass().getResource("/icon.png"));
         view.setIconImage(icon.getImage());
+    }
+    
+    public static Integer confirmacaoSimNao(String titulo, String mensagem){
+        return JOptionPane.showConfirmDialog(null, mensagem, titulo, JOptionPane.YES_NO_OPTION);
     }
 }

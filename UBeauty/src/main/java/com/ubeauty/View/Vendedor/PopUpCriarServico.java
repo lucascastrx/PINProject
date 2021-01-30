@@ -17,7 +17,7 @@ public class PopUpCriarServico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCriar = new javax.swing.JLabel();
+        btnSalvar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -44,17 +44,17 @@ public class PopUpCriarServico extends javax.swing.JFrame {
         setType(java.awt.Window.Type.POPUP);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnCriar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btnCriar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCriar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnCriar.setText("Criar");
-        btnCriar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCriar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSalvar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalvar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnSalvar.setText("Salvar");
+        btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnCriarMousePressed(evt);
+                btnSalvarMousePressed(evt);
             }
         });
-        getContentPane().add(btnCriar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 90, 30));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 110, 50));
@@ -99,8 +99,8 @@ public class PopUpCriarServico extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel12.setText("Criar serviço");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, 30));
+        jLabel12.setText("Serviço");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
@@ -153,9 +153,9 @@ public class PopUpCriarServico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCriarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarMousePressed
+    private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
         System.out.println("ok");
-    }//GEN-LAST:event_btnCriarMousePressed
+    }//GEN-LAST:event_btnSalvarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
         // TODO add your handling code here:
@@ -205,7 +205,7 @@ public class PopUpCriarServico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCancelar;
-    private javax.swing.JLabel btnCriar;
+    private javax.swing.JLabel btnSalvar;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

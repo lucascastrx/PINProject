@@ -86,11 +86,11 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNotificacoesMouseClicked
 
     private void btnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuarioMouseClicked
-        controller.mostrarTela("notificacoes");
+        controller.mostrarTela("conta");
     }//GEN-LAST:event_btnUsuarioMouseClicked
 
     private void btnServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicosMouseClicked
-        controller.mostrarTela("mensagens");
+        controller.mostrarTela("servicos");
     }//GEN-LAST:event_btnServicosMouseClicked
 
     /**

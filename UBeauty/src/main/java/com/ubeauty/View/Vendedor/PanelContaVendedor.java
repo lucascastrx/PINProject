@@ -1,9 +1,19 @@
 package com.ubeauty.View.Vendedor;
 
-public class PanelContaVendedor extends javax.swing.JPanel {
+import com.ubeauty.Controller.Vendedor.ContaVendedorController;
+import com.ubeauty.View.TelaPrincipal;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
-    public PanelContaVendedor() {
+public class PanelContaVendedor extends javax.swing.JPanel {
+    
+    ContaVendedorController controller;
+
+    public PanelContaVendedor(TelaPrincipalVendedor view) {
         initComponents();
+        controller = new ContaVendedorController(this,view);
+        controller.carregarTela();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -35,9 +45,12 @@ public class PanelContaVendedor extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taDescricao = new javax.swing.JTextArea();
-        jLabel20 = new javax.swing.JLabel();
+        labelDescricaoSalva = new javax.swing.JLabel();
         btnSalvarDescricao = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        btnReclamacoes = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,10 +111,10 @@ public class PanelContaVendedor extends javax.swing.JPanel {
                 btnEditarInfosMousePressed(evt);
             }
         });
-        add(btnEditarInfos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 90, 30));
+        add(btnEditarInfos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 110, 50));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 110, 50));
 
         btnExcluirConta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnExcluirConta.setForeground(new java.awt.Color(153, 153, 153));
@@ -157,6 +170,11 @@ public class PanelContaVendedor extends javax.swing.JPanel {
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnLogout.setText("LOGOUT");
         btnLogout.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLogoutMouseClicked(evt);
+            }
+        });
         add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 90, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza.png"))); // NOI18N
@@ -172,17 +190,15 @@ public class PanelContaVendedor extends javax.swing.JPanel {
         taDescricao.setForeground(new java.awt.Color(58, 22, 46));
         taDescricao.setLineWrap(true);
         taDescricao.setRows(5);
-        taDescricao.setText("*descrição*");
         taDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        taDescricao.setFocusable(false);
         jScrollPane1.setViewportView(taDescricao);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 280, 100));
 
-        jLabel20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel20.setText("Nome:");
-        add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 40, 30));
+        labelDescricaoSalva.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        labelDescricaoSalva.setForeground(new java.awt.Color(58, 22, 46));
+        labelDescricaoSalva.setText("Descrição salva!");
+        add(labelDescricaoSalva, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 110, 30));
 
         btnSalvarDescricao.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnSalvarDescricao.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,19 +214,47 @@ public class PanelContaVendedor extends javax.swing.JPanel {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 110, 50));
+
+        btnReclamacoes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnReclamacoes.setForeground(new java.awt.Color(255, 102, 153));
+        btnReclamacoes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnReclamacoes.setText("Reclamações");
+        btnReclamacoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReclamacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnReclamacoesMousePressed(evt);
+            }
+        });
+        add(btnReclamacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 450, 100, 30));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa-outline.png"))); // NOI18N
+        add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 130, 50));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(58, 22, 46));
+        jLabel21.setText("Nome:");
+        add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 40, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarInfosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarInfosMousePressed
-        System.out.println("ok");
+        controller.abrirPopUpEditarConta();
     }//GEN-LAST:event_btnEditarInfosMousePressed
 
     private void btnExcluirContaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirContaMousePressed
-        // TODO add your handling code here:
+        controller.excluirConta();
     }//GEN-LAST:event_btnExcluirContaMousePressed
 
     private void btnSalvarDescricaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarDescricaoMousePressed
-        // TODO add your handling code here:
+        controller.salvarDescricao();
     }//GEN-LAST:event_btnSalvarDescricaoMousePressed
+
+    private void btnReclamacoesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReclamacoesMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnReclamacoesMousePressed
+
+    private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
+        controller.logout();
+    }//GEN-LAST:event_btnLogoutMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -219,6 +263,7 @@ public class PanelContaVendedor extends javax.swing.JPanel {
     private javax.swing.JLabel btnExcluirConta;
     private javax.swing.JLabel btnLogo;
     private javax.swing.JLabel btnLogout;
+    private javax.swing.JLabel btnReclamacoes;
     private javax.swing.JLabel btnSalvarDescricao;
     private javax.swing.JLabel btnVoltar;
     private javax.swing.JLabel jLabel1;
@@ -229,18 +274,47 @@ public class PanelContaVendedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDescricaoSalva;
     private javax.swing.JTextArea taDescricao;
     private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtEndereco;
     private javax.swing.JLabel txtNome;
     private javax.swing.JLabel txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    public JLabel getTxtNome() {
+        return txtNome;
+    }
+
+    public JTextArea getTaDescricao() {
+        return taDescricao;
+    }
+
+    public JLabel getTxtEmail() {
+        return txtEmail;
+    }
+
+    public JLabel getTxtEndereco() {
+        return txtEndereco;
+    }
+
+    public JLabel getTxtTelefone() {
+        return txtTelefone;
+    }
+
+    public JLabel getLabelDescricaoSalva() {
+        return labelDescricaoSalva;
+    }
+    
+    
+    
 }

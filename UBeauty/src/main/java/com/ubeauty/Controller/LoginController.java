@@ -2,11 +2,13 @@ package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Exceptions.LoginControllerException;
 import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaLogin;
 import com.ubeauty.View.TelaPrincipal;
+import com.ubeauty.View.Vendedor.TelaPrincipalVendedor;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Map;
@@ -40,8 +42,13 @@ public class LoginController {
         String senha = telaLogin.getTfSenha().getText();
         if (this.autenticaLogin(usuario, senha)) {
             LoginAuthentication.cliente = clienteTemp;
-            TelaPrincipal telaPrincipal = new TelaPrincipal();
-            telaPrincipal.setVisible(true);
+
+            if (clienteTemp instanceof Vendedor) {
+                new TelaPrincipalVendedor().setVisible(true);
+            } else {
+                new TelaPrincipal().setVisible(true);
+            }
+            
             telaLogin.dispose();
         } else {
             throw new LoginControllerException();

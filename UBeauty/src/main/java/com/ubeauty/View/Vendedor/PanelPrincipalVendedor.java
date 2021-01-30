@@ -61,7 +61,7 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tableAgendamentos);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 480));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 370));
     }// </editor-fold>//GEN-END:initComponents
 
 
