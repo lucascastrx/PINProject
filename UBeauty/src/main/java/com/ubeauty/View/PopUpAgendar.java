@@ -85,7 +85,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 btnComentarMousePressed(evt);
             }
         });
-        getContentPane().add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 110, 30));
+        getContentPane().add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 110, 50));
@@ -100,7 +100,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 btnVoltarMousePressed(evt);
             }
         });
-        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 120, 30));
+        getContentPane().add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 100, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 130, 50));

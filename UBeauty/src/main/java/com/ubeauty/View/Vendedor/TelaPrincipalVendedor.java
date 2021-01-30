@@ -22,7 +22,7 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
         btnNotificacoes = new javax.swing.JLabel();
         btnHome = new javax.swing.JLabel();
         btnUsuario = new javax.swing.JLabel();
-        btnMensagens = new javax.swing.JLabel();
+        btnServicos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         painelConteudo = new javax.swing.JPanel();
 
@@ -57,14 +57,14 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
         });
         getContentPane().add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 630, 30, 30));
 
-        btnMensagens.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnMensagens.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-msg.png"))); // NOI18N
-        btnMensagens.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnServicos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnServicos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-servicos.png"))); // NOI18N
+        btnServicos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMensagensMouseClicked(evt);
+                btnServicosMouseClicked(evt);
             }
         });
-        getContentPane().add(btnMensagens, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 30, 30));
+        getContentPane().add(btnServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, 30, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/barra-branca.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -89,9 +89,9 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
         controller.mostrarTela("notificacoes");
     }//GEN-LAST:event_btnUsuarioMouseClicked
 
-    private void btnMensagensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMensagensMouseClicked
+    private void btnServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicosMouseClicked
         controller.mostrarTela("mensagens");
-    }//GEN-LAST:event_btnMensagensMouseClicked
+    }//GEN-LAST:event_btnServicosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -132,8 +132,8 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnHome;
-    private javax.swing.JLabel btnMensagens;
     private javax.swing.JLabel btnNotificacoes;
+    private javax.swing.JLabel btnServicos;
     private javax.swing.JLabel btnUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel painelConteudo;
