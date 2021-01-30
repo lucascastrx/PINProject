@@ -57,7 +57,7 @@ public class PrincipalController {
         jpAgendamento = new PanelAgendamento();
         jpConta = new PanelConta();
         jpSaloes = new PanelSaloes(this);
-        jpAutonomos = new PanelAutonomos();
+        jpAutonomos = new PanelAutonomos(this);
         jpMensagens = new PanelMensagens();
         jpContaConvidado = new PanelContaConvidado(view);
 

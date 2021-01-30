@@ -111,6 +111,11 @@ public class App {
        cd.gravar(cc);
        
         System.out.println(cc.getMoment());
+        
+        Vendedor v = new Vendedor();
+        
+        v.getNome();
+        
        
        
        

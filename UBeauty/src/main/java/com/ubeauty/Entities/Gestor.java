@@ -105,7 +105,7 @@ public class Gestor implements Serializable{
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     public void addNotificacao(Notificacao n){
         this.notificacoes.add(n);
     }
@@ -114,6 +114,8 @@ public class Gestor implements Serializable{
         this.notificacoes.remove(n);
     }
 
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;

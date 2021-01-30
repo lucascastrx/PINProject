@@ -11,18 +11,16 @@ import java.util.Map;
  */
 public class PanelSaloesController {
     private PanelSaloes panelSaloes;
-    private PrincipalController controllerPC;
     private TableModelSaloes modelSaloes;
     
    
 
-    public PanelSaloesController(PrincipalController controllerPC, PanelSaloes p) {
-        this.controllerPC = controllerPC;
+    public PanelSaloesController(PanelSaloes p) {
         panelSaloes = p;
         
         VendedorDAO vendedorRep = new VendedorDAO();
-        Map<Integer, Vendedor> mapVendedor = vendedorRep.buscarTodosVendedores();
-        this.modelSaloes = new TableModelSaloes(mapVendedor);
+        Map<Integer, Vendedor> mapSalao = vendedorRep.buscarTodosSaloes();
+        this.modelSaloes = new TableModelSaloes(mapSalao);
         
         this.runComponents();
         

@@ -110,6 +110,50 @@ public class VendedorDAO {
         return mapVendedores;
     }
     
+    public Map<Integer,Vendedor> buscarTodosSaloes(){
+        Map<Integer,Vendedor> mapVendedores = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Vendedor> listVendedores = em.createQuery("from Vendedor").getResultList();
+            for (Vendedor v : listVendedores) {
+                if(v.isAutonomo() == false){
+                    mapVendedores.putIfAbsent(v.getId(), v);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        
+        return mapVendedores;
+    }
+    
+    public Map<Integer,Vendedor> buscarTodosAutonomos(){
+        Map<Integer,Vendedor> mapVendedores = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Vendedor> listVendedores = em.createQuery("from Vendedor").getResultList();
+            for (Vendedor v : listVendedores) {
+                if(v.isAutonomo() == true){
+                    mapVendedores.putIfAbsent(v.getId(), v);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        
+        return mapVendedores;
+    }
+    
     public List<Integer> buscarTodasKeys (){
         List<Integer> vendedoresKeys = null;
         

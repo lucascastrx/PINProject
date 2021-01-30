@@ -20,7 +20,7 @@ public class PanelSaloes extends javax.swing.JPanel {
         controller = pc;
         view = controller.getView();
         
-        pController = new PanelSaloesController(controller,this);
+        pController = new PanelSaloesController(this);
         
     }
     

@@ -58,6 +58,7 @@ public class CadastroController {
             }
             if (dddInt == -1 || telefoneInt == -1) {
                 throw new InvalidNumberException(" ");
+                
             } else {
                 this.abrirTelaFinalizarCadastro();
             }
@@ -184,7 +185,7 @@ public class CadastroController {
                 
                 throw new BlankException();
             }
-            Vendedor vendedor = new Vendedor(cnpj, true, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            Vendedor vendedor = new Vendedor(cnpj, true, nomeProfissao, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
             VendedorDAO persistencia = new VendedorDAO();
             persistencia.gravar(vendedor);
             
@@ -207,7 +208,7 @@ public class CadastroController {
                 
                 throw new BlankException();
             }
-            Vendedor vendedor = new Vendedor(cnpj, false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            Vendedor vendedor = new Vendedor(cnpj, false, nomeProfissao, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
             VendedorDAO persistencia = new VendedorDAO();
             persistencia.gravar(vendedor);
             

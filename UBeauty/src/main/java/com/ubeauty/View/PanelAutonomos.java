@@ -5,18 +5,34 @@
  */
 package com.ubeauty.View;
 
+import com.ubeauty.Controller.PanelAutonomosController;
+import com.ubeauty.Controller.PrincipalController;
+import com.ubeauty.TableModel.TableModelAutonomos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo Buzzi
  */
 public class PanelAutonomos extends javax.swing.JPanel {
-
-    /**
-     * Creates new form teste2
-     */
-    public PanelAutonomos() {
+    private PrincipalController controller;
+    private PanelAutonomosController pController;
+    
+    public PanelAutonomos(PrincipalController p) {
         initComponents();
+        
+        controller = p;
+        pController = new PanelAutonomosController(this);
     }
+
+    public void setTableModel(TableModelAutonomos model) {
+        this.tabela.setModel(model);
+    }
+    
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,7 +47,7 @@ public class PanelAutonomos extends javax.swing.JPanel {
         btnEstabelecimentos = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAutonomos = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         btnPesquisarSaloes = new javax.swing.JLabel();
         btnLimparFiltro = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -48,12 +64,17 @@ public class PanelAutonomos extends javax.swing.JPanel {
 
         btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn-voltar-escuro.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
         add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, 30));
 
-        tableAutonomos.setBackground(new java.awt.Color(204, 204, 204));
-        tableAutonomos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableAutonomos.setForeground(new java.awt.Color(58, 22, 46));
-        tableAutonomos.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setBackground(new java.awt.Color(204, 204, 204));
+        tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabela.setForeground(new java.awt.Color(58, 22, 46));
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"dwadwdwadwadwadwadwadwadwadwadawdwadwadwadadwadwa", "5555"}
             },
@@ -61,7 +82,7 @@ public class PanelAutonomos extends javax.swing.JPanel {
                 "", ""
             }
         ));
-        jScrollPane1.setViewportView(tableAutonomos);
+        jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, 390));
 
@@ -88,6 +109,10 @@ public class PanelAutonomos extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLimparFiltroMousePressed
 
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        controller.mostrarTela("principal");
+    }//GEN-LAST:event_btnVoltarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEstabelecimentos;
@@ -97,6 +122,6 @@ public class PanelAutonomos extends javax.swing.JPanel {
     private javax.swing.JLabel btnVoltar;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableAutonomos;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

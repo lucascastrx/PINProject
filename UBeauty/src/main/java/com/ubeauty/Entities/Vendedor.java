@@ -11,6 +11,9 @@ import javax.persistence.OneToMany;
 @Entity 
 public class Vendedor extends Cliente{
     private String cnpj;
+    private String nomeProfissao;
+    private String descricao;
+    private String horaFunc; //horario de funcionamento
     
     @OneToMany(mappedBy = "vendedorServico")
     private Set<Servico> servicos = new HashSet<>();
@@ -21,15 +24,39 @@ public class Vendedor extends Cliente{
     @OneToMany(mappedBy = "v")
     private List<Mensagem> mensagens = new ArrayList<>();
     
-    
-
+ 
     public Vendedor() {
     }
 
-    public Vendedor(String cnpj, boolean autonomo, String nome, String sobrenome, String email,
+    /**
+     *
+     * @param cnpj
+     * @param autonomo
+     * @param nomeProfissao
+     * @param descricao
+     * @param horaFunc
+     * @param nome
+     * @param sobrenome
+     * @param email
+     * @param endereco
+     * @param ddd
+     * @param telefone
+     * @param senha
+     */
+    public Vendedor(String cnpj, boolean autonomo,String nomeProfissao, String descricao, String horaFunc, String nome, String sobrenome, String email,
                     String endereco, int ddd, int telefone, String senha) {
         super(autonomo, nome, sobrenome, email, endereco, ddd, telefone, senha);
         this.cnpj = cnpj;
+        this.nomeProfissao = nomeProfissao;
+        this.descricao = descricao;
+        this.horaFunc = horaFunc;
+    }
+    
+    public Vendedor(String cnpj, boolean autonomo,String nomeProfissao, String nome, String sobrenome, String email,
+                    String endereco, int ddd, int telefone, String senha) {
+        super(autonomo, nome, sobrenome, email, endereco, ddd, telefone, senha);
+        this.cnpj = cnpj;
+        this.nomeProfissao = nomeProfissao;
     }
 
    
@@ -41,6 +68,32 @@ public class Vendedor extends Cliente{
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
+    public String getNomeProfissao() {
+        return nomeProfissao;
+    }
+
+    public void setNomeProfissao(String nomeProfissao) {
+        this.nomeProfissao = nomeProfissao;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getHoraFunc() {
+        return horaFunc;
+    }
+
+    public void setHoraFunc(String horaFunc) {
+        this.horaFunc = horaFunc;
+    }
+    
+    
     
     public void addServico(Servico v){
         servicos.add(v);
@@ -64,11 +117,13 @@ public class Vendedor extends Cliente{
     }
     
 
+    @Override
     public void addMensagem(Mensagem m){
         mensagens.add(m);
         m.setVendedor(this);
     }
     
+    @Override
     public void removeMensagem(Mensagem m){
         mensagens.remove(m);
         m.setVendedor(null);
@@ -76,8 +131,10 @@ public class Vendedor extends Cliente{
 
     @Override
     public String toString() {
-        return super.toString()+ "Vendedor{" + "cnpj=" + cnpj + '}';
+        return "Vendedor{" + "cnpj=" + cnpj + ", nomeProfissao=" + nomeProfissao + ", descricao=" + descricao + ", horaFunc=" + horaFunc + '}';
     }
+
+    
 
     
     
