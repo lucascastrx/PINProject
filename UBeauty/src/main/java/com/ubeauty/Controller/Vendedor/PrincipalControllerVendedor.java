@@ -11,7 +11,7 @@ public class PrincipalControllerVendedor {
 
     private TelaPrincipalVendedor view;
     private JPanel viewPanel;
-    private CardLayout cl;
+    private static CardLayout cl;
     private JPanel jpPrincipal;
     private JPanel jpNotificacoes;
     private JPanel jpServicos;
@@ -28,6 +28,12 @@ public class PrincipalControllerVendedor {
 
     public PrincipalControllerVendedor(JPanel viewPanel) {
         this.viewPanel = viewPanel;
+    }
+    
+    public void mostrarTelaConta(){
+        jpConta = new PanelContaVendedor(view);
+        view.addPainel(jpConta, "conta"); 
+        mostrarTela("conta");
     }
 
     public void mostrarTela(String x) {

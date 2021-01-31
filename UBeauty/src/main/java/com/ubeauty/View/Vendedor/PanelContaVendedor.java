@@ -70,6 +70,11 @@ public class PanelContaVendedor extends javax.swing.JPanel {
 
         btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn-voltar-escuro.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
         add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, 30));
 
         txtTelefone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -255,6 +260,10 @@ public class PanelContaVendedor extends javax.swing.JPanel {
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         controller.logout();
     }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        controller.voltar();
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

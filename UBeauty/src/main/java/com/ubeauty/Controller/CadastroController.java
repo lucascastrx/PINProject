@@ -124,7 +124,7 @@ public class CadastroController {
         numero = viewFinal.getTfNumero().getText();
         cidade = viewFinal.getTfCidade().getText();
         estado = viewFinal.getTfEstado().getText();
-        endereco = cidade + ", " + rua + ", número " + numero + ", " + estado;
+        endereco = cidade + ", " + rua + ", " + numero + ", " + estado;
 
         if (viewFinal.getCbTipo().getSelectedIndex() == 0) {
 
@@ -158,7 +158,7 @@ public class CadastroController {
     private void criarCliente() {
         try {
             if ((rua.isBlank() || rua.equalsIgnoreCase("rua"))
-                    || (numero.isBlank() || numero.equalsIgnoreCase("numero"))
+                    || (numero.isBlank() || numero.equalsIgnoreCase("Digite o número"))
                     || (cidade.isBlank() || cidade.equalsIgnoreCase("cidade"))
                     || (estado.isBlank() || estado.equalsIgnoreCase("estado"))) {
                 

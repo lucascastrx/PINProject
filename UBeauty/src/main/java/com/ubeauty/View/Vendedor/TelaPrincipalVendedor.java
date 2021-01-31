@@ -86,7 +86,7 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNotificacoesMouseClicked
 
     private void btnUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuarioMouseClicked
-        controller.mostrarTela("conta");
+        controller.mostrarTelaConta();
     }//GEN-LAST:event_btnUsuarioMouseClicked
 
     private void btnServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnServicosMouseClicked
@@ -154,4 +154,10 @@ public class TelaPrincipalVendedor extends javax.swing.JFrame {
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
+
+    public PrincipalControllerVendedor getController() {
+        return controller;
+    }
+    
+    
 }

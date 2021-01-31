@@ -82,6 +82,7 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         rbAutonomo = new javax.swing.JRadioButton();
         tfNomeProfissao = new javax.swing.JTextField();
         imgNomeProf = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         jScrollPane1.setViewportView(jEditorPane1);
@@ -91,11 +92,11 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Endereço");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 30));
+        jLabel13.setText("Número");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 50, 40));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(58, 22, 46));
@@ -173,11 +174,11 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
 
         tfNumero.setBackground(new java.awt.Color(0,0,0,1));
         tfNumero.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfNumero.setText("Número"); // NOI18N
+        tfNumero.setText("Digite o número"); // NOI18N
         tfNumero.setToolTipText("");
         tfNumero.setBorder(null);
         tfNumero.setOpaque(false);
-        getContentPane().add(tfNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 240, 40));
+        getContentPane().add(tfNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 180, 40));
 
         imgCnpj2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(imgCnpj2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 40));
@@ -235,6 +236,12 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
         imgNomeProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(imgNomeProf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 40));
 
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(58, 22, 46));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Endereço");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 30));
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 510));
 
@@ -277,6 +284,7 @@ public class TelaConfirmacaoCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

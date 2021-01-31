@@ -20,4 +20,12 @@ public class UtilController {
     public static Integer confirmacaoSimNao(String titulo, String mensagem){
         return JOptionPane.showConfirmDialog(null, mensagem, titulo, JOptionPane.YES_NO_OPTION);
     }
+    
+        public static Integer converterString(String s) {
+        try {
+            return Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
 }
