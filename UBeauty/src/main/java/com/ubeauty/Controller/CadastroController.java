@@ -1,6 +1,7 @@
 package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Exceptions.BlankException;
 import com.ubeauty.Exceptions.InvalidNumberException;
@@ -9,6 +10,7 @@ import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaConfirmacaoCadastro;
 import com.ubeauty.View.TelaLogin;
+import com.ubeauty.View.TelaPrincipal;
 
 public class CadastroController {
 
@@ -40,14 +42,7 @@ public class CadastroController {
 
     public void cadastrar() {
 
-        nome = view.getTfNome().getText();
-        sobrenome = view.getTfSobrenome().getText();
-        email = view.getTfEmail().getText();
-        telefone = view.getTfTelefone().getText();
-        ddd = view.getTfDDD().getText();
-        dddInt = converterString(ddd);
-        telefoneInt = converterString(telefone);
-        senha = view.getTfSenha().getText();
+       converter();
 
         try {
             if ((nome.isBlank() || nome.equalsIgnoreCase("nome")) || (sobrenome.isBlank() || sobrenome.equalsIgnoreCase("sobrenome"))
@@ -233,4 +228,67 @@ public class CadastroController {
         viewFinal.getImgNomeProf().setVisible(CONFIG_PARAM);
     }
 
+    
+    public void confirmarAlteracao(){
+        
+        converter();
+        
+        try {
+            if ( nome.isBlank() || sobrenome.isBlank() || email.isBlank() || telefone.isBlank() || senha.isBlank() || ddd.isBlank() ) {
+                
+                throw new BlankException();
+            }
+            if(!ddd.equalsIgnoreCase("ddd") && !telefone.equalsIgnoreCase("telefone") ){
+                if (dddInt == -1 || telefoneInt == -1) {
+                    throw new InvalidNumberException(" ");
+                    
+                } }else {
+                Cliente cliente = LoginAuthentication.cliente;
+                if(!nome.equalsIgnoreCase(cliente.getNome()) && !nome.equalsIgnoreCase("nome") ){
+                    cliente.setNome(nome);
+                }
+                if(!sobrenome.equalsIgnoreCase(cliente.getSobrenome()) && !sobrenome.equalsIgnoreCase("sobrenome") ){
+                    cliente.setSobrenome(sobrenome);
+                }
+                if(!email.equalsIgnoreCase(cliente.getEmail()) && !email.equalsIgnoreCase("e-mail") ){
+                    cliente.setEmail(email);
+                }
+                if(telefoneInt != cliente.getTelefone() && !telefone.equalsIgnoreCase("telefone") ){
+                    cliente.setTelefone(telefoneInt);
+                }
+                if(dddInt != cliente.getDdd() && !ddd.equalsIgnoreCase("ddd") ){
+                    cliente.setDdd(dddInt);
+                }
+                if(!senha.equalsIgnoreCase(cliente.getSenha()) && !senha.equalsIgnoreCase("jPasswordfield1") ){
+                    cliente.setSenha(senha);
+                }
+                
+                ClienteDAO repository = new ClienteDAO();
+                repository.atualizar(cliente);
+                LoginAuthentication.cliente = cliente;
+                
+                view.getBtnCadastrar().setText("Cadastrar");
+                view.getHeader().setText("Crie sua conta!");
+                
+                new TelaPrincipal().setVisible(true);
+                view.dispose();
+                
+            }
+        } catch (InvalidNumberException | BlankException e) {
+            view.exibirMensagem(e.getMessage());
+        }
+        
+    }
+    
+   private void converter(){
+        nome = view.getTfNome().getText();
+        sobrenome = view.getTfSobrenome().getText();
+        email = view.getTfEmail().getText();
+        telefone = view.getTfTelefone().getText();
+        ddd = view.getTfDDD().getText();
+        dddInt = converterString(ddd);
+        telefoneInt = converterString(telefone);
+        senha = view.getTfSenha().getText();
+   }
+    
 }

@@ -8,6 +8,7 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.CadastroController;
 import com.ubeauty.Controller.UtilController;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -42,7 +43,7 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jLabel11 = new javax.swing.JLabel();
+        header = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
@@ -67,11 +68,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Crie sua conta!");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 160, 30));
+        header.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        header.setForeground(new java.awt.Color(58, 22, 46));
+        header.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        header.setText("Crie sua conta!");
+        getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 160, 30));
 
         btnCancelar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
@@ -177,7 +178,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMousePressed
-        controller.cadastrar();
+        if(btnCadastrar.getText().equals("Confirmar")){
+            controller.confirmarAlteracao();
+            
+        }else{
+            controller.cadastrar();
+        }
+        
     }//GEN-LAST:event_btnCadastrarMousePressed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -225,10 +232,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCadastrar;
     private javax.swing.JLabel btnCancelar;
+    private javax.swing.JLabel header;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -269,5 +276,15 @@ public class TelaCadastro extends javax.swing.JFrame {
     public JTextField getTfDDD() {
         return tfDDD;
     }
+
+    public JLabel getBtnCadastrar() {
+        return btnCadastrar;
+    }
+
+    public JLabel getHeader() {
+        return header;
+    }
+    
+    
 
 }

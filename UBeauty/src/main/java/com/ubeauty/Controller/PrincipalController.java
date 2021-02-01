@@ -55,11 +55,11 @@ public class PrincipalController {
         jpNotif = new PanelNotificacoes();
         jpPagSalao = new PanelPaginaSalao();
         jpAgendamento = new PanelAgendamento();
-        jpConta = new PanelConta();
+        jpConta = new PanelConta(this);
         jpSaloes = new PanelSaloes(this);
         jpAutonomos = new PanelAutonomos(this);
         jpMensagens = new PanelMensagens();
-        jpContaConvidado = new PanelContaConvidado(view);
+        jpContaConvidado = new PanelContaConvidado(view, this);
 
         view.addPainel(jpPrincipal, "principal"); 
         view.addPainel(jpNotif, "notificacoes"); 

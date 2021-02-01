@@ -1,15 +1,16 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.ConvidadoController;
+import com.ubeauty.Controller.PrincipalController;
 
 public class PanelContaConvidado extends javax.swing.JPanel {
     
     ConvidadoController controller;
     TelaPrincipal tp;
 
-    public PanelContaConvidado(TelaPrincipal tp) {
+    public PanelContaConvidado(TelaPrincipal tp, PrincipalController c) {
         initComponents();      
-        controller = new ConvidadoController(this, tp);
+        controller = new ConvidadoController(this, tp, c);
     }
 
     @SuppressWarnings("unchecked")
@@ -34,6 +35,11 @@ public class PanelContaConvidado extends javax.swing.JPanel {
 
         btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn-voltar-escuro.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
         add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, 30));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
@@ -86,6 +92,9 @@ public class PanelContaConvidado extends javax.swing.JPanel {
         controller.login();
     }//GEN-LAST:event_btnLoginMouseClicked
 
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        controller.voltarTela();
+    }//GEN-LAST:event_btnVoltarMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCriarConta;
