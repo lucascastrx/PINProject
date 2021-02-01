@@ -4,7 +4,10 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.TableModel.TableModelSaloes;
 import com.ubeauty.View.PanelSaloes;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Map;
+import javax.swing.JTable;
 /**
  *
  * @author Lucas Teixeira
@@ -32,5 +35,20 @@ public class PanelSaloesController {
         else
             panelSaloes.exibirMensagem("Obj null");
     }
+    
+    public void abrirSalao (){
+        JTable tabela = panelSaloes.getTabela();
+        Vendedor v = modelSaloes.getSalao(tabela.getSelectedRow());
+        auxCarregar(v);
+        
+    }
+
+    public void auxCarregar(Vendedor v) {
+         panelSaloes.getPrincipalController().tempVendedor(v);
+         panelSaloes.getPrincipalController().mostrarTela("paginaSalao");
+         
+    }
+        
+    
   
 }

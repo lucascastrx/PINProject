@@ -43,6 +43,19 @@ public class ContaController {
         ClienteDAO repository = new ClienteDAO();
         repository.remover(tempCliente.getId());
         logout();
+        
+         String mensagem = "Deseja realmente excluir a sua conta?";
+        String titulo = "Excluir conta";
+
+       /* if (UtilController.confirmacaoSimNao(titulo, mensagem) == JOptionPane.YES_OPTION) {
+            try {
+                persistencia.remover(vendedor.getId());
+                LoginAuthentication.cliente = null;
+                viewPrincipal.dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Erro! Não foi possível excluir.");
+            }
+        }*/
     }
     
     public void logout(){

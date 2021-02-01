@@ -3,7 +3,10 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.PanelSaloesController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.TableModel.TableModelSaloes;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -32,9 +35,20 @@ public class PanelSaloes extends javax.swing.JPanel {
     public PrincipalController getPrincipalController(){
         return controller;
     }
+
+    public PanelSaloesController getpController() {
+        return pController;
+    }
+    
+    
     
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
+    public void selecionarSalao(MouseAdapter l){
+        tabela.addMouseListener(l);
+       
     }
     
     @SuppressWarnings("unchecked")
@@ -80,6 +94,11 @@ public class PanelSaloes extends javax.swing.JPanel {
                 "", ""
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, 390));
@@ -111,6 +130,12 @@ public class PanelSaloes extends javax.swing.JPanel {
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
       controller.mostrarTela("principal");
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+       if(evt.getClickCount() == 2){ 
+        pController.abrirSalao();
+       }
+    }//GEN-LAST:event_tabelaMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -123,4 +148,10 @@ public class PanelSaloes extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTabela() {
+        return tabela;
+    }
+
+    
 }

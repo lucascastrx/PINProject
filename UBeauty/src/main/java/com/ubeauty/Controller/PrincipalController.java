@@ -1,6 +1,7 @@
 package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.View.*;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -22,6 +23,8 @@ public class PrincipalController {
     private JPanel jpMensagens;
     private JFrame PopUpAgendar;
     private JFrame PopUpReclamacoes;
+    
+    private Vendedor tempVendedor;
 
     public PrincipalController(TelaPrincipal view) {
         this.view = view;
@@ -32,6 +35,8 @@ public class PrincipalController {
         view.setPainelConteudoLayout(cl);
 
         this.addPaineis();
+        
+        tempVendedor = new Vendedor();
         
     }
 
@@ -53,7 +58,7 @@ public class PrincipalController {
 
         jpPrincipal = new PanelPrincipal(view, this);
         jpNotif = new PanelNotificacoes();
-        jpPagSalao = new PanelPaginaSalao();
+        jpPagSalao = new PanelPaginaSalao(this);
         jpAgendamento = new PanelAgendamento();
         jpConta = new PanelConta(this);
         jpSaloes = new PanelSaloes(this);
@@ -75,6 +80,11 @@ public class PrincipalController {
 
     public TelaPrincipal getView() {
         return view;
+    }
+    
+    public void tempVendedor(Vendedor v){
+            PanelPaginaSalao p = (PanelPaginaSalao) jpPagSalao;
+            p.setVendedor(v);       
     }
    
 }
