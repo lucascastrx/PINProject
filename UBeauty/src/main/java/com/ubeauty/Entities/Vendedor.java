@@ -104,6 +104,10 @@ public class Vendedor extends Cliente{
         servicos.remove(v);
         v.setVendedorServico(null);
     }
+
+    public Set<Servico> getServicos() {
+        return servicos;
+    }
     
     
     public void addReclamacao(Reclamacao r){

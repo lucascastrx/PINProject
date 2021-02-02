@@ -1,12 +1,15 @@
 package com.ubeauty.Repository;
 
+import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.hibernate.annotations.QueryHints;
 /**
  * 
  * @author Lucas Teixeira
@@ -89,6 +92,25 @@ public class VendedorDAO {
         }
         return v;
     }
+    
+   /* public Map<Integer, Servico> buscarServicos(){
+        Map<Integer, Servico> mapServicos = new HashMap<>();
+        try{
+            em.getTransaction().begin();
+            List<Vendedor> servs = em.createQuery("select distinct v\n" + "from Vendedor v\n" + "join fetch v.servicos\n").setHint(QueryHints.PASS_DISTINCT_THROUGH, false).getResultList();
+            for(Vendedor s : servs){
+                mapServicos.putIfAbsent(s.getId(), s);
+            }
+        }catch(Exception e){
+            em.getTransaction().rollback();
+            e.printStackTrace();
+            
+        } finally{
+            closeConnection();
+        }
+        
+        return mapServicos;
+    }*/
     
     public Map<Integer,Vendedor> buscarTodosVendedores(){
         Map<Integer,Vendedor> mapVendedores = new HashMap<>();

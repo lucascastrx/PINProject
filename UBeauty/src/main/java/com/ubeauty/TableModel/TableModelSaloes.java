@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -15,7 +14,6 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelSaloes extends AbstractTableModel{
     private Map<Integer, Vendedor> saloes;
     private List<Integer> saloesKEYS;
-    private Set<Vendedor> vv;
     
   
     private final String [] colunas = {"Nome","Descrição"};

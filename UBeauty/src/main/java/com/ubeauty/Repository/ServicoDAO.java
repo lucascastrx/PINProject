@@ -1,6 +1,8 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Servico;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -77,8 +79,27 @@ public class ServicoDAO {
         return s;
     }
     
+    public Map<Integer, Servico> buscarServicoPorIdVendedor(int id){
+        Map<Integer, Servico> mapServicos = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Servico> listServicos = em.createQuery("from Servico where vendedorServico_id = " + id).getResultList();
+            for(Servico s : listServicos){
+                mapServicos.putIfAbsent(s.getId(), s);
+            }
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }finally {
+            closeConnection();
+        }
+        
+        return mapServicos;
+    }
+    
     public Map<Integer,Servico> buscarTodosServicos(){
-        Map<Integer,Servico> mapServicos = null;
+        Map<Integer,Servico> mapServicos = new HashMap<>();
         
         try {
             em.getTransaction().begin();
@@ -97,7 +118,7 @@ public class ServicoDAO {
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> servicosKeys = null;
+        List<Integer> servicosKeys = new ArrayList<>();
         
         try {
             em.getTransaction().begin();

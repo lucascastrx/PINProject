@@ -8,7 +8,9 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.PaginaSalaoController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.TableModel.TableModelServicos;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 
 /**
@@ -25,7 +27,17 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
 
     public void setVendedor (Vendedor v){
         controller.setDados(v);
+ 
     }
+    
+    public void setTableModel(TableModelServicos model) {
+        this.tabela.setModel(model);
+    }
+    
+    
+    
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,7 +58,7 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescricao = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableServicos = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JLabel();
@@ -149,10 +161,10 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(null);
 
-        tableServicos.setBackground(new java.awt.Color(204, 204, 204));
-        tableServicos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableServicos.setForeground(new java.awt.Color(58, 22, 46));
-        tableServicos.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setBackground(new java.awt.Color(204, 204, 204));
+        tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabela.setForeground(new java.awt.Color(58, 22, 46));
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -160,7 +172,7 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
                 "Serviço", "Preço"
             }
         ));
-        jScrollPane2.setViewportView(tableServicos);
+        jScrollPane2.setViewportView(tabela);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 280, 90));
 
@@ -230,7 +242,7 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tableServicos;
+    private javax.swing.JTable tabela;
     private javax.swing.JTextArea txtDescricao;
     private javax.swing.JLabel txtEmail;
     private javax.swing.JLabel txtEndereco;
@@ -267,6 +279,11 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
     public JLabel getTxtTelefone() {
         return txtTelefone;
     }
+
+    public JTable getTabela() {
+        return tabela;
+    }
+    
     
     
 

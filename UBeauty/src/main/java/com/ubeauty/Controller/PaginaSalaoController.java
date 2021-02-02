@@ -1,15 +1,23 @@
 package com.ubeauty.Controller;
 
+import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.Repository.ServicoDAO;
+import com.ubeauty.TableModel.TableModelServicos;
 import com.ubeauty.View.PanelPaginaSalao;
+import java.util.Map;
 
 public class PaginaSalaoController {
     private PanelPaginaSalao panelPaginas;
     private PrincipalController controller;
     private Vendedor v;
+    private TableModelServicos modelServicos;
+    
     public PaginaSalaoController(PanelPaginaSalao p, PrincipalController c){
         panelPaginas = p;
         controller = c;
+        
+        
     }
     
     private void carregarDados(){
@@ -35,6 +43,12 @@ public class PaginaSalaoController {
 
     public void setDados(Vendedor v) {
         this.v = v;
+        ServicoDAO repository = new ServicoDAO();
+        Map<Integer, Servico> mapServicos = repository.buscarServicoPorIdVendedor(v.getId());
+        modelServicos = new TableModelServicos(mapServicos);
+        panelPaginas.setTableModel(modelServicos);
+        panelPaginas.getTabela().repaint(); 
+        
         carregarDados();
     }
     

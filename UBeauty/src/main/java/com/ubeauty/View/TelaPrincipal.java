@@ -1,7 +1,6 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.PrincipalController;
-import com.ubeauty.Entities.LoginAuthentication;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
