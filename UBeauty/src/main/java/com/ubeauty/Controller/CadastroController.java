@@ -41,9 +41,9 @@ public class CadastroController {
     }
 
     public void cadastrar() {
-
-       converter();
-
+        
+        converter();
+        
         try {
             if ((nome.isBlank() || nome.equalsIgnoreCase("nome")) || (sobrenome.isBlank() || sobrenome.equalsIgnoreCase("sobrenome"))
                     || (email.isBlank() || email.equalsIgnoreCase("e-mail")) || (telefone.isBlank() || telefone.equalsIgnoreCase("telefone"))
@@ -72,14 +72,6 @@ public class CadastroController {
         TelaLogin tl = new TelaLogin();
         tl.setVisible(true);
         view.dispose();
-    }
-
-    public Integer converterString(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return -1;
-        }
     }
 
     public void escolherTipo() {
@@ -215,11 +207,6 @@ public class CadastroController {
     }
     
     private void configurar() {
-        /**
-         * Da pra passar os valores diretos tbm, mas acho q desse jeito fica melhor de entender 
-         * (e mais seguro tbm)
-         */
-  
         viewFinal.getRbAutonomo().setVisible(CONFIG_PARAM);
         viewFinal.getRbSalao().setVisible(CONFIG_PARAM);
         viewFinal.getTfNomeProfissao().setVisible(CONFIG_PARAM);
@@ -238,42 +225,30 @@ public class CadastroController {
                 
                 throw new BlankException();
             }
-            if(!ddd.equalsIgnoreCase("ddd") && !telefone.equalsIgnoreCase("telefone") ){
-                if (dddInt == -1 || telefoneInt == -1) {
-                    throw new InvalidNumberException(" ");
-                    
-                } }else {
-                Cliente cliente = LoginAuthentication.cliente;
-                if(!nome.equalsIgnoreCase(cliente.getNome()) && !nome.equalsIgnoreCase("nome") ){
-                    cliente.setNome(nome);
-                }
-                if(!sobrenome.equalsIgnoreCase(cliente.getSobrenome()) && !sobrenome.equalsIgnoreCase("sobrenome") ){
-                    cliente.setSobrenome(sobrenome);
-                }
-                if(!email.equalsIgnoreCase(cliente.getEmail()) && !email.equalsIgnoreCase("e-mail") ){
-                    cliente.setEmail(email);
-                }
-                if(telefoneInt != cliente.getTelefone() && !telefone.equalsIgnoreCase("telefone") ){
-                    cliente.setTelefone(telefoneInt);
-                }
-                if(dddInt != cliente.getDdd() && !ddd.equalsIgnoreCase("ddd") ){
-                    cliente.setDdd(dddInt);
-                }
-                if(!senha.equalsIgnoreCase(cliente.getSenha()) && !senha.equalsIgnoreCase("jPasswordfield1") ){
-                    cliente.setSenha(senha);
-                }
-                
-                ClienteDAO repository = new ClienteDAO();
-                repository.atualizar(cliente);
-                LoginAuthentication.cliente = cliente;
-                
-                view.getBtnCadastrar().setText("Cadastrar");
-                view.getHeader().setText("Crie sua conta!");
-                
-                new TelaPrincipal().setVisible(true);
-                view.dispose();
+            if (dddInt == -1 || telefoneInt == -1) {
+                throw new InvalidNumberException(" ");
                 
             }
+            Cliente cliente = LoginAuthentication.cliente;
+            
+            cliente.setNome(nome);
+            cliente.setSobrenome(sobrenome);
+            cliente.setEmail(email);
+            cliente.setTelefone(telefoneInt);
+            cliente.setDdd(dddInt);
+            cliente.setSenha(senha);
+            
+            
+            ClienteDAO repository = new ClienteDAO();
+            repository.atualizar(cliente);
+            LoginAuthentication.cliente = cliente;
+            
+            new TelaPrincipal().setVisible(true);
+            view.getBtnCadastrar().setText("Cadastrar");
+            view.getHeader().setText("Crie sua conta!");
+            view.dispose();
+            
+            
         } catch (InvalidNumberException | BlankException e) {
             view.exibirMensagem(e.getMessage());
         }
@@ -286,9 +261,25 @@ public class CadastroController {
         email = view.getTfEmail().getText();
         telefone = view.getTfTelefone().getText();
         ddd = view.getTfDDD().getText();
-        dddInt = converterString(ddd);
-        telefoneInt = converterString(telefone);
+        dddInt = UtilController.converterString(ddd);
+        telefoneInt = UtilController.converterString(telefone);
         senha = view.getTfSenha().getText();
+   }
+   
+   public void carregarDadosConta(){
+       Cliente cliente = LoginAuthentication.cliente;
+       String a = cliente.getDdd() + "";
+       String b = cliente.getTelefone() + "";
+       
+        view.getTfNome().setText(cliente.getNome());
+        view.getTfSobrenome().setText(cliente.getSobrenome());
+        view.getTfEmail().setText(cliente.getEmail());
+        view.getTfDDD().setText(a);
+        view.getTfTelefone().setText(b);
+        view.getTfSenha().setText(cliente.getSenha());
+        
+        view.getBtnCancelar().setVisible(false);
+        view.getjLabel6().setVisible(false);
    }
     
 }

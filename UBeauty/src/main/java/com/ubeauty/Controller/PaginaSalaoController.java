@@ -26,7 +26,11 @@ public class PaginaSalaoController {
     }
     
     public void voltar(){
+        if(v.isAutonomo()){
+         controller.mostrarTela("autonomos");
+        }else{
         controller.mostrarTela("saloes");
+        }
     }
 
     public void setDados(Vendedor v) {

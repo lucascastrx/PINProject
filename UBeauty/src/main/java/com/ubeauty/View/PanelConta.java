@@ -8,6 +8,7 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.ContaController;
 import com.ubeauty.Controller.PrincipalController;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +22,9 @@ public class PanelConta extends javax.swing.JPanel {
         controller = new ContaController(c, this);
     }
 
+    public void exibirMensagem(String s){
+        JOptionPane.showMessageDialog(null, s);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

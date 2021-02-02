@@ -5,7 +5,7 @@ import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.View.PanelConta;
 import com.ubeauty.View.TelaCadastro;
-import com.ubeauty.View.TelaPrincipal;
+import javax.swing.JOptionPane;
 
 public class ContaController {
     PrincipalController controller;
@@ -33,29 +33,26 @@ public class ContaController {
         TelaCadastro view = new TelaCadastro();
         view.getBtnCadastrar().setText("Confirmar");
         view.getHeader().setText("Altere seus dados");
+        view.carregarDadosConta();
         view.setVisible(true);
         controller.getView().dispose();
         
     }
     
-    public void delete(){
-        Cliente tempCliente = LoginAuthentication.cliente;
-        ClienteDAO repository = new ClienteDAO();
-        repository.remover(tempCliente.getId());
-        logout();
-        
-         String mensagem = "Deseja realmente excluir a sua conta?";
+    public void delete(){ 
+        String mensagem = "Deseja realmente excluir a sua conta?";
         String titulo = "Excluir conta";
-
-       /* if (UtilController.confirmacaoSimNao(titulo, mensagem) == JOptionPane.YES_OPTION) {
+        
+        if (UtilController.confirmacaoSimNao(titulo, mensagem) == JOptionPane.YES_OPTION) {
             try {
-                persistencia.remover(vendedor.getId());
-                LoginAuthentication.cliente = null;
-                viewPrincipal.dispose();
+                Cliente tempCliente = LoginAuthentication.cliente;
+                ClienteDAO repository = new ClienteDAO();
+                repository.remover(tempCliente.getId());
+                logout();
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, "Erro! Não foi possível excluir.");
+                panelConta.exibirMensagem("Erro! Não foi possível excluir.");
             }
-        }*/
+        }
     }
     
     public void logout(){

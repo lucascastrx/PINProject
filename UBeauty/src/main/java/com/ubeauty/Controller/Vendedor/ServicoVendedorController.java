@@ -4,6 +4,7 @@ import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.View.Vendedor.PanelServicosVendedor;
 import com.ubeauty.View.Vendedor.PopUpCriarServico;
@@ -30,11 +31,18 @@ public class ServicoVendedorController {
         double valor = UtilController.converterParaDouble(preco);
         
         if (valor != -1.0) {
-            
-            Servico servico = new Servico(nome,descricao,categoria,valor);
-            vendedor.addServico(servico);
+            //As ligações entre as entidades deve ser feitas com a conexão do DB aberta. Tentei explicar um pouco no App
             VendedorDAO persistencia = new VendedorDAO();
-            persistencia.atualizar(vendedor);
+            Servico servico = new Servico(nome,descricao,categoria,valor);
+            Vendedor v = persistencia.buscar(vendedor.getId());
+            v.addServico(servico); 
+            persistencia.closeConnection();
+            
+            ServicoDAO sPersist = new ServicoDAO();
+            sPersist.gravar(servico);
+            
+            VendedorDAO vPersist = new VendedorDAO();
+            vPersist.atualizar(v);
             popUpCriarServico.dispose();
             
         } else view.exibirMensagem("Preço inválido.");

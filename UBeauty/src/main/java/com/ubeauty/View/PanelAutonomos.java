@@ -9,6 +9,7 @@ import com.ubeauty.Controller.PanelAutonomosController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.TableModel.TableModelAutonomos;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -32,8 +33,14 @@ public class PanelAutonomos extends javax.swing.JPanel {
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
+
+    public PrincipalController getController() {
+        return controller;
+    }
     
 
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,6 +89,11 @@ public class PanelAutonomos extends javax.swing.JPanel {
                 "", ""
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, 390));
@@ -113,6 +125,12 @@ public class PanelAutonomos extends javax.swing.JPanel {
         controller.mostrarTela("principal");
     }//GEN-LAST:event_btnVoltarMouseClicked
 
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+       if(evt.getClickCount() == 2){
+           pController.abrirSalao();
+       }
+    }//GEN-LAST:event_tabelaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEstabelecimentos;
@@ -124,4 +142,9 @@ public class PanelAutonomos extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTabela() {
+        return tabela;
+    }
+
 }

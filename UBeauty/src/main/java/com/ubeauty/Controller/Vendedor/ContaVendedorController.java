@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Eduardo Buzzi
+ * @author Eduardo Buzzi 
  */
 public class ContaVendedorController {
 
