@@ -16,16 +16,24 @@ public class UtilController {
         icon = new ImageIcon(view.getClass().getResource("/icon.png"));
         view.setIconImage(icon.getImage());
     }
-    
-    public static Integer confirmacaoSimNao(String titulo, String mensagem){
+
+    public static Integer confirmacaoSimNao(String titulo, String mensagem) {
         return JOptionPane.showConfirmDialog(null, mensagem, titulo, JOptionPane.YES_NO_OPTION);
     }
-    
-        public static Integer converterString(String s) {
+
+    public static Integer converterString(String s) {
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException e) {
             return -1;
+        }
+    }
+    
+    public static Double converterParaDouble(String s) {
+        try {
+            return Double.valueOf(s);
+        } catch (NumberFormatException e) {
+            return -1.0;
         }
     }
 }

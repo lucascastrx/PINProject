@@ -44,7 +44,7 @@ public class PrincipalControllerVendedor {
 
         jpPrincipal = new PanelPrincipalVendedor(view, this);
         jpNotificacoes = new PanelNotificacoesVendedor();
-        jpServicos = new PanelServicosVendedor(view, this);
+        jpServicos = new PanelServicosVendedor(view);
         jpConta = new PanelContaVendedor(view);
 
         view.addPainel(jpPrincipal, "principal");         

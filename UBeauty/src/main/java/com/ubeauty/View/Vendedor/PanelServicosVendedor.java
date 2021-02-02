@@ -1,18 +1,18 @@
 package com.ubeauty.View.Vendedor;
 
-import com.ubeauty.View.*;
-import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
+import com.ubeauty.Controller.Vendedor.ServicoVendedorController;
+import javax.swing.JOptionPane;
 
 public class PanelServicosVendedor extends javax.swing.JPanel {
 
-    private final PrincipalControllerVendedor controller;
     private TelaPrincipalVendedor view;
+    private ServicoVendedorController controller;
 
-    public PanelServicosVendedor(TelaPrincipalVendedor view, PrincipalControllerVendedor pc) {
+    public PanelServicosVendedor(TelaPrincipalVendedor view) {
         initComponents();
         this.view = view;
-        this.controller = pc;
+        controller = new ServicoVendedorController(this);
     }
 
     /**
@@ -158,7 +158,7 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarServicoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarServicoMousePressed
-        System.out.println("ok");
+        controller.abrirPopUpCriarServico();
     }//GEN-LAST:event_btnCriarServicoMousePressed
 
     private void tableServicosssed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMousePressed
@@ -173,6 +173,10 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCriarCupomMousePressed
 
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCriarCupom;

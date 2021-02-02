@@ -1,16 +1,20 @@
 package com.ubeauty.View.Vendedor;
 
+import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Controller.Vendedor.ServicoVendedorController;
 import javax.swing.ImageIcon;
+import javax.swing.JTextField;
 
 public class PopUpCriarServico extends javax.swing.JFrame {
+    
+    private ServicoVendedorController controller;
 
-    public PopUpCriarServico() {
+    public PopUpCriarServico(ServicoVendedorController controller) {
         initComponents();
-
-        this.setLocationRelativeTo(null);
-
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
+        UtilController.configurarTela(this);
+        
+        this.controller = controller;
+        controller.setPopUp(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -99,8 +103,8 @@ public class PopUpCriarServico extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel12.setText("Serviço");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, 30));
+        jLabel12.setText("Criar Serviço");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 110, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
@@ -154,11 +158,11 @@ public class PopUpCriarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
-        System.out.println("ok");
+        controller.salvarNovoServico();
     }//GEN-LAST:event_btnSalvarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMousePressed
 
     private void tfPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoActionPerformed
@@ -196,11 +200,11 @@ public class PopUpCriarServico extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PopUpCriarServico().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PopUpCriarServico().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,4 +227,23 @@ public class PopUpCriarServico extends javax.swing.JFrame {
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPreco;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getTfCategoria() {
+        return tfCategoria;
+    }
+
+    public JTextField getTfDescricao() {
+        return tfDescricao;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public JTextField getTfPreco() {
+        return tfPreco;
+    }
+
+    
+
 }
