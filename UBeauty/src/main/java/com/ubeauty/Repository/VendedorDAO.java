@@ -93,25 +93,6 @@ public class VendedorDAO {
         return v;
     }
     
-   /* public Map<Integer, Servico> buscarServicos(){
-        Map<Integer, Servico> mapServicos = new HashMap<>();
-        try{
-            em.getTransaction().begin();
-            List<Vendedor> servs = em.createQuery("select distinct v\n" + "from Vendedor v\n" + "join fetch v.servicos\n").setHint(QueryHints.PASS_DISTINCT_THROUGH, false).getResultList();
-            for(Vendedor s : servs){
-                mapServicos.putIfAbsent(s.getId(), s);
-            }
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-            
-        } finally{
-            closeConnection();
-        }
-        
-        return mapServicos;
-    }*/
-    
     public Map<Integer,Vendedor> buscarTodosVendedores(){
         Map<Integer,Vendedor> mapVendedores = new HashMap<>();
         

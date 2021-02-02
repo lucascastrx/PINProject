@@ -1,11 +1,15 @@
 package com.ubeauty.Controller;
 
+import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.TableModel.TableModelServicos;
 import com.ubeauty.View.PanelPaginaSalao;
+import com.ubeauty.View.PopUpAgendar;
+import com.ubeauty.View.PopUpReclamacoes;
 import java.util.Map;
+import javax.swing.JTable;
 
 public class PaginaSalaoController {
     private PanelPaginaSalao panelPaginas;
@@ -29,8 +33,6 @@ public class PaginaSalaoController {
         panelPaginas.getTxtTelefone().setText(telefone);
         panelPaginas.getTxtEndereco().setText(v.getEndereco());
         panelPaginas.getTxtHorario1().setText(v.getHoraFunc());
-               
-        
     }
     
     public void voltar(){
@@ -51,6 +53,26 @@ public class PaginaSalaoController {
         
         carregarDados();
     }
+
+    public Vendedor getV() {
+        return v;
+    }
     
+    public void abrirReclamacoes(){
+        if(LoginAuthentication.cliente != null ){
+        new PopUpReclamacoes(v).setVisible(true);
+        }else{
+            controller.mostrarTela("contaConvidado");
+        }
+    }
     
+    public void selecionarServico(){
+        if(LoginAuthentication.cliente != null){
+            JTable table = panelPaginas.getTabela();
+            Servico s = modelServicos.getServico(table.getSelectedRow());
+            new PopUpAgendar(s).setVisible(true);
+        }else{
+            controller.mostrarTela("contaConvidado");
+        }
+    }
 }

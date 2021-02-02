@@ -121,8 +121,8 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         btnReclamacoes.setText("Reclamações");
         btnReclamacoes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReclamacoes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnReclamacoesMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnReclamacoesMouseClicked(evt);
             }
         });
         add(btnReclamacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 410, 120, 30));
@@ -214,16 +214,16 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMousePressed
-        System.out.println("ok");
+        controller.selecionarServico();
     }//GEN-LAST:event_btnAgendarMousePressed
-
-    private void btnReclamacoesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReclamacoesMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnReclamacoesMousePressed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
         controller.voltar();
     }//GEN-LAST:event_btnVoltarMouseClicked
+
+    private void btnReclamacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReclamacoesMouseClicked
+        controller.abrirReclamacoes();
+    }//GEN-LAST:event_btnReclamacoesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

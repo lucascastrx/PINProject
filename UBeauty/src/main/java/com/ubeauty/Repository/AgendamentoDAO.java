@@ -1,6 +1,8 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Agendamento;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -77,8 +79,23 @@ public class AgendamentoDAO {
         return ag;
     }
     
+    public List<Agendamento> buscarAgendamentoPorIdServico(int id){
+        List<Agendamento> listAgendamentos = new ArrayList<>();
+        try {
+            em.getTransaction().begin();
+            listAgendamentos = em.createQuery("from Agendamento where servico_id = " + id).getResultList();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }finally {
+            closeConnection();
+        }
+        
+        return listAgendamentos;
+    }
+    
     public Map<Integer,Agendamento> buscarTodosAgendamentos(){
-        Map<Integer,Agendamento> mapAgendamentos = null;
+        Map<Integer,Agendamento> mapAgendamentos = new HashMap<>();
         
         try {
             em.getTransaction().begin();
@@ -97,7 +114,7 @@ public class AgendamentoDAO {
     }
     
     public List<Integer> buscarTodasKeys(){
-        List<Integer> agendamentosKeys = null;
+        List<Integer> agendamentosKeys = new ArrayList<>();
         
         try {
             em.getTransaction().begin();

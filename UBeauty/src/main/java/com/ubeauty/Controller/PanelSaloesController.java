@@ -4,8 +4,6 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.TableModel.TableModelSaloes;
 import com.ubeauty.View.PanelSaloes;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Map;
 import javax.swing.JTable;
 /**
