@@ -1,7 +1,6 @@
 package com.ubeauty.Controller;
 
 import com.ubeauty.Entities.Cliente;
-import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Exceptions.BlankException;
 import com.ubeauty.Exceptions.InvalidNumberException;
@@ -10,7 +9,9 @@ import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.View.TelaCadastro;
 import com.ubeauty.View.TelaConfirmacaoCadastro;
 import com.ubeauty.View.TelaLogin;
-import com.ubeauty.View.TelaPrincipal;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 public class CadastroController {
 
@@ -214,47 +215,7 @@ public class CadastroController {
         viewFinal.getImgCnpj().setVisible(CONFIG_PARAM);
         viewFinal.getImgNomeProf().setVisible(CONFIG_PARAM);
     }
-
-    
-    public void confirmarAlteracao(){
-        
-        converter();
-        
-        try {
-            if ( nome.isBlank() || sobrenome.isBlank() || email.isBlank() || telefone.isBlank() || senha.isBlank() || ddd.isBlank() ) {
-                
-                throw new BlankException();
-            }
-            if (dddInt == -1 || telefoneInt == -1) {
-                throw new InvalidNumberException(" ");
-                
-            }
-            Cliente cliente = LoginAuthentication.cliente;
-            
-            cliente.setNome(nome);
-            cliente.setSobrenome(sobrenome);
-            cliente.setEmail(email);
-            cliente.setTelefone(telefoneInt);
-            cliente.setDdd(dddInt);
-            cliente.setSenha(senha);
-            
-            
-            ClienteDAO repository = new ClienteDAO();
-            repository.atualizar(cliente);
-            LoginAuthentication.cliente = cliente;
-            
-            new TelaPrincipal().setVisible(true);
-            view.getBtnCadastrar().setText("Cadastrar");
-            view.getHeader().setText("Crie sua conta!");
-            view.dispose();
-            
-            
-        } catch (InvalidNumberException | BlankException e) {
-            view.exibirMensagem(e.getMessage());
-        }
-        
-    }
-    
+ 
    private void converter(){
         nome = view.getTfNome().getText();
         sobrenome = view.getTfSobrenome().getText();
@@ -265,21 +226,30 @@ public class CadastroController {
         telefoneInt = UtilController.converterString(telefone);
         senha = view.getTfSenha().getText();
    }
-   
-   public void carregarDadosConta(){
-       Cliente cliente = LoginAuthentication.cliente;
-       String a = cliente.getDdd() + "";
-       String b = cliente.getTelefone() + "";
-       
-        view.getTfNome().setText(cliente.getNome());
-        view.getTfSobrenome().setText(cliente.getSobrenome());
-        view.getTfEmail().setText(cliente.getEmail());
-        view.getTfDDD().setText(a);
-        view.getTfTelefone().setText(b);
-        view.getTfSenha().setText(cliente.getSenha());
-        
-        view.getBtnCancelar().setVisible(false);
-        view.getjLabel6().setVisible(false);
-   }
     
+   public void setSelected(JTextField tf){
+       JTextField campo = tf;
+       campo.setText(null);
+   }
+   
+   public void setAcao(){
+       
+       view.getTfNome().addKeyListener(new KeyAdapter(){
+           @Override
+           public void keyReleased(KeyEvent event){
+               
+               String content = view.getTfNome().getText();
+               if(!content.equals(" ")){
+                   if(view.getValidar() == true){
+                       view.setValidar(false);
+                       view.getTfNome().setText(null);
+                       
+                   }
+                   
+               }
+           }
+       });
+       
+   }
+   
 }

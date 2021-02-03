@@ -13,8 +13,7 @@ public class PopUpEditarConta extends javax.swing.JFrame {
         UtilController.configurarTela(this);
 
         this.controller = controller;
-        controller.setPopUpEditarConta(this);
-        controller.carregarPopUp();
+      
     }
 
     @SuppressWarnings("unchecked")

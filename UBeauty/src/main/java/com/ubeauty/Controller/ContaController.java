@@ -51,15 +51,19 @@ public class ContaController {
         if (c.getDdd() != -1 && c.getTelefone() != -1) {
             ClienteDAO persistencia = new ClienteDAO();
             persistencia.atualizar(c);
+            LoginAuthentication.cliente = c;
+            carregarDados();
             popUpEditarConta.dispose();
-            controller.atualizarTelaConta();
+           
         } else {
             panelConta.exibirMensagem("Campos DDD ou Telefone inválidos.");
         }
     }
 
     public void abrirPopUpEditarConta() {
-        new PopUpEditarConta(this).setVisible(true);
+      popUpEditarConta = new PopUpEditarConta(this);
+      this.carregarPopUp();
+      popUpEditarConta.setVisible(true);
     }
 
     public void carregarPopUp() {

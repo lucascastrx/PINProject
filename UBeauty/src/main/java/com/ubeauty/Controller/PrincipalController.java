@@ -23,8 +23,7 @@ public class PrincipalController {
     private JPanel jpMensagens;
     private JFrame PopUpAgendar;
     private JFrame PopUpReclamacoes;
-    
-    private Vendedor tempVendedor;
+ 
 
     public PrincipalController(TelaPrincipal view) {
         this.view = view;
@@ -36,18 +35,10 @@ public class PrincipalController {
 
         this.addPaineis();
         
-        tempVendedor = new Vendedor();
-        
     }
 
     public PrincipalController(JPanel viewPanel) {
         this.viewPanel = viewPanel;
-    }
-    
-    public void atualizarTelaConta(){
-        jpConta = new PanelConta(this);
-        view.addPainel(jpConta, "conta");
-        cl.show(view.getPainelConteudo(), "conta");
     }
     
     public void mostrarTelaUsuario(){

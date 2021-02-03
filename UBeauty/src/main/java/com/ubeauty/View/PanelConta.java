@@ -126,8 +126,8 @@ public class PanelConta extends javax.swing.JPanel {
         btnAlterarDados.setText("Alterar dados");
         btnAlterarDados.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAlterarDados.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAlterarDadosMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAlterarDadosMouseClicked(evt);
             }
         });
         add(btnAlterarDados, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 110, 30));
@@ -205,10 +205,6 @@ public class PanelConta extends javax.swing.JPanel {
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAlterarDadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMousePressed
-        controller.abrirPopUpEditarConta();
-    }//GEN-LAST:event_btnAlterarDadosMousePressed
-
     private void btnExcluirContaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirContaMousePressed
         controller.delete();
     }//GEN-LAST:event_btnExcluirContaMousePressed
@@ -220,6 +216,10 @@ public class PanelConta extends javax.swing.JPanel {
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked
         controller.logout();
     }//GEN-LAST:event_btnLogoutMouseClicked
+
+    private void btnAlterarDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMouseClicked
+        controller.abrirPopUpEditarConta();
+    }//GEN-LAST:event_btnAlterarDadosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

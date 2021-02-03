@@ -74,7 +74,7 @@ public class TableModelSaloes extends AbstractTableModel{
         
         switch (columnIndex) {
             case NOME -> {
-                return v.getNome();
+                return v.getNomeProfissao();
             }
             case DESCRICAO -> {
                 return v.getDescricao();

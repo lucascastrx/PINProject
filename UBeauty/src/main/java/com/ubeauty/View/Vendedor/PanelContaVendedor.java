@@ -1,7 +1,6 @@
 package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.Vendedor.ContaVendedorController;
-import com.ubeauty.View.TelaPrincipal;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
@@ -12,7 +11,6 @@ public class PanelContaVendedor extends javax.swing.JPanel {
     public PanelContaVendedor(TelaPrincipalVendedor view) {
         initComponents();
         controller = new ContaVendedorController(this,view);
-        controller.carregarTela();
         
     }
 

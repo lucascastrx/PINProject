@@ -7,6 +7,8 @@ package com.ubeauty.View;
 
 import com.ubeauty.Controller.CadastroController;
 import com.ubeauty.Controller.UtilController;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,7 +20,7 @@ import javax.swing.JTextField;
  * @author Eduardo Buzzi
  */
 public class TelaCadastro extends javax.swing.JFrame {
-
+    private boolean validar = true;
     private final CadastroController controller;
 
     public TelaCadastro() {
@@ -31,10 +33,11 @@ public class TelaCadastro extends javax.swing.JFrame {
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
-
-    public void carregarDadosConta(){
-        controller.carregarDadosConta();
+    
+    public boolean getValidar(){
+        return validar;
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,9 +97,6 @@ public class TelaCadastro extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCadastrarMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnCadastrarMousePressed(evt);
-            }
         });
         getContentPane().add(btnCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 90, 30));
 
@@ -105,12 +105,23 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfNome.setText("Nome"); // NOI18N
         tfNome.setToolTipText("");
         tfNome.setBorder(null);
+        tfNome.setName(""); // NOI18N
         tfNome.setOpaque(false);
+        tfNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfNomeFocusGained(evt);
+            }
+        });
         getContentPane().add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 240, 40));
         tfNome.getAccessibleContext().setAccessibleName("");
 
         tfSenha.setText("jPasswordfield1");
         tfSenha.setBorder(null);
+        tfSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfSenhaFocusGained(evt);
+            }
+        });
         getContentPane().add(tfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 240, 20));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza.png"))); // NOI18N
@@ -134,6 +145,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfSobrenome.setToolTipText("");
         tfSobrenome.setBorder(null);
         tfSobrenome.setOpaque(false);
+        tfSobrenome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfSobrenomeFocusGained(evt);
+            }
+        });
         getContentPane().add(tfSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 240, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
@@ -145,6 +161,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfEmail.setToolTipText("");
         tfEmail.setBorder(null);
         tfEmail.setOpaque(false);
+        tfEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfEmailFocusGained(evt);
+            }
+        });
         getContentPane().add(tfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 240, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -160,6 +181,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfDDD.setToolTipText("");
         tfDDD.setBorder(null);
         tfDDD.setOpaque(false);
+        tfDDD.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfDDDFocusGained(evt);
+            }
+        });
         getContentPane().add(tfDDD, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 40, 40));
 
         tfTelefone.setBackground(new java.awt.Color(0,0,0,1));
@@ -168,6 +194,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         tfTelefone.setToolTipText("");
         tfTelefone.setBorder(null);
         tfTelefone.setOpaque(false);
+        tfTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tfTelefoneFocusGained(evt);
+            }
+        });
         getContentPane().add(tfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 190, 40));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
@@ -179,22 +210,40 @@ public class TelaCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadastrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMousePressed
- 
-    }//GEN-LAST:event_btnCadastrarMousePressed
-
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
         controller.cancelar();
     }//GEN-LAST:event_btnCancelarMouseClicked
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
-          if(btnCadastrar.getText().equals("Confirmar")){
-            controller.confirmarAlteracao();
-            
-        }else{
-            controller.cadastrar();
-        }
+         controller.cadastrar();
+        
     }//GEN-LAST:event_btnCadastrarMouseClicked
+
+    private void tfNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfNomeFocusGained
+      
+            controller.setAcao();
+        
+    }//GEN-LAST:event_tfNomeFocusGained
+
+    private void tfSobrenomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSobrenomeFocusGained
+        controller.setSelected(tfSobrenome);
+    }//GEN-LAST:event_tfSobrenomeFocusGained
+
+    private void tfEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfEmailFocusGained
+        controller.setSelected(tfEmail);
+    }//GEN-LAST:event_tfEmailFocusGained
+
+    private void tfDDDFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfDDDFocusGained
+        controller.setSelected(tfDDD);
+    }//GEN-LAST:event_tfDDDFocusGained
+
+    private void tfTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfTelefoneFocusGained
+        controller.setSelected(tfTelefone);
+    }//GEN-LAST:event_tfTelefoneFocusGained
+
+    private void tfSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSenhaFocusGained
+        controller.setSelected(tfSenha);
+    }//GEN-LAST:event_tfSenhaFocusGained
 
     /**
      * @param args the command line arguments
@@ -257,7 +306,13 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JTextField tfSobrenome;
     private javax.swing.JTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
-
+    
+    
+    
+    public void setValidar(boolean validar){
+        this.validar = validar;
+    }
+    
     public JTextField getTfEmail() {
         return tfEmail;
     }

@@ -32,9 +32,10 @@ public class ContaVendedorController {
         this.viewPrincipal = viewPrincipal;
         persistencia = new VendedorDAO();
         vendedor = (Vendedor) LoginAuthentication.cliente;
+        carregarTela();
     }
 
-    public void carregarTela() {
+    private void carregarTela() {
         try {
             view.getTxtNome().setText(vendedor.getNomeProfissao());
             view.getTxtEmail().setText(vendedor.getEmail());
@@ -133,6 +134,7 @@ public class ContaVendedorController {
                 persistencia.remover(vendedor.getId());
                 LoginAuthentication.cliente = null;
                 viewPrincipal.dispose();
+                new TelaLogin().setVisible(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Erro! Não foi possível excluir.");
             }
