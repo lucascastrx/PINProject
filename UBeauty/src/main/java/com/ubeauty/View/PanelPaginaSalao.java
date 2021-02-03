@@ -63,9 +63,10 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         txtTelefone = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        txtHorario2 = new javax.swing.JLabel();
+        txtHorarioExtra = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         txtHorario1 = new javax.swing.JLabel();
+        txtHorario2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -152,12 +153,13 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         txtDescricao.setLineWrap(true);
         txtDescricao.setRows(5);
         txtDescricao.setText("*descrição*");
+        txtDescricao.setWrapStyleWord(true);
         txtDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         txtDescricao.setFocusable(false);
         jScrollPane1.setViewportView(txtDescricao);
         txtDescricao.getAccessibleContext().setAccessibleDescription("");
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 300, 120));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 260, 110));
 
         jScrollPane2.setBorder(null);
 
@@ -189,6 +191,11 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         txtEndereco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtEndereco.setForeground(new java.awt.Color(58, 22, 46));
         txtEndereco.setText("*endereço estabelecimento*");
+        txtEndereco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtEnderecoMouseClicked(evt);
+            }
+        });
         add(txtEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 520, 230, 30));
         txtEndereco.getAccessibleContext().setAccessibleDescription("");
 
@@ -197,10 +204,10 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-endereco.png"))); // NOI18N
         add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 20, 30));
 
-        txtHorario2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        txtHorario2.setForeground(new java.awt.Color(58, 22, 46));
-        txtHorario2.setText("xx:xx às xx:xx e das xx:xx às xx:xx");
-        add(txtHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 230, 30));
+        txtHorarioExtra.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtHorarioExtra.setForeground(new java.awt.Color(58, 22, 46));
+        txtHorarioExtra.setText("xx:xx às xx:xx e das xx:xx às xx:xx");
+        add(txtHorarioExtra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 230, 30));
 
         jLabel23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(58, 22, 46));
@@ -211,6 +218,11 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         txtHorario1.setForeground(new java.awt.Color(58, 22, 46));
         txtHorario1.setText("*Segunda à sabado*");
         add(txtHorario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 550, 230, 30));
+
+        txtHorario2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtHorario2.setForeground(new java.awt.Color(58, 22, 46));
+        txtHorario2.setText("xx:xx às xx:xx e das xx:xx às xx:xx");
+        add(txtHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 230, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMousePressed
@@ -224,6 +236,10 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
     private void btnReclamacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReclamacoesMouseClicked
         controller.abrirReclamacoes();
     }//GEN-LAST:event_btnReclamacoesMouseClicked
+
+    private void txtEnderecoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEnderecoMouseClicked
+        controller.mostrarEndereco();
+    }//GEN-LAST:event_txtEnderecoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -248,6 +264,7 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
     private javax.swing.JLabel txtEndereco;
     private javax.swing.JLabel txtHorario1;
     private javax.swing.JLabel txtHorario2;
+    private javax.swing.JLabel txtHorarioExtra;
     private javax.swing.JLabel txtNomeSalao;
     private javax.swing.JLabel txtTelefone;
     // End of variables declaration//GEN-END:variables
@@ -282,6 +299,10 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
 
     public JTable getTabela() {
         return tabela;
+    }
+
+    public JLabel getTxtHorarioExtra() {
+        return txtHorarioExtra;
     }
     
     

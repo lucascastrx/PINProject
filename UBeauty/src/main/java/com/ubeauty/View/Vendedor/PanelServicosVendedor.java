@@ -2,7 +2,9 @@ package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
 import com.ubeauty.Controller.Vendedor.ServicoVendedorController;
+import com.ubeauty.TableModel.TableModelServicos;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 public class PanelServicosVendedor extends javax.swing.JPanel {
 
@@ -13,6 +15,7 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
         initComponents();
         this.view = view;
         controller = new ServicoVendedorController(this);
+        controller.setDadosTabelaServico();
     }
 
     /**
@@ -32,11 +35,11 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
         btnCriarServico = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableServicos = new javax.swing.JTable();
+        tableCupons = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableServicos1 = new javax.swing.JTable();
+        tableServicos = new javax.swing.JTable();
         btnExcluirCupom = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         btnCriarCupom = new javax.swing.JLabel();
@@ -63,6 +66,11 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
         btnExcluirServico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnExcluirServico.setText("Excluir");
         btnExcluirServico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExcluirServico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirServicoMouseClicked(evt);
+            }
+        });
         add(btnExcluirServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 100, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
@@ -85,10 +93,10 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
-        tableServicos.setBackground(new java.awt.Color(204, 204, 204));
-        tableServicos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableServicos.setForeground(new java.awt.Color(58, 22, 46));
-        tableServicos.setModel(new javax.swing.table.DefaultTableModel(
+        tableCupons.setBackground(new java.awt.Color(204, 204, 204));
+        tableCupons.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableCupons.setForeground(new java.awt.Color(58, 22, 46));
+        tableCupons.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -96,7 +104,7 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
                 "Cupom", "Desconto"
             }
         ));
-        jScrollPane1.setViewportView(tableServicos);
+        jScrollPane1.setViewportView(tableCupons);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 280, 110));
 
@@ -111,10 +119,10 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(null);
 
-        tableServicos1.setBackground(new java.awt.Color(204, 204, 204));
-        tableServicos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableServicos1.setForeground(new java.awt.Color(58, 22, 46));
-        tableServicos1.setModel(new javax.swing.table.DefaultTableModel(
+        tableServicos.setBackground(new java.awt.Color(204, 204, 204));
+        tableServicos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableServicos.setForeground(new java.awt.Color(58, 22, 46));
+        tableServicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -122,7 +130,12 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
                 "Serviço", "Valor"
             }
         ));
-        jScrollPane2.setViewportView(tableServicos1);
+        tableServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableServicosMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tableServicos);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 200));
 
@@ -166,17 +179,27 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVoltarMousePressed
 
     private void btnExcluirCupomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirCupomMousePressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnExcluirCupomMousePressed
 
     private void btnCriarCupomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarCupomMousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCriarCupomMousePressed
 
+    private void tableServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableServicosMouseClicked
+        if (evt.getClickCount() == 2) {
+            controller.abrirPopUpEditarServico();
+        }
+    }//GEN-LAST:event_tableServicosMouseClicked
+
+    private void btnExcluirServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirServicoMouseClicked
+        controller.excluirServico();
+    }//GEN-LAST:event_btnExcluirServicoMouseClicked
+
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCriarCupom;
@@ -194,7 +217,19 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableCupons;
     private javax.swing.JTable tableServicos;
-    private javax.swing.JTable tableServicos1;
     // End of variables declaration//GEN-END:variables
+
+    public JTable getTableCupons() {
+        return tableCupons;
+    }
+
+    public JTable getTableServicos() {
+        return tableServicos;
+    }
+
+    public void setTableModel(TableModelServicos model) {
+        this.tableServicos.setModel(model);
+    }
 }

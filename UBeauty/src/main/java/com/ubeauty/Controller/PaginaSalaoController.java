@@ -20,19 +20,26 @@ public class PaginaSalaoController {
     public PaginaSalaoController(PanelPaginaSalao p, PrincipalController c){
         panelPaginas = p;
         controller = c;
-        
-        
+    }
+    
+    public void mostrarEndereco(){
+        controller.getView().exibirMensagem(v.getEndereco());
     }
     
     private void carregarDados(){
         String telefone = "(" + v.getDdd() + ") " + v.getTelefone();
         
-        panelPaginas.getTxtNomeSalao().setText(v.getNome());
+        panelPaginas.getTxtNomeSalao().setText(v.getNomeProfissao());
         panelPaginas.getTxtDescricao().setText(v.getDescricao());
         panelPaginas.getTxtEmail().setText(v.getEmail());
         panelPaginas.getTxtTelefone().setText(telefone);
         panelPaginas.getTxtEndereco().setText(v.getEndereco());
-        panelPaginas.getTxtHorario1().setText(v.getHoraFunc());
+        
+        String horarioFunc[] = v.getHoraFunc().split(";");
+        panelPaginas.getTxtHorario1().setText(validarDiasCB(Integer.parseInt(horarioFunc[0])) + " à " + validarDiasCB(Integer.parseInt(horarioFunc[1])));
+        panelPaginas.getTxtHorario2().setText(horarioFunc[2]);
+        panelPaginas.getTxtHorarioExtra().setText(horarioFunc[3]);
+       
     }
     
     public void voltar(){
@@ -40,6 +47,19 @@ public class PaginaSalaoController {
          controller.mostrarTela("autonomos");
         }else{
         controller.mostrarTela("saloes");
+        }
+    }
+    
+    public String validarDiasCB(int dia){
+        switch (dia){
+            case 0: return "Segunda";
+            case 1: return "Terça";
+            case 2: return "Quarta";
+            case 3: return "Quinta";
+            case 4: return "Sexta";
+            case 5: return "Sábado";
+            case 6: return "Domingo";
+            default: return null;
         }
     }
 

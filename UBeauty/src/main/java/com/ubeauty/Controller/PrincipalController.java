@@ -44,6 +44,12 @@ public class PrincipalController {
         this.viewPanel = viewPanel;
     }
     
+    public void atualizarTelaConta(){
+        jpConta = new PanelConta(this);
+        view.addPainel(jpConta, "conta");
+        cl.show(view.getPainelConteudo(), "conta");
+    }
+    
     public void mostrarTelaUsuario(){
         if (LoginAuthentication.cliente != null) {
             cl.show(view.getPainelConteudo(), "conta");

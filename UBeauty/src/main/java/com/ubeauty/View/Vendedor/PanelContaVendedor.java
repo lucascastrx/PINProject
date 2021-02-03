@@ -195,6 +195,7 @@ public class PanelContaVendedor extends javax.swing.JPanel {
         taDescricao.setForeground(new java.awt.Color(58, 22, 46));
         taDescricao.setLineWrap(true);
         taDescricao.setRows(5);
+        taDescricao.setWrapStyleWord(true);
         taDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
         jScrollPane1.setViewportView(taDescricao);
 

@@ -119,6 +119,7 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
         txtComentarios.setLineWrap(true);
         txtComentarios.setRows(5);
         txtComentarios.setText("*descrição*");
+        txtComentarios.setWrapStyleWord(true);
         txtComentarios.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
         txtComentarios.setFocusable(false);
         jScrollPane1.setViewportView(txtComentarios);

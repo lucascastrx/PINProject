@@ -4,45 +4,84 @@ import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.View.PanelConta;
-import com.ubeauty.View.TelaCadastro;
+import com.ubeauty.View.PopUpEditarConta;
+import com.ubeauty.View.TelaLogin;
 import javax.swing.JOptionPane;
 
 public class ContaController {
+
     PrincipalController controller;
     PanelConta panelConta;
+    PopUpEditarConta popUpEditarConta;
+
     public ContaController(PrincipalController controller, PanelConta p) {
         this.controller = controller;
         this.panelConta = p;
         carregarDados();
-        }
-    
-    private void carregarDados(){
-        if(LoginAuthentication.cliente != null){
+    }
+
+    private void carregarDados() {
+        if (LoginAuthentication.cliente != null) {
             Cliente tempCliente = LoginAuthentication.cliente;
             String telefone = "(" + tempCliente.getDdd() + ") " + tempCliente.getTelefone();
-            String nome = tempCliente.getNome()+ " " + tempCliente.getSobrenome();
+            String nome = tempCliente.getNome() + " " + tempCliente.getSobrenome();
             panelConta.getTxtNome().setText(nome);
             panelConta.getTxtTelefone().setText(telefone);
             panelConta.getTxtEmail().setText(tempCliente.getEmail());
             panelConta.getTxtEndereco().setText(tempCliente.getEndereco());
         }
-        
+
     }
-    
-    public void alterarDados(){
-        TelaCadastro view = new TelaCadastro();
-        view.getBtnCadastrar().setText("Confirmar");
-        view.getHeader().setText("Altere seus dados");
-        view.carregarDadosConta();
-        view.setVisible(true);
-        controller.getView().dispose();
+
+    public void salvarDados() {
         
+        Cliente c = LoginAuthentication.cliente;
+        
+        c.setDdd(UtilController.converterString(popUpEditarConta.getTfDDD().getText()));
+        c.setTelefone(UtilController.converterString(popUpEditarConta.getTfTelefone().getText()));
+
+        String rua = popUpEditarConta.getTfRua().getText();
+        String numero = popUpEditarConta.getTfNumero().getText();
+        String cidade = popUpEditarConta.getTfCidade().getText();
+        String estado = popUpEditarConta.getTfEstado().getText();
+        String endereco = cidade + ", " + rua + ", " + numero + ", " + estado;
+        c.setEndereco(endereco);
+        c.setSenha(popUpEditarConta.getTfSenha().getText());
+
+        if (c.getDdd() != -1 && c.getTelefone() != -1) {
+            ClienteDAO persistencia = new ClienteDAO();
+            persistencia.atualizar(c);
+            popUpEditarConta.dispose();
+            controller.atualizarTelaConta();
+        } else {
+            panelConta.exibirMensagem("Campos DDD ou Telefone inválidos.");
+        }
     }
-    
-    public void delete(){ 
+
+    public void abrirPopUpEditarConta() {
+        new PopUpEditarConta(this).setVisible(true);
+    }
+
+    public void carregarPopUp() {
+
+        Cliente c = LoginAuthentication.cliente;
+
+        String endereco = c.getEndereco();
+        String valores[] = endereco.split(", ");
+
+        popUpEditarConta.getTfDDD().setText(String.valueOf(c.getDdd()));
+        popUpEditarConta.getTfTelefone().setText(String.valueOf(c.getTelefone()));
+        popUpEditarConta.getTfRua().setText(valores[1]);
+        popUpEditarConta.getTfNumero().setText(valores[2]);
+        popUpEditarConta.getTfCidade().setText(valores[0]);
+        popUpEditarConta.getTfEstado().setText(valores[3]);
+        popUpEditarConta.getTfSenha().setText(c.getSenha());
+    }
+
+    public void delete() {
         String mensagem = "Deseja realmente excluir a sua conta?";
         String titulo = "Excluir conta";
-        
+
         if (UtilController.confirmacaoSimNao(titulo, mensagem) == JOptionPane.YES_OPTION) {
             try {
                 Cliente tempCliente = LoginAuthentication.cliente;
@@ -54,15 +93,19 @@ public class ContaController {
             }
         }
     }
-    
-    public void logout(){
+
+    public void logout() {
+        controller.getView().dispose();
         LoginAuthentication.cliente = null;
-        voltarTela();
+        new TelaLogin().setVisible(true);
     }
-    
-    public void voltarTela(){
+
+    public void voltarTela() {
         controller.mostrarTela("principal");
     }
-    
-    
+
+    public void setPopUpEditarConta(PopUpEditarConta popUpEditarConta) {
+        this.popUpEditarConta = popUpEditarConta;
+    }
+
 }

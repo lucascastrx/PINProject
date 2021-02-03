@@ -2,19 +2,23 @@ package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Controller.Vendedor.ServicoVendedorController;
-import javax.swing.ImageIcon;
+import com.ubeauty.Entities.Servico;
 import javax.swing.JTextField;
 
-public class PopUpCriarServico extends javax.swing.JFrame {
+public class PopUpEditarServico extends javax.swing.JFrame {
     
     private ServicoVendedorController controller;
+    private Servico s;
 
-    public PopUpCriarServico(ServicoVendedorController controller) {
+    public PopUpEditarServico(ServicoVendedorController controller, Servico s) {
         initComponents();
         UtilController.configurarTela(this);
         
         this.controller = controller;
-        controller.setPopUpCriarServico(this);
+        this.s = s;
+        
+        controller.setPopUpEditarServico(this);
+        controller.carregarPopUpEdicao();
     }
 
     @SuppressWarnings("unchecked")
@@ -103,8 +107,8 @@ public class PopUpCriarServico extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel12.setText("Criar Serviço");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 110, 30));
+        jLabel12.setText("Editar Serviço");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 120, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
@@ -158,7 +162,7 @@ public class PopUpCriarServico extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
-        controller.salvarNovoServico();
+        controller.salvarEdicaoServico();
     }//GEN-LAST:event_btnSalvarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
@@ -186,14 +190,25 @@ public class PopUpCriarServico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PopUpCriarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarServico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PopUpCriarServico().setVisible(true);
+//            }
+//        });
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -242,6 +257,10 @@ public class PopUpCriarServico extends javax.swing.JFrame {
 
     public JTextField getTfPreco() {
         return tfPreco;
+    }
+
+    public Servico getServico() {
+        return s;
     }
 
     

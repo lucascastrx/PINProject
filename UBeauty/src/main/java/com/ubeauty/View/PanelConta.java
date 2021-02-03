@@ -206,7 +206,7 @@ public class PanelConta extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarDadosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMousePressed
-        controller.alterarDados();
+        controller.abrirPopUpEditarConta();
     }//GEN-LAST:event_btnAlterarDadosMousePressed
 
     private void btnExcluirContaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirContaMousePressed
