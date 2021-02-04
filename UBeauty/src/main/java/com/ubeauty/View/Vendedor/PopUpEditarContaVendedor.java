@@ -2,20 +2,28 @@ package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Controller.Vendedor.ContaVendedorController;
+import com.ubeauty.Entities.Vendedor;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-public class PopUpEditarConta extends javax.swing.JFrame {
+public class PopUpEditarContaVendedor extends javax.swing.JFrame {
 
     ContaVendedorController controller;
 
-    public PopUpEditarConta(ContaVendedorController controller) {
+    public PopUpEditarContaVendedor(ContaVendedorController controller) {
         initComponents();
         UtilController.configurarTela(this);
 
         this.controller = controller;
         controller.setPopUp(this);
         controller.carregarPopUp();
+    }
+    
+    public PopUpEditarContaVendedor(Vendedor v){
+        initComponents();
+        UtilController.configurarTela(this);
+        controller = new ContaVendedorController(v, this);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -294,14 +302,16 @@ public class PopUpEditarConta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarContaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarContaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarContaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PopUpEditarConta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PopUpEditarContaVendedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

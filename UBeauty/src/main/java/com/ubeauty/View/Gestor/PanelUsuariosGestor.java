@@ -1,18 +1,36 @@
 package com.ubeauty.View.Gestor;
 
 import com.ubeauty.Controller.Gestor.*;
+import com.ubeauty.TableModel.TableModelUsuarios;
+import javax.swing.JTable;
 
 public class PanelUsuariosGestor extends javax.swing.JPanel {
 
     private final PrincipalControllerGestor controller;
     private TelaPrincipalGestor view;
+    private UsuariosGestorController uController;
 
     public PanelUsuariosGestor(TelaPrincipalGestor view, PrincipalControllerGestor pc) {
         initComponents();
         this.view = view;
         this.controller = pc;
+        this.uController = new UsuariosGestorController(this);
     }
 
+    public PrincipalControllerGestor getController(){
+        return this.controller;
+    }
+    
+    public void setTableModel(TableModelUsuarios model){
+        tabela.setModel(model);
+    }
+
+    public JTable getTabela() {
+        return tabela;
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,7 +44,7 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAgendamentos = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -44,10 +62,10 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, 10));
 
-        tableAgendamentos.setBackground(new java.awt.Color(204, 204, 204));
-        tableAgendamentos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableAgendamentos.setForeground(new java.awt.Color(58, 22, 46));
-        tableAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setBackground(new java.awt.Color(204, 204, 204));
+        tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabela.setForeground(new java.awt.Color(58, 22, 46));
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,10 +73,21 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
                 "Nome", "E-mail"
             }
         ));
-        jScrollPane1.setViewportView(tableAgendamentos);
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 370));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        if(evt.getClickCount() ==2 ){
+            uController.abrirConta();
+        }
+    }//GEN-LAST:event_tabelaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -66,6 +95,6 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableAgendamentos;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

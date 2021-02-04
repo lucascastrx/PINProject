@@ -64,6 +64,5 @@ public class PrincipalControllerGestor {
         this.viewPanelPrincipal = viewPanelPrincipal;
     }
     
-    
    
 }

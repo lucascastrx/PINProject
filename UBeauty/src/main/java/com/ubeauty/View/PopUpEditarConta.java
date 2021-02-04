@@ -2,9 +2,11 @@ package com.ubeauty.View;
 
 import com.ubeauty.Controller.ContaController;
 import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Entities.Cliente;
 import javax.swing.JTextField;
 
 public class PopUpEditarConta extends javax.swing.JFrame {
+    private boolean gestor = false;
 
     ContaController controller;
 
@@ -14,6 +16,14 @@ public class PopUpEditarConta extends javax.swing.JFrame {
 
         this.controller = controller;
       
+    }
+    
+    public PopUpEditarConta(Cliente c){
+        initComponents();
+        UtilController.configurarTela(this);
+        
+        controller = new ContaController(c,this);
+        gestor = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -197,7 +207,10 @@ public class PopUpEditarConta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
-        controller.salvarDados();
+        if(gestor){
+            controller.salvarDadosGestor();
+        }else{
+        controller.salvarDados();}
     }//GEN-LAST:event_btnSalvarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed

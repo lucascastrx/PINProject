@@ -11,7 +11,7 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.View.TelaLogin;
 import com.ubeauty.View.Vendedor.PanelContaVendedor;
-import com.ubeauty.View.Vendedor.PopUpEditarConta;
+import com.ubeauty.View.Vendedor.PopUpEditarContaVendedor;
 import com.ubeauty.View.Vendedor.TelaPrincipalVendedor;
 import javax.swing.JOptionPane;
 
@@ -23,7 +23,7 @@ public class ContaVendedorController {
 
     private TelaPrincipalVendedor viewPrincipal;
     private PanelContaVendedor view;
-    PopUpEditarConta popUp;
+    PopUpEditarContaVendedor popUp;
     private VendedorDAO persistencia;
     private Vendedor vendedor;
 
@@ -33,6 +33,13 @@ public class ContaVendedorController {
         persistencia = new VendedorDAO();
         vendedor = (Vendedor) LoginAuthentication.cliente;
         carregarTela();
+    }
+    
+    public ContaVendedorController(Vendedor vendedor, PopUpEditarContaVendedor pop){
+        this.vendedor = vendedor;
+        this.setPopUp(pop);
+        this.carregarPopUp();
+        
     }
 
     private void carregarTela() {
@@ -115,7 +122,7 @@ public class ContaVendedorController {
     }
 
     public void abrirPopUpEditarConta() {
-        new PopUpEditarConta(this).setVisible(true);
+        new PopUpEditarContaVendedor(this).setVisible(true);
     }
 
     public void logout() {
@@ -142,7 +149,7 @@ public class ContaVendedorController {
 
     }
 
-    public void setPopUp(PopUpEditarConta popUp) {
+    public void setPopUp(PopUpEditarContaVendedor popUp) {
         this.popUp = popUp;
     }
     
