@@ -1,6 +1,7 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Gestor;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -83,7 +84,7 @@ public class GestorDAO {
     }
     
     public Map<Integer,Gestor> buscarTodosGestores (){
-        Map<Integer,Gestor> mapGestores = null;
+        Map<Integer,Gestor> mapGestores = new HashMap<>();
         
         try {
             em.getTransaction().begin();

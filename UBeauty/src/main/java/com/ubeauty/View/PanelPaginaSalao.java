@@ -222,7 +222,7 @@ public class PanelPaginaSalao extends javax.swing.JPanel {
         txtHorario2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtHorario2.setForeground(new java.awt.Color(58, 22, 46));
         txtHorario2.setText("xx:xx às xx:xx e das xx:xx às xx:xx");
-        add(txtHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 230, 30));
+        add(txtHorario2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 250, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMousePressed

@@ -14,6 +14,7 @@ package com.ubeauty.Entities;
  */
 public class LoginAuthentication{
     public static Cliente cliente;
+    public static Gestor gestor;
 
     public LoginAuthentication() {
     }

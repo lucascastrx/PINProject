@@ -3,6 +3,7 @@ package com.ubeauty.App;
 import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.Gestor;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.OrdemItem;
 import com.ubeauty.Entities.Pagamento;
@@ -12,6 +13,7 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.AgendamentoDAO;
 import com.ubeauty.Repository.CarrinhoDAO;
 import com.ubeauty.Repository.ClienteDAO;
+import com.ubeauty.Repository.GestorDAO;
 import com.ubeauty.Repository.OrdemItemDAO;
 import com.ubeauty.Repository.ReclamacaoDAO;
 import com.ubeauty.Repository.ServicoDAO;
@@ -104,7 +106,7 @@ public class App {
        c.atualizar(cc);
        */
        
-       
+       /*
        CarrinhoDAO cd = new CarrinhoDAO();
        Carrinho cc = new Carrinho();
        cc.setMoment(new Date());
@@ -116,7 +118,10 @@ public class App {
         
         v.getNome();
         
+       */
        
+       GestorDAO gd = new GestorDAO();
+       gd.gravar(new Gestor("Eduardo", "0", "eduardo@gmail.com", "x", 0, 0, "eduardo"));
        
        
        
