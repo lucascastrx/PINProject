@@ -5,9 +5,11 @@ import com.ubeauty.View.Vendedor.*;
 import com.ubeauty.View.*;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
+import com.ubeauty.Controller.Vendedor.TermosController;
+import javax.swing.JTextArea;
 
 public class PanelTermosGestor extends javax.swing.JPanel {
-
+    private TermosController tController;
     private final PrincipalControllerGestor controller;
     private TelaPrincipalGestor view;
 
@@ -15,7 +17,15 @@ public class PanelTermosGestor extends javax.swing.JPanel {
         initComponents();
         this.view = view;
         this.controller = pc;
+        tController = new TermosController(this);
+        
     }
+
+    public JTextArea getTaTermos() {
+        return taTermos;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,8 +66,8 @@ public class PanelTermosGestor extends javax.swing.JPanel {
         btnSalvar.setText("Salvar Alt.");
         btnSalvar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnSalvarMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalvarMouseClicked(evt);
             }
         });
         add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 550, 90, 30));
@@ -83,9 +93,9 @@ public class PanelTermosGestor extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, 400));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMousePressed
-        System.out.println("ok");
-    }//GEN-LAST:event_btnSalvarMousePressed
+    private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
+        tController.writeIntoFile();
+    }//GEN-LAST:event_btnSalvarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

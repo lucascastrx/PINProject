@@ -21,6 +21,14 @@ public class UsuariosGestorController {
 
     public UsuariosGestorController(PanelUsuariosGestor panelUsuarios) {
         this.panelUsuarios = panelUsuarios;
+       
+        
+        runComponents();
+        
+        
+    }
+    
+    private void runComponents(){
         VendedorDAO vPersist = new VendedorDAO();
         ClienteDAO cPersist = new ClienteDAO();
         Map<Integer, Cliente> usuarios = cPersist.buscarTodosClientes();
@@ -32,14 +40,8 @@ public class UsuariosGestorController {
         
         this.modelUsuarios = new TableModelUsuarios(usuarios);
         
-        runComponents();
+        panelUsuarios.setTableModel(modelUsuarios);
         
-        
-    }
-    
-    private void runComponents(){
-       panelUsuarios.setTableModel(modelUsuarios);
-    
     }
     
     public void abrirConta (){

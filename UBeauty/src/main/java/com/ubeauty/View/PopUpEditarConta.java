@@ -10,6 +10,11 @@ public class PopUpEditarConta extends javax.swing.JFrame {
 
     ContaController controller;
 
+    /**
+     * Construtor chamado a partir do próprio
+     * cliente para editar dados
+     * @param controller
+     */
     public PopUpEditarConta(ContaController controller) {
         initComponents();
         UtilController.configurarTela(this);
@@ -18,6 +23,10 @@ public class PopUpEditarConta extends javax.swing.JFrame {
       
     }
     
+    /**
+     * Construtor chamado a partir do gestor para editar dados
+     * @param c
+     */
     public PopUpEditarConta(Cliente c){
         initComponents();
         UtilController.configurarTela(this);
