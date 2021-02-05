@@ -41,7 +41,7 @@ public class TermosController {
             String line;
             while ((line = reader.readLine()) != null)
             {
-                texto += line;
+                texto += line+"\n";
             }
             reader.close();
             
