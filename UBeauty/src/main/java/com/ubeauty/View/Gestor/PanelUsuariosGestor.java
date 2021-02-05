@@ -41,10 +41,10 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,12 +52,6 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 30));
-
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Usuários do App");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 170, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, 10));
@@ -80,7 +74,13 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tabela);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 370));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 450));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 22)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(58, 22, 46));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Usuários do App");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
@@ -92,8 +92,8 @@ public class PanelUsuariosGestor extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables

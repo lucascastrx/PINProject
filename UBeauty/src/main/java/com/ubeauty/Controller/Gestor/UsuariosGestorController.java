@@ -9,6 +9,7 @@ import com.ubeauty.View.Gestor.PanelUsuariosGestor;
 import com.ubeauty.View.Vendedor.PopUpEditarContaVendedor;
 import com.ubeauty.View.PopUpEditarConta;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
@@ -51,7 +52,12 @@ public class UsuariosGestorController {
             if (c instanceof Vendedor) {
                 new PopUpEditarContaVendedor((Vendedor) c).setVisible(true);
             } else {
-                new PopUpEditarConta(c).setVisible(true);
+                try {
+                    new PopUpEditarConta(c).setVisible(true);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Não é possível visualizar gestores.");
+                }
+                
             }
         
     }
