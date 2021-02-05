@@ -135,8 +135,10 @@ public class Vendedor extends Cliente{
 
     @Override
     public String toString() {
-        return "Vendedor{" + "cnpj=" + cnpj + ", nomeProfissao=" + nomeProfissao + ", descricao=" + descricao + ", horaFunc=" + horaFunc + '}';
+        return super.toString() ;
     }
+
+    
 
     
 

@@ -131,7 +131,7 @@ public class Servico implements Serializable{
 
     @Override
     public String toString() {
-        return "Servico{" + "id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", categoria=" + categoria + ", valor=" + valor + '}';
+        return   nome + ", " + descricao + ", " + categoria + ", " + valor;
     }
     
     
