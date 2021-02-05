@@ -4,6 +4,7 @@ import com.ubeauty.Controller.Gestor.PrincipalControllerGestor;
 import com.ubeauty.Controller.Gestor.TermosController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 public class PanelTermosGestor extends javax.swing.JPanel {
@@ -25,21 +26,23 @@ public class PanelTermosGestor extends javax.swing.JPanel {
     public PanelTermosGestor(PrincipalController c) {
         initComponents();
         tController = new TermosController(this,false);
-        btnSalvar.setVisible(false);
-        btnSalvar.setFocusable(false);
-        jLabel5.setVisible(false);
-        taTermos.setFocusable(false);
+        tController.runComponentes();
         tController.setcController(c);
     }
 
     public PanelTermosGestor(PrincipalControllerVendedor v) {
         initComponents();
         tController = new TermosController(this,true);
-        btnSalvar.setVisible(false);
-        btnSalvar.setFocusable(false);
-        jLabel5.setVisible(false);
-        taTermos.setFocusable(false);
+        tController.runComponentes();
         tController.setvController(v);
+    }
+
+    public JLabel getBtnSalvar() {
+        return btnSalvar;
+    }
+
+    public JLabel getjLabel5() {
+        return jLabel5;
     }
     
     
@@ -145,4 +148,7 @@ public class PanelTermosGestor extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taTermos;
     // End of variables declaration//GEN-END:variables
+    
+    
+
 }

@@ -1,1 +1,3 @@
-  Testando escrita em arquivo! Testando...
+1. Primeira Regra: Todos devem me obdecer.
+
+2. Segunda Regra: Obdecer a primeira regra

@@ -41,6 +41,7 @@ public class TermosController {
             String line;
             while ((line = reader.readLine()) != null)
             {
+                
                 texto += line;
             }
             reader.close();
@@ -83,6 +84,13 @@ public class TermosController {
 
     public void setvController(PrincipalControllerVendedor vController) {
         this.vController = vController;
+    }
+    
+    public void runComponentes(){
+        panelTermos.getBtnSalvar().setVisible(false);
+        panelTermos.getBtnSalvar().setFocusable(false);
+        panelTermos.getjLabel5().setVisible(false);
+        panelTermos.getTaTermos().setFocusable(false);
     }
     
     
