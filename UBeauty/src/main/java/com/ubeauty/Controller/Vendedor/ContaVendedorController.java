@@ -157,5 +157,8 @@ public class ContaVendedorController {
         viewPrincipal.getController().mostrarTela("principal");
     }
     
+    public PrincipalControllerVendedor getController(){
+       return viewPrincipal.getController();
+    }
     
 }

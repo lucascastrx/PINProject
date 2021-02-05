@@ -2,6 +2,7 @@ package com.ubeauty.Controller.Vendedor;
 
 import com.ubeauty.Controller.*;
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.View.Gestor.PanelTermosGestor;
 import com.ubeauty.View.Vendedor.*;
 import java.awt.CardLayout;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ public class PrincipalControllerVendedor {
     private JPanel jpNotificacoes;
     private JPanel jpServicos;
     private JPanel jpConta;
+    private JPanel jpTermosDeUso;
 
     public PrincipalControllerVendedor(TelaPrincipalVendedor view) {
         this.view = view;
@@ -46,11 +48,13 @@ public class PrincipalControllerVendedor {
         jpNotificacoes = new PanelNotificacoesVendedor();
         jpServicos = new PanelServicosVendedor(view);
         jpConta = new PanelContaVendedor(view);
+        jpTermosDeUso = new PanelTermosGestor(this);
 
         view.addPainel(jpPrincipal, "principal");         
         view.addPainel(jpNotificacoes, "notificacoes");         
         view.addPainel(jpServicos, "servicos");         
-        view.addPainel(jpConta, "conta");         
+        view.addPainel(jpConta, "conta");
+        view.addPainel(jpTermosDeUso, "termosUso");
     }
    
 }

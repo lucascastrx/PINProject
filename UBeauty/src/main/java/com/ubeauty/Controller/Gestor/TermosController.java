@@ -1,6 +1,8 @@
 
-package com.ubeauty.Controller.Vendedor;
+package com.ubeauty.Controller.Gestor;
 
+import com.ubeauty.Controller.PrincipalController;
+import com.ubeauty.Controller.Vendedor.*;
 import com.ubeauty.View.Gestor.PanelTermosGestor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,11 +17,16 @@ import java.util.List;
  * @author Lucas Teixeira
  */
 public class TermosController {
+    private PrincipalController cController;
+    private PrincipalControllerVendedor vController;
+    private boolean which;
+    
     private PanelTermosGestor panelTermos;
     private final String FILE_PATH = "src/main/resources/termosUso.txt";
 
-    public TermosController(PanelTermosGestor panelTermos) {
+    public TermosController(PanelTermosGestor panelTermos,boolean which) {
         this.panelTermos = panelTermos;
+        this.which = which;
         readFromFile();
     }
     
@@ -60,4 +67,23 @@ public class TermosController {
             e.printStackTrace();
         }
     }
+    
+    public void voltar(){
+        if(which){
+            vController.mostrarTela("conta");
+        }else{
+            cController.mostrarTela("conta");
+        }
+        
+    }
+
+    public void setcController(PrincipalController cController) {
+        this.cController = cController;
+    }
+
+    public void setvController(PrincipalControllerVendedor vController) {
+        this.vController = vController;
+    }
+    
+    
 }

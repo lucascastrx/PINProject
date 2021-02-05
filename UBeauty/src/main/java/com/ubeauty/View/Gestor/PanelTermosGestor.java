@@ -1,25 +1,48 @@
 package com.ubeauty.View.Gestor;
 
 import com.ubeauty.Controller.Gestor.PrincipalControllerGestor;
-import com.ubeauty.View.Vendedor.*;
-import com.ubeauty.View.*;
+import com.ubeauty.Controller.Gestor.TermosController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
-import com.ubeauty.Controller.Vendedor.TermosController;
 import javax.swing.JTextArea;
 
 public class PanelTermosGestor extends javax.swing.JPanel {
     private TermosController tController;
-    private final PrincipalControllerGestor controller;
+    private PrincipalControllerGestor controller;
     private TelaPrincipalGestor view;
 
     public PanelTermosGestor(TelaPrincipalGestor view, PrincipalControllerGestor pc) {
         initComponents();
         this.view = view;
         this.controller = pc;
-        tController = new TermosController(this);
+        tController = new TermosController(this,false);
+        
+        btnVoltar.setVisible(false);
+        btnVoltar.setFocusable(false);
         
     }
+
+    public PanelTermosGestor(PrincipalController c) {
+        initComponents();
+        tController = new TermosController(this,false);
+        btnSalvar.setVisible(false);
+        btnSalvar.setFocusable(false);
+        jLabel5.setVisible(false);
+        taTermos.setFocusable(false);
+        tController.setcController(c);
+    }
+
+    public PanelTermosGestor(PrincipalControllerVendedor v) {
+        initComponents();
+        tController = new TermosController(this,true);
+        btnSalvar.setVisible(false);
+        btnSalvar.setFocusable(false);
+        jLabel5.setVisible(false);
+        taTermos.setFocusable(false);
+        tController.setvController(v);
+    }
+    
+    
 
     public JTextArea getTaTermos() {
         return taTermos;
@@ -43,13 +66,14 @@ public class PanelTermosGestor extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taTermos = new javax.swing.JTextArea();
+        btnVoltar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 110, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, 10));
@@ -91,15 +115,29 @@ public class PanelTermosGestor extends javax.swing.JPanel {
         jScrollPane1.setViewportView(taTermos);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 280, 400));
+
+        btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn-voltar-escuro.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVoltarMouseClicked(evt);
+            }
+        });
+        add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         tController.writeIntoFile();
     }//GEN-LAST:event_btnSalvarMouseClicked
 
+    private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
+        tController.voltar();
+    }//GEN-LAST:event_btnVoltarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnSalvar;
+    private javax.swing.JLabel btnVoltar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;

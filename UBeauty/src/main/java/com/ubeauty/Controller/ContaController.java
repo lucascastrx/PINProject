@@ -162,4 +162,10 @@ public class ContaController {
             panelConta.exibirMensagem("Campos DDD ou Telefone inválidos.");
         }
     }
+
+    public PrincipalController getController() {
+        return controller;
+    }
+   
+   
 }

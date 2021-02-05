@@ -167,6 +167,11 @@ public class PanelConta extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(58, 22, 46));
         jLabel17.setText("Termos de uso");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel17MouseClicked(evt);
+            }
+        });
         add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 100, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -220,6 +225,10 @@ public class PanelConta extends javax.swing.JPanel {
     private void btnAlterarDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarDadosMouseClicked
         controller.abrirPopUpEditarConta();
     }//GEN-LAST:event_btnAlterarDadosMouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel17MouseClicked
+        controller.getController().mostrarTela("termosUso");
+    }//GEN-LAST:event_jLabel17MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
