@@ -85,5 +85,12 @@ public class TermosController {
         this.vController = vController;
     }
     
+    public void runComponentes(){
+        panelTermos.getBtnSalvar().setVisible(false);
+        panelTermos.getBtnSalvar().setFocusable(false);
+        panelTermos.getjLabel5().setVisible(false);
+        panelTermos.getTaTermos().setFocusable(false);
+    }
+    
     
 }
