@@ -1,12 +1,21 @@
 package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.UtilController;
-import javax.swing.ImageIcon;
+import com.ubeauty.Controller.Vendedor.CupomVendedorController;
+import javax.swing.JTextField;
 
 public class PopUpCriarCupom extends javax.swing.JFrame {
 
+    private CupomVendedorController controller;
+
     public PopUpCriarCupom() {
         initComponents();
+        UtilController.configurarTela(this);
+    }
+
+    public PopUpCriarCupom(CupomVendedorController controller) {
+        initComponents();
+        this.controller = controller;
         UtilController.configurarTela(this);
     }
 
@@ -20,7 +29,7 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        tfPreco = new javax.swing.JTextField();
+        tfDesconto = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -75,18 +84,13 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/input-outline.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 40));
 
-        tfPreco.setBackground(new java.awt.Color(0,0,0,1));
-        tfPreco.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        tfPreco.setText("00.00"); // NOI18N
-        tfPreco.setToolTipText("");
-        tfPreco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
-        tfPreco.setOpaque(false);
-        tfPreco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPrecoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tfPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 210, 40));
+        tfDesconto.setBackground(new java.awt.Color(0,0,0,1));
+        tfDesconto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDesconto.setText("0"); // NOI18N
+        tfDesconto.setToolTipText("");
+        tfDesconto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        tfDesconto.setOpaque(false);
+        getContentPane().add(tfDesconto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 40, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
@@ -95,8 +99,8 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel13.setText("R$");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
+        jLabel13.setText("%");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(58, 22, 46));
@@ -105,7 +109,7 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel17.setText("Valor do desconto");
+        jLabel17.setText("Desconto");
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 20));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -115,16 +119,12 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarMousePressed
-        System.out.println("ok");
+        controller.criarCupom();
     }//GEN-LAST:event_btnCriarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMousePressed
-
-    private void tfPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPrecoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPrecoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +179,18 @@ public class PopUpCriarCupom extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField tfDesconto;
     private javax.swing.JTextField tfNome;
-    private javax.swing.JTextField tfPreco;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getTfDesconto() {
+        return tfDesconto;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    
+
 }

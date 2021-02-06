@@ -1,7 +1,9 @@
 package com.ubeauty.View.Vendedor;
 
+import com.ubeauty.Controller.Vendedor.CupomVendedorController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
 import com.ubeauty.Controller.Vendedor.ServicoVendedorController;
+import com.ubeauty.TableModel.TableModelCupons;
 import com.ubeauty.TableModel.TableModelServicos;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -10,12 +12,15 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
 
     private TelaPrincipalVendedor view;
     private ServicoVendedorController controller;
+    private CupomVendedorController cupomController;
 
     public PanelServicosVendedor(TelaPrincipalVendedor view) {
         initComponents();
         this.view = view;
         controller = new ServicoVendedorController(this);
+        cupomController = new CupomVendedorController(controller);
         controller.setDadosTabelaServico();
+        controller.setDadosTabelaCupom();
     }
 
     /**
@@ -179,11 +184,11 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnVoltarMousePressed
 
     private void btnExcluirCupomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirCupomMousePressed
-        
+        controller.excluirCupom();
     }//GEN-LAST:event_btnExcluirCupomMousePressed
 
     private void btnCriarCupomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarCupomMousePressed
-        // TODO add your handling code here:
+        cupomController.abrirPopUpCriarCupom();
     }//GEN-LAST:event_btnCriarCupomMousePressed
 
     private void tableServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableServicosMouseClicked
@@ -231,5 +236,9 @@ public class PanelServicosVendedor extends javax.swing.JPanel {
 
     public void setTableModel(TableModelServicos model) {
         this.tableServicos.setModel(model);
+    }
+
+    public void setTableModel(TableModelCupons model) {
+        this.tableCupons.setModel(model);
     }
 }

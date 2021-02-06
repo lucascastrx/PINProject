@@ -18,6 +18,9 @@ public class Vendedor extends Cliente{
     @OneToMany(mappedBy = "vendedorServico")
     private Set<Servico> servicos = new HashSet<>();
     
+    @OneToMany(mappedBy = "vendedorCupom")
+    private Set<Cupom> cupons = new HashSet<>();
+    
     @OneToMany(mappedBy = "vendedor")
     private List<Reclamacao> reclamacoes = new ArrayList<>();
 
@@ -93,7 +96,10 @@ public class Vendedor extends Cliente{
         this.horaFunc = horaFunc;
     }
     
-    
+    public void addCupom(Cupom c){
+        cupons.add(c);
+        c.setVendedorCupom(this);
+    }
     
     public void addServico(Servico v){
         servicos.add(v);

@@ -11,6 +11,7 @@
     <class> com.ubeauty.Entities.Gestor </class>
     <class> com.ubeauty.Entities.Agendamento </class>
     <class> com.ubeauty.Entities.Servico </class>
+    <class> com.ubeauty.Entities.Cupom </class>
     <class> com.ubeauty.Entities.Carrinho </class>
     <class> com.ubeauty.Entities.Notificacao </class>
     <class> com.ubeauty.Entities.Pagamento </class>

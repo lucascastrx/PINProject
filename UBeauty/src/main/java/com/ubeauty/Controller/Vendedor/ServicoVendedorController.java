@@ -1,11 +1,14 @@
 package com.ubeauty.Controller.Vendedor;
 
 import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Entities.Cupom;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.Repository.CupomDAO;
 import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.Repository.VendedorDAO;
+import com.ubeauty.TableModel.TableModelCupons;
 import com.ubeauty.TableModel.TableModelServicos;
 import com.ubeauty.View.Vendedor.PanelServicosVendedor;
 import com.ubeauty.View.Vendedor.PopUpCriarServico;
@@ -20,6 +23,7 @@ public class ServicoVendedorController {
     PopUpEditarServico popUpEditarServico;
     Vendedor vendedor;
     private TableModelServicos modelServicos;
+    private TableModelCupons modelCupons;
 
     public ServicoVendedorController(PanelServicosVendedor view) {
         this.view = view;
@@ -36,6 +40,22 @@ public class ServicoVendedorController {
         popUpEditarServico.getTfDescricao().setText(s2.getDescricao());
         popUpEditarServico.getTfNome().setText(s2.getNome());
         popUpEditarServico.getTfPreco().setText(String.valueOf(s2.getValor()));
+    }
+
+    public void excluirCupom() {
+        JTable tabela = view.getTableCupons();
+
+        if (tabela.getSelectedRow() != -1) {
+
+            CupomDAO persistencia = new CupomDAO();
+            Cupom c = modelCupons.getCupom(tabela.getSelectedRow());
+
+            persistencia.remover(c.getId());
+            setDadosTabelaCupom();
+
+        } else {
+            view.exibirMensagem("Selecione um cupom para excluir.");
+        }
     }
 
     public void excluirServico() {
@@ -61,6 +81,14 @@ public class ServicoVendedorController {
         modelServicos = new TableModelServicos(mapServicos);
         view.setTableModel(modelServicos);
         view.getTableServicos().repaint();
+    }
+
+    public void setDadosTabelaCupom() {
+        CupomDAO repository = new CupomDAO();
+        Map<Integer, Cupom> mapCupons = repository.buscarCupomPorIdVendedor(vendedor.getId());
+        modelCupons = new TableModelCupons(mapCupons);
+        view.setTableModel(modelCupons);
+        view.getTableCupons().repaint();
     }
 
     public void salvarNovoServico() {
@@ -131,6 +159,10 @@ public class ServicoVendedorController {
 
     public void setPopUpEditarServico(PopUpEditarServico popUp) {
         this.popUpEditarServico = popUp;
+    }
+
+    public PanelServicosVendedor getView() {
+        return view;
     }
 
 }
