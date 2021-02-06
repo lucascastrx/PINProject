@@ -6,6 +6,7 @@
 package com.ubeauty.Entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,6 +72,37 @@ public class Cupom implements Serializable {
 
     public void setVendedorCupom(Vendedor vendedorCupom) {
         this.vendedorCupom = vendedorCupom;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + this.id;
+        hash = 11 * hash + Objects.hashCode(this.nome);
+        hash = 11 * hash + this.desconto;
+        hash = 11 * hash + Objects.hashCode(this.vendedorCupom);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cupom other = (Cupom) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.vendedorCupom, other.vendedorCupom)) {
+            return false;
+        }
+        return true;
     }
     
     

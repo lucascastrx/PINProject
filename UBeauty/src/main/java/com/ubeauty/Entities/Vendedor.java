@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 
@@ -18,7 +19,7 @@ public class Vendedor extends Cliente{
     @OneToMany(mappedBy = "vendedorServico")
     private Set<Servico> servicos = new HashSet<>();
     
-    @OneToMany(mappedBy = "vendedorCupom")
+    @OneToMany(mappedBy = "vendedorCupom",fetch = FetchType.EAGER)
     private Set<Cupom> cupons = new HashSet<>();
     
     @OneToMany(mappedBy = "vendedor")
@@ -144,7 +145,9 @@ public class Vendedor extends Cliente{
         return super.toString() ;
     }
 
-    
+    public Set<Cupom> getCupons() {
+        return cupons;
+    }
 
     
 
