@@ -1,12 +1,14 @@
 package com.ubeauty.View.Vendedor;
 
+import com.ubeauty.Controller.Vendedor.NotificacaoVendedorController;
+
 public class PanelNotificacoesVendedor extends javax.swing.JPanel {
 
-    /**
-     * Creates new form teste2
-     */
-    public PanelNotificacoesVendedor() {
+    NotificacaoVendedorController controller;
+    
+    public PanelNotificacoesVendedor(TelaPrincipalVendedor view) {
         initComponents();
+        controller = new NotificacaoVendedorController(this, view);
     }
 
     /**
@@ -78,7 +80,7 @@ public class PanelNotificacoesVendedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparNotifMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparNotifMousePressed
-        // TODO add your handling code here:
+        controller.abrirTelaCriarNotificacao();
     }//GEN-LAST:event_btnLimparNotifMousePressed
 
 

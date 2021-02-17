@@ -20,6 +20,7 @@ import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.Repository.VendedorDAO;
 import java.time.Instant;
 import java.util.Date;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -120,10 +121,13 @@ public class App {
         
        */
        
-       GestorDAO gd = new GestorDAO();
-       gd.gravar(new Gestor("Eduardo", "0", "eduardo@gmail.com", "x", 0, 0, "eduardo"));
+//       GestorDAO gd = new GestorDAO();
+//       gd.gravar(new Gestor("Eduardo", "0", "eduardo@gmail.com", "x", 0, 0, "eduardo"));
        
-       
+         ClienteDAO c = new ClienteDAO();
+         List<Cliente> d = c.buscarClientesPorCidade("Rio do Sul");
+         System.out.println(d);
+         
        
        
        

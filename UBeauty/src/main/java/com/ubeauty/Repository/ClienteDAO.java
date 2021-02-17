@@ -1,6 +1,8 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.Vendedor;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,6 +112,29 @@ public class ClienteDAO {
         
         return clientesMap;
     }
+    
+    public List<Cliente> buscarClientesPorCidade(String cidade){
+        List<Cliente> clientes = new ArrayList<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Cliente> listClientes = em.createQuery("from Cliente WHERE endereco LIKE :cidade").setParameter("cidade", cidade + "%").getResultList();
+            for (Cliente c : listClientes) {
+                if (!(c instanceof Vendedor)) {
+                    clientes.add(c);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        
+        return clientes;
+    }
+    
     
     public List<Integer> buscarTodasKeys(){
         List<Integer> clientesKeys = null;

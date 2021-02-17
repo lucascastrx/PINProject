@@ -12,14 +12,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cliente implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
+
     private String nome;
     private String sobrenome;
     private String email;
@@ -28,24 +28,24 @@ public class Cliente implements Serializable {
     private int telefone;
     private String senha;
     private boolean autonomo;
-    
-    
+
     @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Carrinho> carrinhos = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "cliente")
     private List<Reclamacao> reclamacoes = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "c")
     private List<Mensagem> mensagens = new ArrayList<>();
-    
-    
+
+    @OneToMany(mappedBy = "cliente")
+    protected List<Notificacao> notificacoes = new ArrayList<>();
 
     public Cliente() {
     }
 
-    public Cliente( boolean autonomo, String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
-        
+    public Cliente(boolean autonomo, String nome, String sobrenome, String email, String endereco, int ddd, int telefone, String senha) {
+
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
@@ -127,41 +127,42 @@ public class Cliente implements Serializable {
     public void setAutonomo(boolean autonomo) {
         this.autonomo = autonomo;
     }
-    
-    
 
-    public void addCarrinho(Carrinho carrinho){
+    public void addCarrinho(Carrinho carrinho) {
         carrinhos.add(carrinho);
         carrinho.setClientes(this);
-        
+
     }
-    
-    public void removeCarrinho(Carrinho carrinho){
+
+    public void removeCarrinho(Carrinho carrinho) {
         carrinhos.remove(carrinho);
         carrinho.setClientes(null);
     }
-    
-    public void addReclamacoes(Reclamacao r){
+
+    public void addReclamacoes(Reclamacao r) {
         reclamacoes.add(r);
         r.setCliente(this);
-        
+
     }
-    
-    public void removeReclamacoes(Reclamacao r){
+
+    public void addNotificacao(Notificacao n) {
+        notificacoes.add(n);
+    }
+
+    public void removeReclamacoes(Reclamacao r) {
         reclamacoes.remove(r);
         r.setCliente(null);
     }
-    
-    public void addMensagem(Mensagem m){
+
+    public void addMensagem(Mensagem m) {
         mensagens.add(m);
         m.setCliente(this);
     }
-    
-    public void removeMensagem(Mensagem m){
+
+    public void removeMensagem(Mensagem m) {
         mensagens.remove(m);
         m.setCliente(null);
     }
-    
 
     @Override
     public int hashCode() {
@@ -192,9 +193,5 @@ public class Cliente implements Serializable {
     public String toString() {
         return nome + " " + sobrenome + ", " + email + ", (" + ddd + ") " + telefone;
     }
-    
-    
-    
-    
-    
+
 }

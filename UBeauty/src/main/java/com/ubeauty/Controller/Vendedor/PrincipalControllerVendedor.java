@@ -45,7 +45,7 @@ public class PrincipalControllerVendedor {
     private void addPaineis() {
 
         jpPrincipal = new PanelPrincipalVendedor(view, this);
-        jpNotificacoes = new PanelNotificacoesVendedor();
+        jpNotificacoes = new PanelNotificacoesVendedor(view);
         jpServicos = new PanelServicosVendedor(view);
         jpConta = new PanelContaVendedor(view);
         jpTermosDeUso = new PanelTermosGestor(this);

@@ -28,6 +28,12 @@ public class Vendedor extends Cliente{
     @OneToMany(mappedBy = "v")
     private List<Mensagem> mensagens = new ArrayList<>();
     
+        @OneToMany(mappedBy = "vendedorN",fetch = FetchType.EAGER)
+    protected List<Notificacao> notificacoesEnviadas = new ArrayList<>();
+    
+    //@OneToMany(mappedBy =  "notificacoesEnviadas")
+    //private List<Notificacao> notificacoes = new ArrayList<>();
+    
  
     public Vendedor() {
     }
@@ -100,6 +106,10 @@ public class Vendedor extends Cliente{
     public void addCupom(Cupom c){
         cupons.add(c);
         c.setVendedorCupom(this);
+    }
+
+    public void addNotificacao(Notificacao n){
+        notificacoesEnviadas.add(n);
     }
     
     public void addServico(Servico v){

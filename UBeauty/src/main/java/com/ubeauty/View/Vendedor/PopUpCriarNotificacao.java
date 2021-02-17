@@ -1,12 +1,18 @@
 package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Controller.Vendedor.NotificacaoVendedorController;
 import javax.swing.ImageIcon;
+import javax.swing.JTextArea;
 
 public class PopUpCriarNotificacao extends javax.swing.JFrame {
 
-    public PopUpCriarNotificacao() {
+    NotificacaoVendedorController controller;
+    
+    public PopUpCriarNotificacao(NotificacaoVendedorController controller) {
         initComponents();
+        this.controller = controller;
+        controller.setPopUp(this);
         UtilController.configurarTela(this);
     }
 
@@ -83,7 +89,6 @@ public class PopUpCriarNotificacao extends javax.swing.JFrame {
         taDescricao.setLineWrap(true);
         taDescricao.setRows(5);
         taDescricao.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
-        taDescricao.setFocusable(false);
         jScrollPane1.setViewportView(taDescricao);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 260, 100));
@@ -95,11 +100,11 @@ public class PopUpCriarNotificacao extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarMousePressed
-        System.out.println("ok");
+        controller.criarNotificacao();
     }//GEN-LAST:event_btnCriarMousePressed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnCancelarMousePressed
 
     /**
@@ -145,11 +150,11 @@ public class PopUpCriarNotificacao extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PopUpCriarNotificacao().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PopUpCriarNotificacao().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -163,4 +168,11 @@ public class PopUpCriarNotificacao extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea taDescricao;
     // End of variables declaration//GEN-END:variables
+
+    public JTextArea getTaDescricao() {
+        return taDescricao;
+    }
+
+    
+
 }

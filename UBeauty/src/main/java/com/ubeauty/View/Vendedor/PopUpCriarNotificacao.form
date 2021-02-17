@@ -184,7 +184,6 @@
                 </LineBorder>
               </Border>
             </Property>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
