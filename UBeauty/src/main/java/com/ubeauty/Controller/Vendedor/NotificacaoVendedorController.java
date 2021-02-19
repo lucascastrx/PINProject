@@ -75,6 +75,7 @@ public class NotificacaoVendedorController {
         ClienteDAO cd = new ClienteDAO();
         List<Cliente> clientes = cd.buscarClientesPorCidade(cidade);
         for (Cliente cliente : clientes) {
+            n.addCliente(cliente);
             cliente.addNotificacao(n);
             ClienteDAO cd2 = new ClienteDAO();
             cd2.atualizar(cliente);

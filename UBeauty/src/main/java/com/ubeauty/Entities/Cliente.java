@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "c")
     private List<Mensagem> mensagens = new ArrayList<>();
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "clienteN",fetch = FetchType.EAGER)
     protected List<Notificacao> notificacoes = new ArrayList<>();
 
     public Cliente() {
@@ -162,6 +163,10 @@ public class Cliente implements Serializable {
     public void removeMensagem(Mensagem m) {
         mensagens.remove(m);
         m.setCliente(null);
+    }
+
+    public List<Notificacao> getNotificacoes() {
+        return notificacoes;
     }
 
     @Override

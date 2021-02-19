@@ -152,4 +152,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
+
+    public PrincipalController getController() {
+        return controller;
+    }
+    
+    
 }

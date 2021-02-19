@@ -2,15 +2,19 @@ package com.ubeauty.Entities;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -28,8 +32,8 @@ public class Notificacao implements Serializable{
     @ManyToOne
     private Vendedor vendedorN;
     
-    @ManyToOne
-    private Cliente cliente;
+    @ManyToMany(mappedBy = "clienteN",fetch = FetchType.EAGER)
+    protected List<Cliente> clientes = new ArrayList<>();
     
     @Transient
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
@@ -80,6 +84,12 @@ public class Notificacao implements Serializable{
     public void setVendedorN(Vendedor vendedorN) {
         this.vendedorN = vendedorN;
     }
+    
+    public void addCliente(Cliente cliente){
+        this.clientes.add(cliente);
+    }
+    
+    
     
     
 

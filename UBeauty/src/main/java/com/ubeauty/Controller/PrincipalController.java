@@ -56,7 +56,7 @@ public class PrincipalController {
     private void addPaineis() {
 
         jpPrincipal = new PanelPrincipal(view, this);
-        jpNotif = new PanelNotificacoes();
+        jpNotif = new PanelNotificacoes(view);
         jpPagSalao = new PanelPaginaSalao(this);
         jpAgendamento = new PanelAgendamento();
         jpConta = new PanelConta(this);
