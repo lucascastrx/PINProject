@@ -1,6 +1,7 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Notificacao;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.EntityManager;
@@ -77,6 +78,25 @@ public class NotificacaoDAO {
         return n;
     }
     
+    public Map<Integer,Notificacao> buscarNotificacoesPorIdVendedor(int id){
+        Map<Integer,Notificacao> mapNotificacoes = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Notificacao> listNotificacoes = em.createQuery("from Notificacao where vendedorCupom_id = " + id).getResultList();
+            for (Notificacao n : listNotificacoes) {
+                mapNotificacoes.putIfAbsent(n.getId(), n);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return mapNotificacoes;
+    }
+
     public Map<Integer,Notificacao> buscarTodasNotificacoes(){
         Map<Integer,Notificacao> mapNotificacoes = null;
         

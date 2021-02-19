@@ -159,6 +159,12 @@ public class Vendedor extends Cliente{
         return cupons;
     }
 
+    public List<Notificacao> getNotificacoesEnviadas() {
+        return notificacoesEnviadas;
+    }
+    
+    
+
     
 
     

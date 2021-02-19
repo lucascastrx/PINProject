@@ -1,6 +1,8 @@
 package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.Controller.Vendedor.NotificacaoVendedorController;
+import com.ubeauty.TableModel.TableModelNotificacoes;
+import javax.swing.JTable;
 
 public class PanelNotificacoesVendedor extends javax.swing.JPanel {
 
@@ -9,6 +11,7 @@ public class PanelNotificacoesVendedor extends javax.swing.JPanel {
     public PanelNotificacoesVendedor(TelaPrincipalVendedor view) {
         initComponents();
         controller = new NotificacaoVendedorController(this, view);
+        controller.setDadosTabela();
     }
 
     /**
@@ -41,6 +44,11 @@ public class PanelNotificacoesVendedor extends javax.swing.JPanel {
 
         btnVoltar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn-voltar-escuro.png"))); // NOI18N
+        btnVoltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVoltarMousePressed(evt);
+            }
+        });
         add(btnVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, 30));
 
         btnLimparNotif.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -83,6 +91,10 @@ public class PanelNotificacoesVendedor extends javax.swing.JPanel {
         controller.abrirTelaCriarNotificacao();
     }//GEN-LAST:event_btnLimparNotifMousePressed
 
+    private void btnVoltarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMousePressed
+        controller.voltar();
+    }//GEN-LAST:event_btnVoltarMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEstabelecimentos;
@@ -94,4 +106,15 @@ public class PanelNotificacoesVendedor extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableNotificacoes;
     // End of variables declaration//GEN-END:variables
+
+    public void setTableModel(TableModelNotificacoes model) {
+        this.tableNotificacoes.setModel(model);
+    }
+
+    public JTable getTableNotificacoes() {
+        return tableNotificacoes;
+    }
+    
+    
+
 }
