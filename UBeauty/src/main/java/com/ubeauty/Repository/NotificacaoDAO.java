@@ -98,7 +98,7 @@ public class NotificacaoDAO {
     }
 
     public Map<Integer,Notificacao> buscarTodasNotificacoes(){
-        Map<Integer,Notificacao> mapNotificacoes = null;
+        Map<Integer,Notificacao> mapNotificacoes = new HashMap<>();
         
         try {
             em.getTransaction().begin();

@@ -1,11 +1,13 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.AgendamentoController;
+import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Entities.Servico;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -15,17 +17,20 @@ import javax.swing.JTextField;
  */
 public class PopUpAgendar extends javax.swing.JFrame {
     AgendamentoController controller;
-    public PopUpAgendar(Servico s) {
-        
-        
+    
+    public PopUpAgendar(Servico s,PrincipalController pc) {
         initComponents();
-        controller = new AgendamentoController(s,this);
+        controller = new AgendamentoController(s,this,pc);
         this.setLocationRelativeTo(null);
 
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
         setIconImage(icon.getImage());
         
         
+    }
+    
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
     }
 
     
@@ -42,11 +47,9 @@ public class PopUpAgendar extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cbDia = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        cbTipoServico = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         rbAplicativo = new javax.swing.JRadioButton();
@@ -73,7 +76,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
         txtPreco.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtPreco.setForeground(new java.awt.Color(58, 22, 46));
         txtPreco.setText("*R$00,00*");
-        getContentPane().add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, 30));
+        getContentPane().add(txtPreco, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, 30));
 
         btnAgendar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         btnAgendar.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,43 +116,32 @@ public class PopUpAgendar extends javax.swing.JFrame {
         cbDia.setBackground(new java.awt.Color(255, 255, 255));
         cbDia.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cbDia.setForeground(new java.awt.Color(58, 22, 46));
-        getContentPane().add(cbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 210, 30));
-
-        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel13.setText("Tipo");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 30));
+        getContentPane().add(cbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 210, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(58, 22, 46));
         jLabel15.setText("Dia");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 30));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 30));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(58, 22, 46));
         jLabel16.setText("Preço");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 30));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, 30));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(58, 22, 46));
         jLabel17.setText("Pagamento");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 30));
-
-        cbTipoServico.setBackground(new java.awt.Color(255, 255, 255));
-        cbTipoServico.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cbTipoServico.setForeground(new java.awt.Color(58, 22, 46));
-        cbTipoServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(cbTipoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 210, 30));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(58, 22, 46));
         jLabel18.setText("Hora");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, -1, 30));
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(58, 22, 46));
         jLabel19.setText("Número do cartão");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
 
         rbAplicativo.setBackground(new java.awt.Color(255, 255, 255));
         bgPagamento.add(rbAplicativo);
@@ -160,7 +152,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 rbAplicativoActionPerformed(evt);
             }
         });
-        getContentPane().add(rbAplicativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, -1, -1));
+        getContentPane().add(rbAplicativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
 
         rbEstabelecimento.setBackground(new java.awt.Color(255, 255, 255));
         bgPagamento.add(rbEstabelecimento);
@@ -171,33 +163,33 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 rbEstabelecimentoActionPerformed(evt);
             }
         });
-        getContentPane().add(rbEstabelecimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, -1));
+        getContentPane().add(rbEstabelecimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
         tfNumeroCartao.setBackground(new java.awt.Color(255, 255, 255));
         tfNumeroCartao.setForeground(new java.awt.Color(58, 22, 46));
         tfNumeroCartao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfNumeroCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 170, 30));
+        getContentPane().add(tfNumeroCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 170, 30));
 
         cbHora1.setBackground(new java.awt.Color(255, 255, 255));
         cbHora1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cbHora1.setForeground(new java.awt.Color(58, 22, 46));
-        getContentPane().add(cbHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 210, 30));
+        getContentPane().add(cbHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 210, 30));
 
         cbFormaPagamento.setBackground(new java.awt.Color(255, 255, 255));
         cbFormaPagamento.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cbFormaPagamento.setForeground(new java.awt.Color(58, 22, 46));
         cbFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visa", "MasterCard", "Paypal" }));
-        getContentPane().add(cbFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 110, 30));
+        getContentPane().add(cbFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 110, 30));
 
         tfCupom2.setBackground(new java.awt.Color(255, 255, 255));
         tfCupom2.setForeground(new java.awt.Color(58, 22, 46));
         tfCupom2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfCupom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 140, 30));
+        getContentPane().add(tfCupom2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 140, 30));
 
         jLabel20.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(58, 22, 46));
         jLabel20.setText("Possui cupom?");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 30));
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 30));
 
         tfCodigo.setBackground(new java.awt.Color(255, 255, 255));
         tfCodigo.setForeground(new java.awt.Color(58, 22, 46));
@@ -209,7 +201,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(58, 22, 46));
         jLabel21.setText("Data de validade e código de segurança");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 20));
 
         tfValidadeMes.setBackground(new java.awt.Color(255, 255, 255));
         tfValidadeMes.setForeground(new java.awt.Color(58, 22, 46));
@@ -232,7 +224,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMousePressed
-        System.out.println("ok");
+        controller.agendar();
     }//GEN-LAST:event_btnAgendarMousePressed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -291,10 +283,8 @@ public class PopUpAgendar extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbFormaPagamento;
     private javax.swing.JComboBox<String> cbHora1;
-    private javax.swing.JComboBox<String> cbTipoServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -338,9 +328,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
         return cbHora1;
     }
 
-    public JComboBox<String> getCbTipoServico() {
-        return cbTipoServico;
-    }
+    
 
     public JRadioButton getRbAplicativo() {
         return rbAplicativo;

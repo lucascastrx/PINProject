@@ -25,7 +25,7 @@ public class Gestor implements Serializable{
     private int telefone;
     private String senha;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "gestor",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Notificacao> notificacoes = new ArrayList <>();
 
     public Gestor() {

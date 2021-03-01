@@ -1,10 +1,13 @@
 package com.ubeauty.App;
         
+import com.ubeauty.Controller.Vendedor.NotificacaoVendedorController;
 import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.Gestor;
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.Entities.Mensagem;
+import com.ubeauty.Entities.Notificacao;
 import com.ubeauty.Entities.OrdemItem;
 import com.ubeauty.Entities.Pagamento;
 import com.ubeauty.Entities.Reclamacao;
@@ -14,6 +17,7 @@ import com.ubeauty.Repository.AgendamentoDAO;
 import com.ubeauty.Repository.CarrinhoDAO;
 import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.Repository.GestorDAO;
+import com.ubeauty.Repository.NotificacaoDAO;
 import com.ubeauty.Repository.OrdemItemDAO;
 import com.ubeauty.Repository.ReclamacaoDAO;
 import com.ubeauty.Repository.ServicoDAO;
@@ -124,10 +128,9 @@ public class App {
 //       GestorDAO gd = new GestorDAO();
 //       gd.gravar(new Gestor("Eduardo", "0", "eduardo@gmail.com", "x", 0, 0, "eduardo"));
        
-         ClienteDAO c = new ClienteDAO();
-         List<Cliente> d = c.buscarClientesPorCidade("Rio do Sul");
-         System.out.println(d);
          
+         NotificacaoVendedorController nvc = new NotificacaoVendedorController();
+         nvc.criarNotificacao();
        
        
        

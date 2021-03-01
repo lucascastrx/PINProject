@@ -58,7 +58,7 @@ public class Cupom implements Serializable {
         this.nome = nome;
     }
 
-    public double getDesconto() {
+    public int getDesconto() {
         return desconto;
     }
 

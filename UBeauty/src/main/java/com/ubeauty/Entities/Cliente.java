@@ -2,7 +2,9 @@ package com.ubeauty.Entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -30,7 +33,7 @@ public class Cliente implements Serializable {
     private String senha;
     private boolean autonomo;
 
-    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "clientes", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Carrinho> carrinhos = new ArrayList<>();
 
     @OneToMany(mappedBy = "cliente")
@@ -39,8 +42,10 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "c")
     private List<Mensagem> mensagens = new ArrayList<>();
 
-    @OneToMany(mappedBy = "clienteN",fetch = FetchType.EAGER)
-    protected List<Notificacao> notificacoes = new ArrayList<>();
+    @ManyToMany(mappedBy = "clientes", fetch = FetchType.EAGER)
+    private Set<Notificacao> notificacoes = new HashSet<>();
+    
+    
 
     public Cliente() {
     }
@@ -140,6 +145,12 @@ public class Cliente implements Serializable {
         carrinho.setClientes(null);
     }
 
+    public List<Carrinho> getCarrinhos() {
+        return carrinhos;
+    }
+    
+    
+
     public void addReclamacoes(Reclamacao r) {
         reclamacoes.add(r);
         r.setCliente(this);
@@ -165,9 +176,11 @@ public class Cliente implements Serializable {
         m.setCliente(null);
     }
 
-    public List<Notificacao> getNotificacoes() {
+    public Set<Notificacao> getNotificacoes() {
         return notificacoes;
     }
+
+    
 
     @Override
     public int hashCode() {

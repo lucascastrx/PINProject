@@ -1,6 +1,8 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.PrincipalController;
+import com.ubeauty.TableModel.TableModelClienteAgendados;
+import javax.swing.JTable;
 
 public class PanelPrincipal extends javax.swing.JPanel {
 
@@ -11,6 +13,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
         initComponents();
         this.view = view;
         this.controller = pc;
+    }
+    
+    public void setTableModel(TableModelClienteAgendados model) {
+        this.tabela.setModel(model);
     }
 
     /**
@@ -30,7 +36,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAgendados = new javax.swing.JTable();
+        tabela = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,10 +84,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
-        tableAgendados.setBackground(new java.awt.Color(204, 204, 204));
-        tableAgendados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableAgendados.setForeground(new java.awt.Color(58, 22, 46));
-        tableAgendados.setModel(new javax.swing.table.DefaultTableModel(
+        tabela.setBackground(new java.awt.Color(204, 204, 204));
+        tabela.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabela.setForeground(new java.awt.Color(58, 22, 46));
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -89,7 +95,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
                 "Serviço", "Horário"
             }
         ));
-        jScrollPane1.setViewportView(tableAgendados);
+        jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 280, 180));
     }// </editor-fold>//GEN-END:initComponents
@@ -116,6 +122,11 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableAgendados;
+    private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
+ 
+    public JTable getTabela() {
+        return tabela;
+    }
+
 }

@@ -3,8 +3,11 @@ package com.ubeauty.Entities;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,8 +28,8 @@ public class Servico implements Serializable{
     @ManyToOne
     private Vendedor vendedorServico;
     
-    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Agendamento> agendamentos = new ArrayList<>();
+    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<Agendamento> agendamentos = new HashSet<>();
             
 
     public Servico() {

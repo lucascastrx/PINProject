@@ -28,7 +28,7 @@ public class Vendedor extends Cliente{
     @OneToMany(mappedBy = "v")
     private List<Mensagem> mensagens = new ArrayList<>();
     
-        @OneToMany(mappedBy = "vendedorN",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "vendedorN",fetch = FetchType.EAGER)
     protected List<Notificacao> notificacoesEnviadas = new ArrayList<>();
     
     //@OneToMany(mappedBy =  "notificacoesEnviadas")

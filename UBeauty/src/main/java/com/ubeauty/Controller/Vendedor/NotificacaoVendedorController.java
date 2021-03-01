@@ -1,16 +1,19 @@
 package com.ubeauty.Controller.Vendedor;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.ClienteNotificacao;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Notificacao;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.ClienteDAO;
+import com.ubeauty.Repository.ClienteNotificacaoDAO;
 import com.ubeauty.Repository.NotificacaoDAO;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.TableModel.TableModelNotificacoes;
 import com.ubeauty.View.Vendedor.PanelNotificacoesVendedor;
 import com.ubeauty.View.Vendedor.PopUpCriarNotificacao;
 import com.ubeauty.View.Vendedor.TelaPrincipalVendedor;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -29,6 +32,10 @@ public class NotificacaoVendedorController {
         this.view = view;
         vendedor = (Vendedor) LoginAuthentication.cliente;
     }
+    
+    public NotificacaoVendedorController(){
+        
+    }
 
     public void abrirTelaCriarNotificacao() {
         new PopUpCriarNotificacao(this).setVisible(true);
@@ -44,24 +51,21 @@ public class NotificacaoVendedorController {
         view.getTableNotificacoes().repaint();
     }
 
-    public void criarNotificacao() {
+    public void criarNotificacao() {     
         String texto = popUp.getTaDescricao().getText();
 
-        if (!texto.equals("")) {
+        if (!texto.isBlank()) {
             Notificacao n = new Notificacao(texto, new Date(), new Date());
             n.setVendedorN(vendedor);
-
             vendedor.addNotificacao(n);
 
             VendedorDAO persistencia = new VendedorDAO();
             persistencia.atualizar(vendedor);
-
-            persistencia.closeConnection();
-
-            NotificacaoDAO nd = new NotificacaoDAO();
-            nd.gravar(n);
-
+            
             enviarNotificacao(n);
+            
+            new NotificacaoDAO().gravar(n);
+            
             setDadosTabela();
 
             popUp.dispose();
@@ -69,19 +73,34 @@ public class NotificacaoVendedorController {
             viewPrincipal.exibirMensagem("Deve inserir conteúdo na notificação.");
         }
     }
-
+    
     public void enviarNotificacao(Notificacao n) {
-        String cidade = vendedor.getEndereco().split(" ,")[0];
-        ClienteDAO cd = new ClienteDAO();
-        List<Cliente> clientes = cd.buscarClientesPorCidade(cidade);
-        for (Cliente cliente : clientes) {
-            n.addCliente(cliente);
-            cliente.addNotificacao(n);
-            ClienteDAO cd2 = new ClienteDAO();
-            cd2.atualizar(cliente);
-            cd2.closeConnection();
+        String [] endereco = vendedor.getEndereco().split(", ");
+        String cidade = endereco[0];
+        Map<Integer, Cliente> mapClientes =  new ClienteDAO().buscarTodosClientes();
+        List<Cliente> listClientes = new ArrayList<>();
+        
+        for (Map.Entry<Integer, Cliente> c : mapClientes.entrySet()) {
+            if(!(c.getValue() instanceof Vendedor)){
+                Cliente cliente =  c.getValue();
+                listClientes.add(cliente);
+             }
         }
-
+      
+        for (Cliente c : listClientes) {
+                String [] address = c.getEndereco().split(", ");
+                String city = address[0];
+                if(city.equalsIgnoreCase(cidade)){
+                    System.out.println("Gravei!");
+                    c.addNotificacao(n);
+                    n.addClientes(c);
+                    ClienteDAO cd2 = new ClienteDAO();
+                    cd2.atualizar(c);
+                    
+                }
+            
+        }
+        
     }
 
     private Map<Integer, Notificacao> buscarNotificacoes() {

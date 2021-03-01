@@ -90,7 +90,7 @@ public class PaginaSalaoController {
         if(LoginAuthentication.cliente != null){
             JTable table = panelPaginas.getTabela();
             Servico s = modelServicos.getServico(table.getSelectedRow());
-            new PopUpAgendar(s).setVisible(true);
+            new PopUpAgendar(s,controller).setVisible(true);
         }else{
             controller.mostrarTela("contaConvidado");
         }

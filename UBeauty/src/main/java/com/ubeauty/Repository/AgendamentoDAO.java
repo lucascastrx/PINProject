@@ -79,6 +79,8 @@ public class AgendamentoDAO {
         return ag;
     }
     
+     
+     
     public List<Agendamento> buscarAgendamentoPorIdServico(int id){
         List<Agendamento> listAgendamentos = new ArrayList<>();
         try {

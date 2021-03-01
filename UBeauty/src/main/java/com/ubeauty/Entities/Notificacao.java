@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,8 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -32,8 +36,13 @@ public class Notificacao implements Serializable{
     @ManyToOne
     private Vendedor vendedorN;
     
-    @ManyToMany(mappedBy = "clienteN",fetch = FetchType.EAGER)
-    protected List<Cliente> clientes = new ArrayList<>();
+    @ManyToOne
+    private Gestor gestor;
+    
+    @ManyToMany
+    @JoinTable(name = "ClienteNotificacao",joinColumns = @JoinColumn(name = "notificacao_id"), 
+                                           inverseJoinColumns = @JoinColumn(name = "cliente_id"))
+    private Set<Cliente> clientes = new HashSet<>();
     
     @Transient
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
@@ -84,12 +93,14 @@ public class Notificacao implements Serializable{
     public void setVendedorN(Vendedor vendedorN) {
         this.vendedorN = vendedorN;
     }
-    
-    public void addCliente(Cliente cliente){
-        this.clientes.add(cliente);
+
+    public Set<Cliente> getClientes() {
+        return clientes;
     }
     
-    
+    public void addClientes(Cliente c){
+        clientes.add(c);
+    }
     
     
 

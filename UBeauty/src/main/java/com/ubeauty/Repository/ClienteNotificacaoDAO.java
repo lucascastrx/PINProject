@@ -1,6 +1,7 @@
 package com.ubeauty.Repository;
 
 import com.ubeauty.Entities.Cliente;
+import com.ubeauty.Entities.ClienteNotificacao;
 import com.ubeauty.Entities.Notificacao;
 import com.ubeauty.Entities.Vendedor;
 import java.util.ArrayList;
@@ -11,19 +12,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class ClienteDAO {
+public class ClienteNotificacaoDAO {
     private final EntityManagerFactory emf;
     private final EntityManager em;
-
-    public ClienteDAO() {
+    
+    public ClienteNotificacaoDAO (){
         emf = Persistence.createEntityManagerFactory("ubeautydb");
         em = emf.createEntityManager();
     }
     
-    public void gravar (Cliente cliente){
+    public void gravar (ClienteNotificacao cn){
         try {
             em.getTransaction().begin();
-            em.persist(cliente);
+            em.persist(cn);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -33,13 +34,28 @@ public class ClienteDAO {
         }
     }
     
-    public Cliente remover(int id){
-        Cliente cliente = null;
+    public ClienteNotificacao remover (int id){
+        ClienteNotificacao cn = null;
         
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
-            em.remove(cliente);
+            cn = em.find(ClienteNotificacao.class, id);
+            em.remove(cn);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            closeConnection();
+        }
+        return cn;
+    }
+    
+    public ClienteNotificacao atualizar (ClienteNotificacao cn){
+        ClienteNotificacao clienteNotif = null;
+        
+        try {
+            em.getTransaction().begin();
+            clienteNotif = em.merge(cn);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -47,42 +63,15 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return cliente;
+        return clienteNotif;
     }
     
-
-    
-    public void atualizar(Cliente c) {
-       
+    public ClienteNotificacao buscar (int id){
+        ClienteNotificacao cn = null;
         
-        try{
-            em.getTransaction().begin();
-            em.merge(c);
-            em.getTransaction().commit();
-        }catch(Exception e){
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally{
-            closeConnection();
-        }
-    }
-    
-    /**
-     *
-     * @param id
-     * 
-     * É necessário que a conexão seja fechada manualmente
-     * devido a inconsistencia de persistir objetos de coleções
-     * em relações ToMany
-     * 
-     * @return Cliente
-     */
-    public Cliente buscar (int id){
-        Cliente cliente = null;
         try {
             em.getTransaction().begin();
-            cliente = em.find(Cliente.class, id);
+            cn = em.find(ClienteNotificacao.class, id);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -90,39 +79,19 @@ public class ClienteDAO {
         } finally {
             
         }
-        
-        return cliente;
+        return cn;
     }
     
-    public Map<Integer,Cliente> buscarTodosClientes(){
-        Map <Integer, Cliente> clientesMap = new HashMap <> ();
+    public Map<Integer,ClienteNotificacao> buscarTodosClienteNotificacoes(){
+        Map<Integer,ClienteNotificacao> mapClienteNotificacao = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesMap.putIfAbsent(c.getId(), c);
-            }
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            closeConnection();
-        }
-        
-        return clientesMap;
-    }
-    
-    public List<Cliente> buscarClientesPorCidade(String cidade){
-        List<Cliente> clientes = new ArrayList<>();
-        
-        try {
-            em.getTransaction().begin();                  
-            List<Cliente> listClientes = em.createQuery("SELECT c from Cliente c JOIN u.notificacao n WHERE endereco LIKE :cidade").setParameter("cidade", cidade + "%").getResultList();
-            for (Cliente c : listClientes) {
-                if (!(c instanceof Vendedor)) {
-                    clientes.add(c);
+            List<ClienteNotificacao> listClienteNotificacao = em.createQuery("from ClienteNotificacao").getResultList();
+            for (ClienteNotificacao cn : listClienteNotificacao) {
+                Cliente c = cn.getCliente();
+                if(c != null){
+                mapClienteNotificacao.putIfAbsent(c.getId(), cn);
                 }
             }
             em.getTransaction().commit();
@@ -132,8 +101,29 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
+        return mapClienteNotificacao;
+    }
+    
+    public Map<Integer,ClienteNotificacao> buscarTodosClienteNotificacoesPorId(int id){
+        Map<Integer,ClienteNotificacao> mapClienteNotificacao = new HashMap<>();
         
-        return clientes;
+        try {
+            em.getTransaction().begin();
+            List<ClienteNotificacao> listClienteNotificacao = em.createQuery("from ClienteNotificacao where cliente_id = " + id).getResultList();
+            for (ClienteNotificacao cn : listClienteNotificacao) {
+                Cliente c = cn.getCliente();
+                if(c != null){
+                mapClienteNotificacao.putIfAbsent(c.getId(), cn);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return mapClienteNotificacao;
     }
     
      public Map<Integer,Notificacao> buscarNotificacaoPorIdCliente(int id){
@@ -142,9 +132,11 @@ public class ClienteDAO {
         try {
             em.getTransaction().begin();
             List<Notificacao> listNotificacao = em.createQuery(
-                    "select n from Notificacao n " +
-                    "    left join fetch n.clientes c" +
-                    "       where c.id = :id").setParameter("id", id).getResultList();
+                    "select n.id, n.data, n.hora, n.texto,n.gestor,n.vendedorN from Notificacao n " +
+                    "    inner join ClienteNotificacao CN" +
+                    "        on n.id = CN.id.notificacao " +
+                    "    inner join Cliente C            " +
+                    "        on CN.id.cliente = " + id).getResultList();
             for (Notificacao n : listNotificacao) {
                 
                     clientesN.putIfAbsent(n.getId(),n);
@@ -161,15 +153,14 @@ public class ClienteDAO {
         return clientesN;
     }
     
-    
     public List<Integer> buscarTodasKeys(){
-        List<Integer> clientesKeys = null;
+        List<Integer> notificacoesKeys = null;
         
         try {
             em.getTransaction().begin();
-            List<Cliente> listClientes = em.createQuery("from Cliente").getResultList();
-            for (Cliente c : listClientes) {
-                clientesKeys.add(c.getId());
+            List<Notificacao> listNotificacao = em.createQuery("from Notificacao").getResultList();
+            for (Notificacao n : listNotificacao) {
+                notificacoesKeys.add(n.getId());
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -178,14 +169,13 @@ public class ClienteDAO {
         } finally {
             closeConnection();
         }
-        
-        return clientesKeys;
+        return notificacoesKeys;
     }
-     
-   public void closeConnection(){
+    
+    
+    
+    public void closeConnection(){
         em.close();
         emf.close();
     }
-    
-    
 }

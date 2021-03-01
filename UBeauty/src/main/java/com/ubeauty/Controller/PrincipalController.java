@@ -1,10 +1,20 @@
 package com.ubeauty.Controller;
 
+import com.ubeauty.Entities.Agendamento;
+import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.Entities.OrdemItem;
 import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.Repository.AgendamentoDAO;
+import com.ubeauty.TableModel.TableModelClienteAgendados;
 import com.ubeauty.View.*;
 import com.ubeauty.View.Gestor.PanelTermosGestor;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -25,6 +35,8 @@ public class PrincipalController {
     private JPanel jpTermosDeUso;
     private JFrame PopUpAgendar;
     private JFrame PopUpReclamacoes;
+    
+    private TableModelClienteAgendados modelAgendados;
  
 
     public PrincipalController(TelaPrincipal view) {
@@ -87,5 +99,32 @@ public class PrincipalController {
             PanelPaginaSalao p = (PanelPaginaSalao) jpPagSalao;
             p.setVendedor(v);       
     }
+    
+    public TableModelClienteAgendados setTable(PanelPrincipal pp){
+        Agendamento a;
+        Map<Integer, Agendamento> mapAgendamentos = new HashMap<>();
+        List<Carrinho> carrinhos = LoginAuthentication.cliente.getCarrinhos();
+        List<Agendamento> agendamentos = new ArrayList<>();
+        for(Carrinho cc : carrinhos){
+            Set<OrdemItem> setOI = cc.getItems();
+            for(OrdemItem oi : setOI){
+                a = oi.getAgendamento();
+                mapAgendamentos.putIfAbsent(a.getId(), a );
+            }
+        }
+        
+        
+        modelAgendados = new TableModelClienteAgendados(mapAgendamentos);
+        PanelPrincipal p = (PanelPrincipal) jpPrincipal;
+        p.setTableModel(modelAgendados);
+        this.mostrarTela("principal");
+        return modelAgendados;
+    }
+
+    public JPanel getJpPrincipal() {
+        return jpPrincipal;
+    }
+    
+    
    
 }
