@@ -28,7 +28,15 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableAgendamentos = new javax.swing.JTable();
+        tableHorarios = new javax.swing.JTable();
+        btnCriarNovo = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableAgendamentos1 = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcluirHorario = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,10 +56,10 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
-        tableAgendamentos.setBackground(new java.awt.Color(204, 204, 204));
-        tableAgendamentos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tableAgendamentos.setForeground(new java.awt.Color(58, 22, 46));
-        tableAgendamentos.setModel(new javax.swing.table.DefaultTableModel(
+        tableHorarios.setBackground(new java.awt.Color(204, 204, 204));
+        tableHorarios.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableHorarios.setForeground(new java.awt.Color(58, 22, 46));
+        tableHorarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,17 +67,89 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
                 "Serviço", "Horário"
             }
         ));
-        jScrollPane1.setViewportView(tableAgendamentos);
+        jScrollPane1.setViewportView(tableHorarios);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 370));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 280, 160));
+
+        btnCriarNovo.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnCriarNovo.setForeground(new java.awt.Color(255, 255, 255));
+        btnCriarNovo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCriarNovo.setText("Criar novo");
+        btnCriarNovo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCriarNovo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCriarNovoMousePressed(evt);
+            }
+        });
+        add(btnCriarNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 90, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(58, 22, 46));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Horários disponibilizados");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 30));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/linha-rosa.png"))); // NOI18N
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, -1, 10));
+
+        jScrollPane2.setBorder(null);
+
+        tableAgendamentos1.setBackground(new java.awt.Color(204, 204, 204));
+        tableAgendamentos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tableAgendamentos1.setForeground(new java.awt.Color(58, 22, 46));
+        tableAgendamentos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Serviço", "Horário"
+            }
+        ));
+        jScrollPane2.setViewportView(tableAgendamentos1);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 280, 200));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 110, 50));
+
+        btnExcluirHorario.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnExcluirHorario.setForeground(new java.awt.Color(153, 153, 153));
+        btnExcluirHorario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnExcluirHorario.setText("Excluir");
+        btnExcluirHorario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExcluirHorario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirHorarioMouseClicked(evt);
+            }
+        });
+        add(btnExcluirHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 100, 30));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCriarNovoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarNovoMousePressed
+        
+    }//GEN-LAST:event_btnCriarNovoMousePressed
+
+    private void btnExcluirHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirHorarioMouseClicked
+        
+    }//GEN-LAST:event_btnExcluirHorarioMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnCriarNovo;
+    private javax.swing.JLabel btnExcluirHorario;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableAgendamentos;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableAgendamentos1;
+    private javax.swing.JTable tableHorarios;
     // End of variables declaration//GEN-END:variables
 }
