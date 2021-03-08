@@ -2,6 +2,7 @@ package com.ubeauty.View;
 
 import com.ubeauty.Controller.AgendamentoController;
 import com.ubeauty.Controller.PrincipalController;
+import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Entities.Servico;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -21,12 +22,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
     public PopUpAgendar(Servico s,PrincipalController pc) {
         initComponents();
         controller = new AgendamentoController(s,this,pc);
-        this.setLocationRelativeTo(null);
-
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
-        
-        
+        UtilController.configurarTela(this);
     }
     
     public void exibirMensagem(String mensagem) {

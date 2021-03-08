@@ -129,11 +129,11 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarNovoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarNovoMousePressed
-        
+        controller.abrirPopUpCriarHorario();
     }//GEN-LAST:event_btnCriarNovoMousePressed
 
     private void btnExcluirHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirHorarioMouseClicked
-        
+        controller.excluirHorario();
     }//GEN-LAST:event_btnExcluirHorarioMouseClicked
 
 

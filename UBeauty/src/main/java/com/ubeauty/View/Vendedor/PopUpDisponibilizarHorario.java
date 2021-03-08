@@ -4,6 +4,7 @@ import com.ubeauty.View.*;
 import com.ubeauty.Controller.AgendamentoController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
 import com.ubeauty.Entities.Servico;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -18,14 +19,12 @@ import javax.swing.JTextField;
  * @author Eduardo Buzzi
  */
 public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
-    AgendamentoController controller;
+    PrincipalControllerVendedor controller;
     
-    public PopUpDisponibilizarHorario(Servico s,PrincipalController pc) {
+    public PopUpDisponibilizarHorario(PrincipalControllerVendedor pc) {
         initComponents();
-        //controller = new AgendamentoController(s,this,pc);
+        controller = pc;
         UtilController.configurarTela(this);
-        
-        
     }
     
     public void exibirMensagem(String mensagem) {
@@ -39,12 +38,12 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
 
         bgPagamento = new javax.swing.ButtonGroup();
         buttonGroup1 = new javax.swing.ButtonGroup();
-        btnAgendar = new javax.swing.JLabel();
+        btnCriarHorario = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbDia = new javax.swing.JComboBox<>();
+        cbServico = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -64,17 +63,17 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
         setType(java.awt.Window.Type.POPUP);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAgendar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        btnAgendar.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgendar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnAgendar.setText("Criar horário");
-        btnAgendar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAgendar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCriarHorario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        btnCriarHorario.setForeground(new java.awt.Color(255, 255, 255));
+        btnCriarHorario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCriarHorario.setText("Criar horário");
+        btnCriarHorario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCriarHorario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnAgendarMousePressed(evt);
+                btnCriarHorarioMousePressed(evt);
             }
         });
-        getContentPane().add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, 30));
+        getContentPane().add(btnCriarHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 110, 50));
@@ -99,10 +98,10 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
         jLabel12.setText("Disponibilizar Horário");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 170, 30));
 
-        cbDia.setBackground(new java.awt.Color(255, 255, 255));
-        cbDia.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cbDia.setForeground(new java.awt.Color(58, 22, 46));
-        getContentPane().add(cbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 190, 30));
+        cbServico.setBackground(new java.awt.Color(255, 255, 255));
+        cbServico.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        cbServico.setForeground(new java.awt.Color(58, 22, 46));
+        getContentPane().add(cbServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 190, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(58, 22, 46));
@@ -155,9 +154,9 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgendarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgendarMousePressed
-        controller.agendar();
-    }//GEN-LAST:event_btnAgendarMousePressed
+    private void btnCriarHorarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarHorarioMousePressed
+        controller.criarHorario();
+    }//GEN-LAST:event_btnCriarHorarioMousePressed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
        this.dispose();
@@ -207,10 +206,10 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bgPagamento;
-    private javax.swing.JLabel btnAgendar;
     private javax.swing.JLabel btnCancelar;
+    private javax.swing.JLabel btnCriarHorario;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbDia;
+    private javax.swing.JComboBox<String> cbServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
@@ -226,17 +225,25 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
     private javax.swing.JTextField tfMinuto;
     // End of variables declaration//GEN-END:variables
 
-    public ButtonGroup getBgPagamento() {
-        return bgPagamento;
+    public JComboBox<String> getCbServico() {
+        return cbServico;
     }
 
-    public JLabel getBtnComentar() {
-        return btnAgendar;
+    public JTextField getTfDia() {
+        return tfDia;
     }
 
-    public JLabel getBtnVoltar() {
-        return btnCancelar;
+    public JTextField getTfHora() {
+        return tfHora;
+    }
+
+    public JTextField getTfMes() {
+        return tfMes;
+    }
+
+    public JTextField getTfMinuto() {
+        return tfMinuto;
     }
     
-
+    
 }

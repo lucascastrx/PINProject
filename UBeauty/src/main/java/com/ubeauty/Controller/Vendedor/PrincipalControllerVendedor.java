@@ -18,6 +18,7 @@ public class PrincipalControllerVendedor {
     private JPanel jpServicos;
     private JPanel jpConta;
     private JPanel jpTermosDeUso;
+    private PopUpDisponibilizarHorario popUp;
 
     public PrincipalControllerVendedor(TelaPrincipalVendedor view) {
         this.view = view;
@@ -55,6 +56,20 @@ public class PrincipalControllerVendedor {
         view.addPainel(jpServicos, "servicos");         
         view.addPainel(jpConta, "conta");
         view.addPainel(jpTermosDeUso, "termosUso");
+    }
+
+    public void criarHorario() {
+        
+        popUp.getCbServico().getSelectedIndex();
+    }
+
+    public void excluirHorario() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void abrirPopUpCriarHorario() {
+        popUp = new PopUpDisponibilizarHorario(this);
+        popUp.setVisible(true);
     }
    
 }
