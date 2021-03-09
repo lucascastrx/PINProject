@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 
 @Entity 
 public class Vendedor extends Cliente{
+    private boolean autonomo;
     private String cnpj;
     private String nomeProfissao;
     private String descricao;
@@ -55,7 +56,8 @@ public class Vendedor extends Cliente{
      */
     public Vendedor(String cnpj, boolean autonomo,String nomeProfissao, String descricao, String horaFunc, String nome, String sobrenome, String email,
                     String endereco, int ddd, int telefone, String senha) {
-        super(autonomo, nome, sobrenome, email, endereco, ddd, telefone, senha);
+        super(nome, sobrenome, email, endereco, ddd, telefone, senha);
+        this.autonomo = autonomo;
         this.cnpj = cnpj;
         this.nomeProfissao = nomeProfissao;
         this.descricao = descricao;
@@ -64,7 +66,8 @@ public class Vendedor extends Cliente{
     
     public Vendedor(String cnpj, boolean autonomo,String nomeProfissao, String nome, String sobrenome, String email,
                     String endereco, int ddd, int telefone, String senha) {
-        super(autonomo, nome, sobrenome, email, endereco, ddd, telefone, senha);
+        super(nome, sobrenome, email, endereco, ddd, telefone, senha);
+        this.autonomo = autonomo;
         this.cnpj = cnpj;
         this.nomeProfissao = nomeProfissao;
     }
@@ -162,6 +165,15 @@ public class Vendedor extends Cliente{
     public List<Notificacao> getNotificacoesEnviadas() {
         return notificacoesEnviadas;
     }
+
+    public boolean isAutonomo() {
+        return autonomo;
+    }
+
+    public void setAutonomo(boolean autonomo) {
+        this.autonomo = autonomo;
+    }
+    
     
     
 

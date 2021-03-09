@@ -83,9 +83,15 @@ public class AgendamentoDAO {
      
     public List<Agendamento> buscarAgendamentoPorIdServico(int id){
         List<Agendamento> listAgendamentos = new ArrayList<>();
+        List<Agendamento> listAgendamentos2 = new ArrayList<>();
         try {
             em.getTransaction().begin();
             listAgendamentos = em.createQuery("from Agendamento where servico_id = " + id).getResultList();
+            for(Agendamento a : listAgendamentos){
+                if(a.isAgendado() == false){
+                    listAgendamentos2.add(a);
+                }
+            }
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
@@ -93,6 +99,26 @@ public class AgendamentoDAO {
             closeConnection();
         }
         
+        return listAgendamentos2;
+    }
+    
+     public List<Agendamento> buscarAgendamentosPorIdCarrinho(int id){
+        List<Agendamento> listAgendamentos = new ArrayList<>();
+        try {
+            em.getTransaction().begin();
+            listAgendamentos = em.createQuery(
+                    "select a from Agendamento a " + 
+                    "left join fetch a.items i" +
+                    "where i.id = :id"
+            ).setParameter("id", id).getResultList();
+            
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
         return listAgendamentos;
     }
     
@@ -104,6 +130,48 @@ public class AgendamentoDAO {
             List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
             for (Agendamento ag : listAgendamentos) {
                 mapAgendamentos.putIfAbsent(ag.getId(), ag);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return mapAgendamentos;
+    }
+    
+    public Map<Integer,Agendamento> buscarTodosAgendados(){
+        Map<Integer,Agendamento> mapAgendamentos = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
+            for (Agendamento ag : listAgendamentos) {
+                if(ag.isAgendado()== true){
+                mapAgendamentos.putIfAbsent(ag.getId(), ag);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return mapAgendamentos;
+    }
+    
+    public Map<Integer,Agendamento> buscarTodosNaoAgendados(){
+        Map<Integer,Agendamento> mapAgendamentos = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Agendamento> listAgendamentos = em.createQuery("from Agendamento").getResultList();
+            for (Agendamento ag : listAgendamentos) {
+                if(ag.isAgendado() == false){
+                mapAgendamentos.putIfAbsent(ag.getId(), ag);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception e) {

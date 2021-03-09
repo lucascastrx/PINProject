@@ -8,7 +8,7 @@ import java.util.Objects;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
-@Embeddable
+
 public class OrdemItemPK implements Serializable{
     @ManyToOne
     private Carrinho carrinho;

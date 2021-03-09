@@ -2,10 +2,12 @@ package com.ubeauty.View.Vendedor;
 
 import com.ubeauty.View.*;
 import com.ubeauty.Controller.AgendamentoController;
+import com.ubeauty.Controller.DisponibilizarHorarioController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
 import com.ubeauty.Entities.Servico;
+import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -19,18 +21,22 @@ import javax.swing.JTextField;
  * @author Eduardo Buzzi
  */
 public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
-    PrincipalControllerVendedor controller;
+    private PrincipalControllerVendedor controller;
+    private DisponibilizarHorarioController dController;
     
-    public PopUpDisponibilizarHorario(PrincipalControllerVendedor pc) {
+    public PopUpDisponibilizarHorario(PrincipalControllerVendedor pc,PanelPrincipalVendedor view) {
         initComponents();
-        controller = pc;
         UtilController.configurarTela(this);
+        controller = pc;
+        dController = new DisponibilizarHorarioController(controller, view, this);
+        dController.loadComboBox();
+        
+        
     }
     
     public void exibirMensagem(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem);
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -155,7 +161,7 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarHorarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarHorarioMousePressed
-        controller.criarHorario();
+        dController.criarHorario();
     }//GEN-LAST:event_btnCriarHorarioMousePressed
 
     private void btnCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseClicked
@@ -209,7 +215,7 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
     private javax.swing.JLabel btnCancelar;
     private javax.swing.JLabel btnCriarHorario;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbServico;
+    private javax.swing.JComboBox<Servico> cbServico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
@@ -225,20 +231,20 @@ public class PopUpDisponibilizarHorario extends javax.swing.JFrame {
     private javax.swing.JTextField tfMinuto;
     // End of variables declaration//GEN-END:variables
 
-    public JComboBox<String> getCbServico() {
+    public JComboBox<Servico> getCbServico() {
         return cbServico;
     }
 
     public JTextField getTfDia() {
         return tfDia;
     }
+    
+    public JTextField getTfMes() {
+        return tfMes;
+    }
 
     public JTextField getTfHora() {
         return tfHora;
-    }
-
-    public JTextField getTfMes() {
-        return tfMes;
     }
 
     public JTextField getTfMinuto() {

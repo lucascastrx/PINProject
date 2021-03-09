@@ -1,5 +1,6 @@
 package com.ubeauty.View;
 
+import com.ubeauty.Controller.AgendamentoController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.TableModel.TableModelClienteAgendados;
 import javax.swing.JTable;
@@ -13,6 +14,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
         initComponents();
         this.view = view;
         this.controller = pc;
+        AgendamentoController ac = new AgendamentoController(this);
+        ac.setDadosTabelasAgendamentos();
     }
     
     public void setTableModel(TableModelClienteAgendados model) {
@@ -127,6 +130,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
  
     public JTable getTabela() {
         return tabela;
+    }
+    
+    public PanelPrincipal getPanelPrincipal(){
+        return this;
     }
 
 }

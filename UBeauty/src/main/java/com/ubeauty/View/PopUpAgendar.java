@@ -3,6 +3,7 @@ package com.ubeauty.View;
 import com.ubeauty.Controller.AgendamentoController;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.UtilController;
+import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Servico;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -42,16 +43,14 @@ public class PopUpAgendar extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cbDia = new javax.swing.JComboBox<>();
+        cbHorarios = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         rbAplicativo = new javax.swing.JRadioButton();
         rbEstabelecimento = new javax.swing.JRadioButton();
         tfNumeroCartao = new javax.swing.JTextField();
-        cbHora1 = new javax.swing.JComboBox<>();
         cbFormaPagamento = new javax.swing.JComboBox<>();
         tfCupom2 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -84,10 +83,10 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 btnAgendarMousePressed(evt);
             }
         });
-        getContentPane().add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 90, 30));
+        getContentPane().add(btnAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 90, 30));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-rosa.png"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 110, 50));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 110, 50));
 
         btnCancelar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btnCancelar.setForeground(new java.awt.Color(153, 153, 153));
@@ -99,24 +98,29 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 btnCancelarMouseClicked(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 490, 100, 30));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, 100, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 130, 50));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 420, 130, 50));
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(58, 22, 46));
         jLabel12.setText("Agendar Serviço");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, 30));
 
-        cbDia.setBackground(new java.awt.Color(255, 255, 255));
-        cbDia.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cbDia.setForeground(new java.awt.Color(58, 22, 46));
-        getContentPane().add(cbDia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 210, 30));
+        cbHorarios.setBackground(new java.awt.Color(255, 255, 255));
+        cbHorarios.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        cbHorarios.setForeground(new java.awt.Color(58, 22, 46));
+        cbHorarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbHorariosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbHorarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 190, 30));
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel15.setText("Dia");
+        jLabel15.setText("Horário");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 30));
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -127,17 +131,12 @@ public class PopUpAgendar extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(58, 22, 46));
         jLabel17.setText("Pagamento");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 30));
-
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(58, 22, 46));
-        jLabel18.setText("Hora");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 30));
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 30));
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(58, 22, 46));
         jLabel19.setText("Número do cartão");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 20));
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 20));
 
         rbAplicativo.setBackground(new java.awt.Color(255, 255, 255));
         bgPagamento.add(rbAplicativo);
@@ -148,7 +147,7 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 rbAplicativoActionPerformed(evt);
             }
         });
-        getContentPane().add(rbAplicativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, -1, -1));
+        getContentPane().add(rbAplicativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, -1, -1));
 
         rbEstabelecimento.setBackground(new java.awt.Color(255, 255, 255));
         bgPagamento.add(rbEstabelecimento);
@@ -159,23 +158,18 @@ public class PopUpAgendar extends javax.swing.JFrame {
                 rbEstabelecimentoActionPerformed(evt);
             }
         });
-        getContentPane().add(rbEstabelecimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        getContentPane().add(rbEstabelecimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
         tfNumeroCartao.setBackground(new java.awt.Color(255, 255, 255));
         tfNumeroCartao.setForeground(new java.awt.Color(58, 22, 46));
         tfNumeroCartao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfNumeroCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 170, 30));
-
-        cbHora1.setBackground(new java.awt.Color(255, 255, 255));
-        cbHora1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cbHora1.setForeground(new java.awt.Color(58, 22, 46));
-        getContentPane().add(cbHora1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 210, 30));
+        getContentPane().add(tfNumeroCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 170, 30));
 
         cbFormaPagamento.setBackground(new java.awt.Color(255, 255, 255));
         cbFormaPagamento.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         cbFormaPagamento.setForeground(new java.awt.Color(58, 22, 46));
         cbFormaPagamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visa", "MasterCard", "Paypal" }));
-        getContentPane().add(cbFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 110, 30));
+        getContentPane().add(cbFormaPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, 30));
 
         tfCupom2.setBackground(new java.awt.Color(255, 255, 255));
         tfCupom2.setForeground(new java.awt.Color(58, 22, 46));
@@ -192,29 +186,29 @@ public class PopUpAgendar extends javax.swing.JFrame {
         tfCodigo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCodigo.setText("000");
         tfCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 440, 50, 30));
+        getContentPane().add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 380, 50, 30));
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(58, 22, 46));
         jLabel21.setText("Data de validade e código de segurança");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 20));
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, -1, 20));
 
         tfValidadeMes.setBackground(new java.awt.Color(255, 255, 255));
         tfValidadeMes.setForeground(new java.awt.Color(58, 22, 46));
         tfValidadeMes.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfValidadeMes.setText("00");
         tfValidadeMes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfValidadeMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 40, 30));
+        getContentPane().add(tfValidadeMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 40, 30));
 
         tfValidadeAno.setBackground(new java.awt.Color(255, 255, 255));
         tfValidadeAno.setForeground(new java.awt.Color(58, 22, 46));
         tfValidadeAno.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfValidadeAno.setText("0000");
         tfValidadeAno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        getContentPane().add(tfValidadeAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 50, 30));
+        getContentPane().add(tfValidadeAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 50, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-branco.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 540));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,6 +228,10 @@ public class PopUpAgendar extends javax.swing.JFrame {
     private void rbAplicativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAplicativoActionPerformed
         controller.aplicativo();
     }//GEN-LAST:event_rbAplicativoActionPerformed
+
+    private void cbHorariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbHorariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbHorariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,16 +274,14 @@ public class PopUpAgendar extends javax.swing.JFrame {
     private javax.swing.JLabel btnAgendar;
     private javax.swing.JLabel btnCancelar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbFormaPagamento;
-    private javax.swing.JComboBox<String> cbHora1;
+    private javax.swing.JComboBox<Agendamento> cbHorarios;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -312,17 +308,15 @@ public class PopUpAgendar extends javax.swing.JFrame {
         return btnCancelar;
     }
 
-    public JComboBox<String> getCbDia() {
-        return cbDia;
+    public JComboBox<Agendamento> getCbHorario() {
+        return cbHorarios;
     }
 
     public JComboBox<String> getCbFormaPagamento() {
         return cbFormaPagamento;
     }
 
-    public JComboBox<String> getCbHora1() {
-        return cbHora1;
-    }
+    
 
     
 

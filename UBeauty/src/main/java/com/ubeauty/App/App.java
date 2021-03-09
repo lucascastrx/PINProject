@@ -1,5 +1,6 @@
 package com.ubeauty.App;
         
+import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.NotificacaoVendedorController;
 import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
@@ -125,12 +126,11 @@ public class App {
         
        */
        
-//       GestorDAO gd = new GestorDAO();
-//       gd.gravar(new Gestor("Eduardo", "0", "eduardo@gmail.com", "x", 0, 0, "eduardo"));
+       GestorDAO gd = new GestorDAO();
+       gd.gravar(new Gestor("Lucas", "0", "lucas@gmail.com", "x", 0, 0, "lucas"));
+       
        
          
-         NotificacaoVendedorController nvc = new NotificacaoVendedorController();
-         nvc.criarNotificacao();
        
        
        

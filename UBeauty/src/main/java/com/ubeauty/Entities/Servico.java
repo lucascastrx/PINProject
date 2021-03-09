@@ -24,6 +24,7 @@ public class Servico implements Serializable{
     private String descricao;
     private String categoria;
     private double valor;
+   
     
     @ManyToOne
     private Vendedor vendedorServico;
@@ -134,7 +135,7 @@ public class Servico implements Serializable{
 
     @Override
     public String toString() {
-        return   nome + ", " + descricao + ", " + categoria + ", " + valor;
+        return   nome;
     }
     
     

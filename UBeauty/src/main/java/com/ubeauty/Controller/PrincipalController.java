@@ -4,9 +4,12 @@ import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.Carrinho;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.OrdemItem;
+import com.ubeauty.Entities.Servico;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.AgendamentoDAO;
+import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.TableModel.TableModelClienteAgendados;
+import com.ubeauty.TableModel.TableModelServicos;
 import com.ubeauty.View.*;
 import com.ubeauty.View.Gestor.PanelTermosGestor;
 import java.awt.CardLayout;
@@ -50,6 +53,12 @@ public class PrincipalController {
         this.addPaineis();
         
     }
+
+    public PrincipalController() {
+        this.view = new TelaPrincipal();
+    }
+    
+    
 
     public PrincipalController(JPanel viewPanel) {
         this.viewPanel = viewPanel;
@@ -100,27 +109,7 @@ public class PrincipalController {
             p.setVendedor(v);       
     }
     
-    public TableModelClienteAgendados setTable(PanelPrincipal pp){
-        Agendamento a;
-        Map<Integer, Agendamento> mapAgendamentos = new HashMap<>();
-        List<Carrinho> carrinhos = LoginAuthentication.cliente.getCarrinhos();
-        List<Agendamento> agendamentos = new ArrayList<>();
-        for(Carrinho cc : carrinhos){
-            Set<OrdemItem> setOI = cc.getItems();
-            for(OrdemItem oi : setOI){
-                a = oi.getAgendamento();
-                mapAgendamentos.putIfAbsent(a.getId(), a );
-            }
-        }
-        
-        
-        modelAgendados = new TableModelClienteAgendados(mapAgendamentos);
-        PanelPrincipal p = (PanelPrincipal) jpPrincipal;
-        p.setTableModel(modelAgendados);
-        this.mostrarTela("principal");
-        return modelAgendados;
-    }
-
+   
     public JPanel getJpPrincipal() {
         return jpPrincipal;
     }

@@ -97,7 +97,7 @@ public class LoginController {
     }
 
     public boolean autenticaLogin(String usuario, String senha) {
-        Cliente usuarioCapturado = new Cliente(false, "x", "x", usuario, "x", 0, 0, senha);
+        Cliente usuarioCapturado = new Cliente("x", "x", usuario, "x", 0, 0, senha);
         Cliente usuarioAutenticado = this.selectPorNomeESenha(usuarioCapturado);
         clienteTemp = usuarioAutenticado;
         return usuarioAutenticado != null;

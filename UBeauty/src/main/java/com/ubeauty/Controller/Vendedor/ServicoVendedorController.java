@@ -135,9 +135,8 @@ public class ServicoVendedorController {
             s2.setNome(nome);
             s2.setValor(valor);
 
-            ServicoDAO sPersist = new ServicoDAO();
-            sPersist.atualizar(s2);
-
+            new ServicoDAO().atualizar(s2);
+           
             popUpEditarServico.dispose();
             setDadosTabelaServico();
 

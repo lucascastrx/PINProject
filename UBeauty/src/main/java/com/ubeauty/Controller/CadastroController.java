@@ -152,7 +152,7 @@ public class CadastroController {
                 
                 throw new BlankException();
             }
-            Cliente cliente = new Cliente(false, nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
+            Cliente cliente = new Cliente(nome, sobrenome, email, endereco, dddInt, telefoneInt, senha);
             ClienteDAO persistencia = new ClienteDAO();
             persistencia.gravar(cliente);
             

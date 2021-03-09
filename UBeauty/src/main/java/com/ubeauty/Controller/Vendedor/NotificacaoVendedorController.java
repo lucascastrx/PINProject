@@ -1,12 +1,10 @@
 package com.ubeauty.Controller.Vendedor;
 
 import com.ubeauty.Entities.Cliente;
-import com.ubeauty.Entities.ClienteNotificacao;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Notificacao;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.ClienteDAO;
-import com.ubeauty.Repository.ClienteNotificacaoDAO;
 import com.ubeauty.Repository.NotificacaoDAO;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.TableModel.TableModelNotificacoes;

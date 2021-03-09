@@ -7,9 +7,9 @@ import java.util.Objects;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
-@Entity
+
 public class OrdemItem implements Serializable{
-    @EmbeddedId
+    
     private OrdemItemPK id = new OrdemItemPK();
     
     private double preco;

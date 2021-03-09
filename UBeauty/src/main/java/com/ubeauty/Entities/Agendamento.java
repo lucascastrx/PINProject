@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -26,6 +29,8 @@ public class Agendamento implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
+    private boolean agendado;
+    
     @Temporal(TemporalType.DATE)
     private Date dia;
     @Temporal(TemporalType.DATE)
@@ -34,24 +39,29 @@ public class Agendamento implements Serializable{
     @ManyToOne
     private Servico servico;
     
-    @OneToMany(mappedBy = "id.agendamento")
-    private Set<OrdemItem> items = new HashSet<>();
-    
+   @ManyToMany
+    @JoinTable(name = "AgendamentoCarrinho",joinColumns = @JoinColumn(name = "agendamento_id"), 
+                                           inverseJoinColumns = @JoinColumn(name = "carrinho_id"))
+    private Set<Carrinho> carrinhos = new HashSet<>();
+     
     @Transient
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm");
     @Transient
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM");
 
     public Agendamento() {
     }
 
-    public Agendamento(String data, String hora) throws ParseDateException {
+    public Agendamento(String data, String hora) {
+        
         try {
-            this.hora = TIME_FORMAT.parse(hora);
             this.dia = DATE_FORMAT.parse(data);
+            this.agendado = false;
+            this.hora = TIME_FORMAT.parse(hora);
         } catch (ParseException ex) {
-            throw new ParseDateException();
+            Logger.getLogger(Agendamento.class.getName()).log(Level.SEVERE, null, ex);
         }
+            
         
     }
 
@@ -94,18 +104,26 @@ public class Agendamento implements Serializable{
     public void setServico(Servico servico) {
         this.servico = servico;
     }
-    
-    public Set<Carrinho> getCarrinhos(){
-        Set<Carrinho> set = new HashSet<>();
-        for(OrdemItem oi : items){
-            set.add(oi.getCarrinho());
-        }
-        return set;
+
+    public Set<Carrinho> getCarrinhos() {
+        return carrinhos;
+    }
+
+    public void addCarrinhos(Carrinho c) {
+        this.carrinhos.add(c);
     }
     
-    public void addItems(OrdemItem oi){
-        items.add(oi);
+    
+    
+    public boolean isAgendado() {
+        return agendado;
     }
+
+    public void setAgendado(boolean agendado) {
+        this.agendado = agendado;
+    }
+    
+    
     
     
     @Override
@@ -135,7 +153,8 @@ public class Agendamento implements Serializable{
 
     @Override
     public String toString() {
-        return "Agendamento{" + "id=" + id + ", data=" + dia + ", hora=" + hora + '}';
+        String horario = this.getHora() + " - " + this.getData();
+        return horario;
     }
     
     

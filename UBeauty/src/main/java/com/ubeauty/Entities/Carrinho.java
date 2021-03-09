@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -29,8 +30,8 @@ public class Carrinho implements Serializable{
     @ManyToOne
     private Cliente clientes;
     
-    @OneToMany(mappedBy = "id.carrinho", fetch = FetchType.EAGER)
-    private Set<OrdemItem> items = new HashSet<>();
+    @ManyToMany(mappedBy = "carrinhos", fetch = FetchType.EAGER)
+    private Set<Agendamento> agendamentos = new HashSet<>();
     
     @OneToOne(mappedBy = "carrinho" , cascade = CascadeType.ALL, orphanRemoval = true)
     private Pagamento pagamento;
@@ -73,14 +74,16 @@ public class Carrinho implements Serializable{
         this.momento = moment;
     }
 
-    public Set<OrdemItem> getItems(){
-        return items;
-    }
-    
-    public void addItems(OrdemItem oi){
-        items.add(oi);
+    public Set<Agendamento> getAgendamentos() {
+        return agendamentos;
     }
 
+    public void addAgendamentos(Agendamento a) {
+        this.agendamentos.add(a);
+    }
+
+    
+    
     public Pagamento getPagamento() {
         return pagamento;
     }

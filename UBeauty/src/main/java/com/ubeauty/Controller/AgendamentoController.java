@@ -16,11 +16,14 @@ import com.ubeauty.Repository.CupomDAO;
 import com.ubeauty.Repository.OrdemItemDAO;
 import com.ubeauty.Repository.ServicoDAO;
 import com.ubeauty.Repository.VendedorDAO;
+import com.ubeauty.TableModel.TableModelClienteAgendados;
+import com.ubeauty.View.PanelPrincipal;
 import com.ubeauty.View.PopUpAgendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +31,7 @@ public class AgendamentoController {
     private Servico servico;
     private PopUpAgendar panelAgendamentos;
     private PrincipalController controller;
+    private PanelPrincipal view;
     
     private final boolean ESTAB_PARAM = false;
     private final boolean APP_PARAM = true;
@@ -36,17 +40,25 @@ public class AgendamentoController {
         this.servico = servico;
         this.panelAgendamentos = panelAgendamentos;
         this.controller = controller;
+        this.view = (PanelPrincipal) this.controller.getJpPrincipal();
         carregarDados();
     }
+
+    public AgendamentoController(PanelPrincipal view) {
+        this.view = view;
+    }
+    
+    
     
     private void carregarDados(){
        
         panelAgendamentos.getTxtPreco().setText(servico.getValor() + "");
+        loadComboBox();
         
     }
     
     public void agendar() {
-       double desconto = 0;
+        double desconto = 0;
         
         Vendedor v = servico.getVendedorServico();
         Map<Integer,Cupom> mapCupom = new HashMap<>(new CupomDAO().buscarCupomPorIdVendedor(v.getId()));
@@ -54,61 +66,39 @@ public class AgendamentoController {
         
         for(Map.Entry<Integer, Cupom> cupom : mapCupom.entrySet() ){
             if(cp.equalsIgnoreCase(cupom.getValue().getNome())){
-               desconto = cupom.getValue().getDesconto();
-        }
-        
-        desconto = ((desconto/100) * servico.getValor());
-         /*   VendedorDAO persistencia = new VendedorDAO();
-            Servico servico = new Servico();
-            Vendedor vv = persistencia.buscar(15);
-            v.addServico(servico);
-            persistencia.closeConnection();
-
-            ServicoDAO sPersist = new ServicoDAO();
-            sPersist.gravar(servico);
-
-            VendedorDAO vPersist = new VendedorDAO();
-            vPersist.atualizar(v);
-        */
-         Agendamento agendamento = null;
-        
-              agendamento = new Agendamento();
-         
-         ServicoDAO sPersist = new ServicoDAO();
-         Servico s = sPersist.buscar(servico.getId());
-         servico.addAgendamento(agendamento);
-         sPersist.closeConnection();
-         new AgendamentoDAO().gravar(agendamento);
-         new ServicoDAO().atualizar(servico);
-         
-         
-         
-        
-        ClienteDAO rep = new ClienteDAO();
-        Cliente c = rep.buscar(LoginAuthentication.cliente.getId());
-        Carrinho carrinho = new Carrinho(new Date(), c);
-        c.addCarrinho(carrinho);
-        rep.closeConnection();
-        new CarrinhoDAO().gravar(carrinho);
-        new ClienteDAO().atualizar(c);
-         
-        OrdemItem oi = new OrdemItem(carrinho, agendamento, desconto);
-        AgendamentoDAO aPersist = new AgendamentoDAO();
-        Agendamento a = aPersist.buscar(agendamento.getId());
-        CarrinhoDAO cPersist = new CarrinhoDAO();
-        Carrinho cc = cPersist.buscar(carrinho.getId());
-        a.addItems(oi);
-        cc.addItems(oi);
-        aPersist.closeConnection();
-        cPersist.closeConnection();
-        new OrdemItemDAO().gravar(oi);
-        
-        new CarrinhoDAO().atualizar(carrinho);
-        new AgendamentoDAO().atualizar(agendamento);
-        
-        panelAgendamentos.exibirMensagem("Agendamento concluido!");
-        panelAgendamentos.dispose();
-        
+                desconto = cupom.getValue().getDesconto();
+            }
+            
+            desconto = ((desconto/100) * servico.getValor());
+            
+            Agendamento agendamento = (Agendamento) panelAgendamentos.getCbHorario().getSelectedItem();
+            
+            ClienteDAO rep = new ClienteDAO();
+            Cliente c = rep.buscar(LoginAuthentication.cliente.getId());
+            Carrinho carrinho = new Carrinho(new Date(), c);
+            c.addCarrinho(carrinho);
+            rep.closeConnection();
+            new CarrinhoDAO().gravar(carrinho);
+            new ClienteDAO().atualizar(c);
+            
+           
+            AgendamentoDAO aPersist = new AgendamentoDAO();
+            Agendamento a = aPersist.buscar(agendamento.getId());
+            CarrinhoDAO cPersist = new CarrinhoDAO();
+            Carrinho cc = cPersist.buscar(carrinho.getId());
+            a.setAgendado(true);
+            a.addCarrinhos(cc);
+            cc.addAgendamentos(a);
+            aPersist.closeConnection();
+            cPersist.closeConnection();
+            
+            new CarrinhoDAO().atualizar(cc);
+            new AgendamentoDAO().atualizar(a);
+            
+            this.setDadosTabelasAgendamentos();
+            panelAgendamentos.exibirMensagem("Agendamento concluido!");
+            panelAgendamentos.dispose();
+            
         }
     }
     
@@ -117,15 +107,37 @@ public class AgendamentoController {
         List<Agendamento> agendamentos =  repository.buscarAgendamentoPorIdServico(servico.getId());
         
         agendamentos.forEach(a ->{
-            panelAgendamentos.getCbDia().addItem(a.getData());
-        });
-        
-        agendamentos.forEach(a -> {
-            panelAgendamentos.getCbHora1().addItem(a.getHora());    
-        });
-        
+            panelAgendamentos.getCbHorario().addItem(a);
+        });  
     }
     
+     public void setDadosTabelasAgendamentos() {
+        
+   
+        
+        try{
+            /**
+             * Configurando tabela em que os horários existentes foram
+             * agendados
+             */ 
+            
+            Map<Integer, Agendamento> mapAgendamentos = new HashMap<>();
+            List<Carrinho> carrinhos = LoginAuthentication.cliente.getCarrinhos();
+            for(Carrinho cc : carrinhos){
+                Set<Agendamento> listAg = cc.getAgendamentos();
+                for(Agendamento ag : listAg){
+                    mapAgendamentos.putIfAbsent(ag.getId(), ag );
+                }
+            }
+            
+            TableModelClienteAgendados modelAgendamentos = new TableModelClienteAgendados(mapAgendamentos);
+            view.setTableModel(modelAgendamentos);
+            view.getTabela().repaint();
+            
+        }catch(NullPointerException e){
+            
+        }
+    }
     
     
     public void estabelecimento(){

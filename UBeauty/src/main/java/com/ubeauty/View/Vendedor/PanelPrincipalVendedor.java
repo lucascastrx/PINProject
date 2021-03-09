@@ -1,8 +1,11 @@
 package com.ubeauty.View.Vendedor;
 
+import com.ubeauty.Controller.DisponibilizarHorarioController;
 import com.ubeauty.View.*;
 import com.ubeauty.Controller.PrincipalController;
 import com.ubeauty.Controller.Vendedor.PrincipalControllerVendedor;
+import com.ubeauty.TableModel.TableModelClienteAgendados;
+import javax.swing.JTable;
 
 public class PanelPrincipalVendedor extends javax.swing.JPanel {
 
@@ -13,6 +16,9 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
         initComponents();
         this.view = view;
         this.controller = pc;
+        
+        DisponibilizarHorarioController ct = new DisponibilizarHorarioController(this);
+        ct.setDadosTabelasAgendamentos();
     }
 
     /**
@@ -77,8 +83,8 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
         btnCriarNovo.setText("Criar novo");
         btnCriarNovo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCriarNovo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnCriarNovoMousePressed(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCriarNovoMouseClicked(evt);
             }
         });
         add(btnCriarNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 90, 30));
@@ -128,14 +134,29 @@ public class PanelPrincipalVendedor extends javax.swing.JPanel {
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 560, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCriarNovoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarNovoMousePressed
-        controller.abrirPopUpCriarHorario();
-    }//GEN-LAST:event_btnCriarNovoMousePressed
-
     private void btnExcluirHorarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirHorarioMouseClicked
-        controller.excluirHorario();
+       
     }//GEN-LAST:event_btnExcluirHorarioMouseClicked
 
+    private void btnCriarNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCriarNovoMouseClicked
+        new PopUpDisponibilizarHorario(controller, this).setVisible(true);
+    }//GEN-LAST:event_btnCriarNovoMouseClicked
+
+    public JTable getTableAgendamentos1() {
+        return tableAgendamentos1;
+    }
+
+    public JTable getTableHorarios() {
+        return tableHorarios;
+    }
+
+     public void setTableModelAgendamentos(TableModelClienteAgendados model) {
+        this.tableAgendamentos1.setModel(model);
+    }
+     
+      public void setTableModelHorarios(TableModelClienteAgendados model) {
+        this.tableHorarios.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnCriarNovo;

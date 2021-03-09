@@ -1,11 +1,20 @@
 package com.ubeauty.Controller.Vendedor;
 
 import com.ubeauty.Controller.*;
+import com.ubeauty.Entities.Agendamento;
 import com.ubeauty.Entities.LoginAuthentication;
+import com.ubeauty.Entities.Servico;
+import com.ubeauty.Entities.Vendedor;
+import com.ubeauty.Exceptions.ParseDateException;
+import com.ubeauty.Repository.AgendamentoDAO;
+import com.ubeauty.Repository.ServicoDAO;
+import com.ubeauty.TableModel.TableModelClienteAgendados;
 import com.ubeauty.View.Gestor.PanelTermosGestor;
 import com.ubeauty.View.Vendedor.*;
 import java.awt.CardLayout;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.swing.JPanel;
 
 public class PrincipalControllerVendedor {
@@ -56,20 +65,6 @@ public class PrincipalControllerVendedor {
         view.addPainel(jpServicos, "servicos");         
         view.addPainel(jpConta, "conta");
         view.addPainel(jpTermosDeUso, "termosUso");
-    }
-
-    public void criarHorario() {
-        
-        popUp.getCbServico().getSelectedIndex();
-    }
-
-    public void excluirHorario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void abrirPopUpCriarHorario() {
-        popUp = new PopUpDisponibilizarHorario(this);
-        popUp.setVisible(true);
     }
    
 }
