@@ -258,7 +258,7 @@ public class PanelContaVendedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalvarDescricaoMousePressed
 
     private void btnReclamacoesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnReclamacoesMousePressed
-        // TODO add your handling code here:
+        controller.abrirPopUpReclamacoes();
     }//GEN-LAST:event_btnReclamacoesMousePressed
 
     private void btnLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMouseClicked

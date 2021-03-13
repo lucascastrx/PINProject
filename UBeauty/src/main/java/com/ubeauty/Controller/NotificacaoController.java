@@ -3,6 +3,7 @@ package com.ubeauty.Controller;
 import com.ubeauty.Entities.Cliente;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Notificacao;
+import com.ubeauty.Repository.ClienteDAO;
 import com.ubeauty.TableModel.TableModelNotificacoes;
 import com.ubeauty.View.PanelNotificacoes;
 import com.ubeauty.View.TelaPrincipal;
@@ -44,5 +45,12 @@ public class NotificacaoController {
     
     public void voltar(){
         viewPrincipal.getController().mostrarTela("principal");
+    }
+
+    public void limparNotificacoes() {
+        cliente.removeNotificacoes();
+        setDadosTabela();
+        ClienteDAO repository = new ClienteDAO();
+        repository.atualizar(cliente);
     }
 }

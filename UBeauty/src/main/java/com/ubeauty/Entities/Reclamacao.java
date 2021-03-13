@@ -53,7 +53,7 @@ public class Reclamacao extends Notificacao implements Serializable{
 
     @Override
     public String toString() {
-        return super.toString()+"Reclamacao{" + "nomeEnviar=" + nomeEnviar + '}';
+        return nomeEnviar + ": " + super.getTexto() + "\n (" + super.getData() + ", às " + super.getHora() + ")\n\n" ;
     }
     
     

@@ -152,6 +152,10 @@ public class Cliente implements Serializable {
     public void addNotificacao(Notificacao n) {
         notificacoes.add(n);
     }
+    
+    public void removeNotificacoes(){
+        notificacoes.clear();
+    }
 
     public void removeReclamacoes(Reclamacao r) {
         reclamacoes.remove(r);

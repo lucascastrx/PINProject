@@ -86,7 +86,7 @@ public class PanelNotificacoes extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimparNotifMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparNotifMousePressed
-        // TODO add your handling code here:
+        controller.limparNotificacoes();
     }//GEN-LAST:event_btnLimparNotifMousePressed
 
     private void btnVoltarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMousePressed

@@ -6,6 +6,7 @@
 package com.ubeauty.View;
 
 import com.ubeauty.Controller.ReclamacaoController;
+import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Entities.Vendedor;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -20,13 +21,10 @@ public class PopUpReclamacoes extends javax.swing.JFrame {
     
     public PopUpReclamacoes(Vendedor v) {
         initComponents();
-
-        this.setLocationRelativeTo(null);
-
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
-        setIconImage(icon.getImage());
+        UtilController.configurarTela(this);
         
         controller = new ReclamacaoController(v,this);
+        controller.carregarReclamacoes();
         
     }
 

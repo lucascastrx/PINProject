@@ -89,9 +89,13 @@ public class PaginaSalaoController {
     public void selecionarServico(){
         if(LoginAuthentication.cliente != null){
             JTable table = panelPaginas.getTabela();
-            Servico s = modelServicos.getServico(table.getSelectedRow());
-            new PopUpAgendar(s,controller).setVisible(true);
-        }else{
+            if (table.getSelectedRow() >= 0) {
+                Servico s = modelServicos.getServico(table.getSelectedRow());
+                new PopUpAgendar(s,controller).setVisible(true);
+            } else {
+                controller.getView().exibirMensagem("Selecione um serviço!");
+            }
+        } else {
             controller.mostrarTela("contaConvidado");
         }
     }

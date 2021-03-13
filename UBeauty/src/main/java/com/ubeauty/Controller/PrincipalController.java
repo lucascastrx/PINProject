@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 public class PrincipalController {
 
@@ -79,7 +80,7 @@ public class PrincipalController {
         jpPrincipal = new PanelPrincipal(view, this);
         jpNotif = new PanelNotificacoes(view);
         jpPagSalao = new PanelPaginaSalao(this);
-        jpAgendamento = new PanelAgendamento();
+        jpAgendamento = new PanelAgendamento(view, this);
         jpConta = new PanelConta(this);
         jpSaloes = new PanelSaloes(this);
         jpAutonomos = new PanelAutonomos(this);
@@ -113,7 +114,20 @@ public class PrincipalController {
     public JPanel getJpPrincipal() {
         return jpPrincipal;
     }
+
+    public void abrirAgendamento(PanelPrincipal prin) {
+        JTable tabela = prin.getTabela();
+        TableModelClienteAgendados modelAgendados1 = (TableModelClienteAgendados) tabela.getModel();
+        Agendamento a = modelAgendados1.getAgendamento(tabela.getSelectedRow());
+        tempAgendamento(a);
+        mostrarTela("agendamento");
+        
+    }
     
-    
+        public void tempAgendamento(Agendamento a){
+            PanelAgendamento p = (PanelAgendamento) jpAgendamento;
+            p.getControllerAgendamento().setAgendamento(a);       
+            p.getControllerAgendamento().carregarPanel();       
+    }
    
 }

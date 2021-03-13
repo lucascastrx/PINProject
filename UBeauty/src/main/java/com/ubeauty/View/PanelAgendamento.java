@@ -5,17 +5,25 @@
  */
 package com.ubeauty.View;
 
+import com.ubeauty.Controller.PanelAgendamentoController;
+import com.ubeauty.Controller.PrincipalController;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo Buzzi
  */
 public class PanelAgendamento extends javax.swing.JPanel {
+    private PrincipalController controller;
+    private TelaPrincipal view;
+    private PanelAgendamentoController controllerAgendamento;
 
-    /**
-     * Creates new form teste2
-     */
-    public PanelAgendamento() {
+    public PanelAgendamento(TelaPrincipal view, PrincipalController controller) {
         initComponents();
+        this.view = view;
+        this.controller = controller;
+        controllerAgendamento = new PanelAgendamentoController(this);
     }
 
     /**
@@ -160,11 +168,11 @@ public class PanelAgendamento extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSolicitarAlteracaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSolicitarAlteracaoMousePressed
-        System.out.println("ok");
+        controllerAgendamento.solicitarAlteracao();
     }//GEN-LAST:event_btnSolicitarAlteracaoMousePressed
 
     private void btnCancelarAgendamentoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarAgendamentoMousePressed
-        // TODO add your handling code here:
+        controllerAgendamento.cancelarAgendamento();
     }//GEN-LAST:event_btnCancelarAgendamentoMousePressed
 
 
@@ -190,4 +198,33 @@ public class PanelAgendamento extends javax.swing.JPanel {
     private javax.swing.JLabel txtPreco;
     private javax.swing.JLabel txtServico;
     // End of variables declaration//GEN-END:variables
+
+    public PanelAgendamentoController getControllerAgendamento() {
+        return controllerAgendamento;
+    }
+
+    public JLabel getTxtEstabelecimento() {
+        return txtEstabelecimento;
+    }
+
+    public JLabel getTxtHorario() {
+        return txtHorario;
+    }
+
+    public JLabel getTxtPagamento() {
+        return txtPagamento;
+    }
+
+    public JLabel getTxtPreco() {
+        return txtPreco;
+    }
+
+    public JLabel getTxtServico() {
+        return txtServico;
+    }
+
+    public void exibirMensagem(String mensagem) {
+        JOptionPane.showMessageDialog(null, mensagem);
+    }
+
 }

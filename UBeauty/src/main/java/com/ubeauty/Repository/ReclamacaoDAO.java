@@ -96,6 +96,22 @@ public class ReclamacaoDAO {
         return mapReclamacoes;
     }
     
+        public List<Reclamacao> buscarReclamacoesPorIdVendedor(int id){
+        List<Reclamacao> listReclamacoes = null;
+        
+        try {
+            em.getTransaction().begin();
+            listReclamacoes = em.createQuery("from Reclamacao where vendedor_id = " + id).getResultList();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        return listReclamacoes;
+    }
+    
     public List<Integer> buscarTodasKeys(){
         List<Integer> reclamacoesKeys = null;
         

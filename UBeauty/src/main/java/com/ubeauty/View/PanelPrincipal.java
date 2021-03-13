@@ -22,6 +22,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         this.tabela.setModel(model);
     }
 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +33,6 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel3 = new javax.swing.JLabel();
-        btnPesquisarSaloes = new javax.swing.JLabel();
         btnEstabelecimentos = new javax.swing.JLabel();
         btnAutonomos = new javax.swing.JLabel();
         btnSaloes = new javax.swing.JLabel();
@@ -46,10 +46,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, 30));
-
-        btnPesquisarSaloes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pesquisar-saloes.png"))); // NOI18N
-        add(btnPesquisarSaloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, 50));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 110, 30));
 
         btnEstabelecimentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/estabelecimentos.png"))); // NOI18N
         btnEstabelecimentos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,6 +95,11 @@ public class PanelPrincipal extends javax.swing.JPanel {
                 "Serviço", "Horário"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, 280, 180));
@@ -115,11 +117,14 @@ public class PanelPrincipal extends javax.swing.JPanel {
         controller.mostrarTela("saloes");
     }//GEN-LAST:event_btnEstabelecimentosMouseClicked
 
+    private void tabelaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMouseClicked
+        controller.abrirAgendamento(this);
+    }//GEN-LAST:event_tabelaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnAutonomos;
     private javax.swing.JLabel btnEstabelecimentos;
-    private javax.swing.JLabel btnPesquisarSaloes;
     private javax.swing.JLabel btnSaloes;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
@@ -131,6 +136,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
     public JTable getTabela() {
         return tabela;
     }
+    
+    
     
     public PanelPrincipal getPanelPrincipal(){
         return this;

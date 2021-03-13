@@ -7,27 +7,44 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.ReclamacaoDAO;
 import com.ubeauty.View.PopUpReclamacoes;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 public class ReclamacaoController {
     private Vendedor vendedor;
-    private PopUpReclamacoes panelReclamacoes;
+    private PopUpReclamacoes popUpReclamacoes;
 
-    public ReclamacaoController(Vendedor vendedor, PopUpReclamacoes panelReclamacoes) {
+    public ReclamacaoController(Vendedor vendedor, PopUpReclamacoes popUpReclamacoes) {
         this.vendedor = vendedor;
-        this.panelReclamacoes = panelReclamacoes;
+        this.popUpReclamacoes = popUpReclamacoes;
+    }
+    
+    public void carregarReclamacoes(){
+        String comentarios = "";
+        
+        ReclamacaoDAO repository = new ReclamacaoDAO();
+        List lista = repository.buscarReclamacoesPorIdVendedor(vendedor.getId());
+
+        for (Object umaReclamacao : lista) {
+            comentarios += umaReclamacao.toString();
+        }
+        
+        popUpReclamacoes.getTxtComentarios().setText(comentarios);
     }
     
     public void salvarReclamacao(){
         try {
             Cliente cliente = LoginAuthentication.cliente;
-            Reclamacao reclamacao = new Reclamacao(panelReclamacoes.getTxtMeuComentario().getText(), cliente.getNome(), new Date(), new Date());
+            Reclamacao reclamacao = new Reclamacao(popUpReclamacoes.getTxtMeuComentario().getText(), cliente.getNome(), new Date(), new Date());
             reclamacao.setCliente(cliente);
             reclamacao.setVendedor(vendedor);
             
             ReclamacaoDAO repository = new ReclamacaoDAO();
             repository.gravar(reclamacao);
             
-            panelReclamacoes.exibirMensagem("Reclamação gerada!");
+            popUpReclamacoes.exibirMensagem("Reclamação enviada!");
+            carregarReclamacoes();
+            popUpReclamacoes.getTxtMeuComentario().setText("");
         } catch (Exception e) {
             e.printStackTrace();
         }

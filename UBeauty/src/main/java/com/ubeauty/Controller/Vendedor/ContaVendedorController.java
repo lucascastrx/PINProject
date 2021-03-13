@@ -9,6 +9,7 @@ import com.ubeauty.Controller.UtilController;
 import com.ubeauty.Entities.LoginAuthentication;
 import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.VendedorDAO;
+import com.ubeauty.View.PopUpReclamacoes;
 import com.ubeauty.View.TelaLogin;
 import com.ubeauty.View.Vendedor.PanelContaVendedor;
 import com.ubeauty.View.Vendedor.PopUpEditarContaVendedor;
@@ -159,6 +160,11 @@ public class ContaVendedorController {
     
     public PrincipalControllerVendedor getController(){
        return viewPrincipal.getController();
+    }
+
+    public void abrirPopUpReclamacoes() {
+        PopUpReclamacoes popUpReclamacoes = new PopUpReclamacoes((Vendedor)LoginAuthentication.cliente);
+        popUpReclamacoes.setVisible(true);
     }
     
 }
