@@ -135,6 +135,28 @@ public class VendedorDAO {
         return mapVendedores;
     }
     
+        public Map<Integer,Vendedor> buscarSaloesPorNome(String nome){
+        Map<Integer,Vendedor> mapVendedores = new HashMap<>();
+        
+        try {
+            em.getTransaction().begin();
+            List<Vendedor> listVendedores = em.createQuery("from Vendedor WHERE nomeProfissao LIKE :nome").setParameter("nome", nome + "%").getResultList();
+            for (Vendedor v : listVendedores) {
+                if(v.isAutonomo() == false){
+                    mapVendedores.putIfAbsent(v.getId(), v);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
+        
+        return mapVendedores;
+    }
+    
     public Map<Integer,Vendedor> buscarTodosAutonomos(){
         Map<Integer,Vendedor> mapVendedores = new HashMap<>();
         

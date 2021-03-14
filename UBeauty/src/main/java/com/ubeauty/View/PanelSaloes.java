@@ -61,7 +61,7 @@ public class PanelSaloes extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         btnPesquisarSaloes = new javax.swing.JLabel();
-        btnLimparFiltro = new javax.swing.JLabel();
+        btnLimparPesquisa = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -104,28 +104,33 @@ public class PanelSaloes extends javax.swing.JPanel {
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 280, 390));
 
         btnPesquisarSaloes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pesquisar-saloes.png"))); // NOI18N
-        add(btnPesquisarSaloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 540, 180, 60));
-
-        btnLimparFiltro.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnLimparFiltro.setForeground(new java.awt.Color(153, 153, 153));
-        btnLimparFiltro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnLimparFiltro.setText("Limpar filtro");
-        btnLimparFiltro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnLimparFiltro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnLimparFiltroMousePressed(evt);
+        btnPesquisarSaloes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPesquisarSaloesMouseClicked(evt);
             }
         });
-        add(btnLimparFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 120, 30));
+        add(btnPesquisarSaloes, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 540, 180, 60));
+
+        btnLimparPesquisa.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btnLimparPesquisa.setForeground(new java.awt.Color(153, 153, 153));
+        btnLimparPesquisa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLimparPesquisa.setText("Mostrar todos");
+        btnLimparPesquisa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnLimparPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLimparPesquisaMousePressed(evt);
+            }
+        });
+        add(btnLimparPesquisa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 120, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/botao-cinza-outline.png"))); // NOI18N
         add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 540, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void btnLimparFiltroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparFiltroMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLimparFiltroMousePressed
+    private void btnLimparPesquisaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimparPesquisaMousePressed
+        pController.limparPesquisa();
+    }//GEN-LAST:event_btnLimparPesquisaMousePressed
 
     private void btnVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVoltarMouseClicked
       controller.mostrarTela("principal");
@@ -136,11 +141,15 @@ public class PanelSaloes extends javax.swing.JPanel {
         pController.abrirSalao();
        }
     }//GEN-LAST:event_tabelaMouseClicked
+
+    private void btnPesquisarSaloesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPesquisarSaloesMouseClicked
+        pController.abrirPesquisa();
+    }//GEN-LAST:event_btnPesquisarSaloesMouseClicked
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btnEstabelecimentos;
-    private javax.swing.JLabel btnLimparFiltro;
+    private javax.swing.JLabel btnLimparPesquisa;
     private javax.swing.JLabel btnLogo;
     private javax.swing.JLabel btnPesquisarSaloes;
     private javax.swing.JLabel btnVoltar;

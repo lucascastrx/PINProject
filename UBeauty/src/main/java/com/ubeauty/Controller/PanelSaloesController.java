@@ -4,6 +4,7 @@ import com.ubeauty.Entities.Vendedor;
 import com.ubeauty.Repository.VendedorDAO;
 import com.ubeauty.TableModel.TableModelSaloes;
 import com.ubeauty.View.PanelSaloes;
+import com.ubeauty.View.PopUpProcurarSalao;
 import java.util.Map;
 import javax.swing.JTable;
 /**
@@ -13,6 +14,7 @@ import javax.swing.JTable;
 public class PanelSaloesController {
     private PanelSaloes panelSaloes;
     private TableModelSaloes modelSaloes;
+    private PopUpProcurarSalao popUp;
     
    
 
@@ -45,6 +47,31 @@ public class PanelSaloesController {
          panelSaloes.getPrincipalController().tempVendedor(v);
          panelSaloes.getPrincipalController().mostrarTela("paginaSalao");
          
+    }
+
+    public void abrirPesquisa() {
+        popUp = new PopUpProcurarSalao(this);
+        popUp.setVisible(true);
+    }
+
+    public void pesquisar() {
+        String nome = popUp.getTfNome().getText();
+        VendedorDAO vendedorRep = new VendedorDAO();
+        Map<Integer, Vendedor> mapSalao = vendedorRep.buscarSaloesPorNome(nome);
+        this.modelSaloes = new TableModelSaloes(mapSalao);
+        
+        this.runComponents();
+        
+        popUp.dispose();
+        
+    }
+
+    public void limparPesquisa() {
+        VendedorDAO vendedorRep = new VendedorDAO();
+        Map<Integer, Vendedor> mapSalao = vendedorRep.buscarTodosSaloes();
+        this.modelSaloes = new TableModelSaloes(mapSalao);
+        
+        this.runComponents();
     }
         
     

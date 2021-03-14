@@ -12,54 +12,69 @@ import java.util.Map;
 import javax.swing.JTable;
 
 public class PaginaSalaoController {
+
     private PanelPaginaSalao panelPaginas;
     private PrincipalController controller;
     private Vendedor v;
     private TableModelServicos modelServicos;
-    
-    public PaginaSalaoController(PanelPaginaSalao p, PrincipalController c){
+
+    public PaginaSalaoController(PanelPaginaSalao p, PrincipalController c) {
         panelPaginas = p;
         controller = c;
     }
-    
-    public void mostrarEndereco(){
+
+    public void mostrarEndereco() {
         controller.getView().exibirMensagem(v.getEndereco());
     }
-    
-    private void carregarDados(){
+
+    private void carregarDados() {
         String telefone = "(" + v.getDdd() + ") " + v.getTelefone();
-        
+
         panelPaginas.getTxtNomeSalao().setText(v.getNomeProfissao());
         panelPaginas.getTxtDescricao().setText(v.getDescricao());
         panelPaginas.getTxtEmail().setText(v.getEmail());
         panelPaginas.getTxtTelefone().setText(telefone);
         panelPaginas.getTxtEndereco().setText(v.getEndereco());
-        
-        String horarioFunc[] = v.getHoraFunc().split(";");
-        panelPaginas.getTxtHorario1().setText(validarDiasCB(Integer.parseInt(horarioFunc[0])) + " à " + validarDiasCB(Integer.parseInt(horarioFunc[1])));
-        panelPaginas.getTxtHorario2().setText(horarioFunc[2]);
-        panelPaginas.getTxtHorarioExtra().setText(horarioFunc[3]);
-       
+
+        try {
+            String horarioFunc[] = v.getHoraFunc().split(";");
+            panelPaginas.getTxtHorario1().setText(validarDiasCB(Integer.parseInt(horarioFunc[0])) + " à " + validarDiasCB(Integer.parseInt(horarioFunc[1])));
+            panelPaginas.getTxtHorario2().setText(horarioFunc[2]);
+            panelPaginas.getTxtHorarioExtra().setText(horarioFunc[3]);
+        } catch (Exception e) {
+            panelPaginas.getTxtHorario1().setText("Sem informações");
+            panelPaginas.getTxtHorario2().setText("");
+            panelPaginas.getTxtHorarioExtra().setText("");
+        }
+
     }
-    
-    public void voltar(){
-        if(v.isAutonomo()){
-         controller.mostrarTela("autonomos");
-        }else{
-        controller.mostrarTela("saloes");
+
+    public void voltar() {
+        if (v.isAutonomo()) {
+            controller.mostrarTela("autonomos");
+        } else {
+            controller.mostrarTela("saloes");
         }
     }
-    
-    public String validarDiasCB(int dia){
-        switch (dia){
-            case 0: return "Segunda";
-            case 1: return "Terça";
-            case 2: return "Quarta";
-            case 3: return "Quinta";
-            case 4: return "Sexta";
-            case 5: return "Sábado";
-            case 6: return "Domingo";
-            default: return null;
+
+    public String validarDiasCB(int dia) {
+        switch (dia) {
+            case 0:
+                return "Segunda";
+            case 1:
+                return "Terça";
+            case 2:
+                return "Quarta";
+            case 3:
+                return "Quinta";
+            case 4:
+                return "Sexta";
+            case 5:
+                return "Sábado";
+            case 6:
+                return "Domingo";
+            default:
+                return null;
         }
     }
 
@@ -69,29 +84,29 @@ public class PaginaSalaoController {
         Map<Integer, Servico> mapServicos = repository.buscarServicoPorIdVendedor(v.getId());
         modelServicos = new TableModelServicos(mapServicos);
         panelPaginas.setTableModel(modelServicos);
-        panelPaginas.getTabela().repaint(); 
-        
+        panelPaginas.getTabela().repaint();
+
         carregarDados();
     }
 
     public Vendedor getV() {
         return v;
     }
-    
-    public void abrirReclamacoes(){
-        if(LoginAuthentication.cliente != null ){
-        new PopUpReclamacoes(v).setVisible(true);
-        }else{
+
+    public void abrirReclamacoes() {
+        if (LoginAuthentication.cliente != null) {
+            new PopUpReclamacoes(v).setVisible(true);
+        } else {
             controller.mostrarTela("contaConvidado");
         }
     }
-    
-    public void selecionarServico(){
-        if(LoginAuthentication.cliente != null){
+
+    public void selecionarServico() {
+        if (LoginAuthentication.cliente != null) {
             JTable table = panelPaginas.getTabela();
             if (table.getSelectedRow() >= 0) {
                 Servico s = modelServicos.getServico(table.getSelectedRow());
-                new PopUpAgendar(s,controller).setVisible(true);
+                new PopUpAgendar(s, controller).setVisible(true);
             } else {
                 controller.getView().exibirMensagem("Selecione um serviço!");
             }
