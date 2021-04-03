@@ -32,11 +32,16 @@ public class NotificacaoController {
     private Map<Integer, Notificacao> buscarNotificacoes() {
         
         //Map<Integer,Notificacao> mapCN = new HashMap<>(new ClienteNotificacaoDAO().buscarNotificacaoPorIdCliente(cliente.getId()));
-        Set<Notificacao> setNotif = cliente.getNotificacoes();
         Map<Integer,Notificacao> mapCN = new HashMap<>();
-        setNotif.forEach( n ->{
+        try {
+            Set<Notificacao> setNotif = cliente.getNotificacoes();
+            
+            setNotif.forEach( n ->{
             mapCN.putIfAbsent(n.getId(), n);
         });
+        } catch (Exception e) {
+        }
+        
         //System.out.println("TAMANHO DO VETOR DE NOTIFICACOES"+mapCN.size());
        
         
